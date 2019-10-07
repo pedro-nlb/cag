@@ -14,19 +14,29 @@
 \usepackage{todonotes}
 
 % Plain theorems
+\theoremstyle{plain}
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{lm}[thm]{Lemma}
 \newtheorem{prop}[thm]{Proposition}
 \newtheorem{cor}[thm]{Corollary}
 
 % Definition theorems
+\theoremstyle{definition}
 \newtheorem{defn}[thm]{Definition}
 \newtheorem{exa}[thm]{Example}
 
 % Remark theorems
+\theoremstyle{remark}
 \newtheorem{rem}[thm]{Remark}
 
-\title{Title}
+% Mathscr for categories
+\newcommand{\C}{\mathscr{C}}
+\newcommand{\Top}{\mathscr{T}op}
+
+% Math operators
+\DeclareMathOperator{\Hom}{Hom}
+
+\title{Seminar on Condensed Mathematics \\ \large Talk 2: Condensed Abelian Groups}
 \author{Pedro Núñez}
 \date{\today}
 
@@ -36,7 +46,17 @@
 
 \tableofcontents
 
-\section{First section}
+\section{The category of condensed abelian groups}
+
+Recall from the previous talk:
+
+\begin{defn}
+    The \textit{pro-étale site} of a point, denoted $*_{proét}$, consists of:
+    \begin{itemize}
+	\item The category whose objects are profinite sets $S$ (topological spaces homeomorphic to an inverse limit of finite discrete topological spaces, a.k.a. totally disconnected compact Hausdorff spaces) and whose morphisms are continuous maps.
+	\item For a profinite set $S$, its covering sieves are all finite families $\{ S_{j}\to S\}_{j\in J}$ of jointly surjective maps, i.e. $\sqcup_{j\in J}S_{j}\twoheadrightarrow S$ with $J$ a finite indexing set.
+    \end{itemize}
+\end{defn}
 
 \bibliographystyle{alpha}
 \bibliography{refs}
