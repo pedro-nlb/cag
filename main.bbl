@@ -1,3 +1,8 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{{Sta}19}
+
+\bibitem[{Sta}19]{sta19}
+The {Stacks project authors}.
+\newblock The stacks project.
+\newblock \url{https://stacks.math.columbia.edu}, 2019.
 
 \end{thebibliography}

@@ -32,9 +32,17 @@
 % Mathscr for categories
 \newcommand{\C}{\mathscr{C}}
 \newcommand{\Top}{\mathscr{T}op}
+\newcommand{\Ab}{\mathscr{A}b}
 
 % Math operators
 \DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Cond}{Cond}
+
+% New commands
+\newcommand{\pe}{*_{pro\acute et}}
+\renewcommand{\u}[1]{\underline{#1}}
+\newcommand{\ot}{\otimes}
+\newcommand{\op}{\oplus}
 
 \title{Seminar on Condensed Mathematics \\ \large Talk 2: Condensed Abelian Groups}
 \author{Pedro Núñez}
@@ -46,19 +54,5 @@
 
 \tableofcontents
 
-\section{The category of condensed abelian groups}
-
-Recall from the previous talk:
-
-\begin{defn}
-    The \textit{pro-étale site} of a point, denoted $*_{proét}$, consists of:
-    \begin{itemize}
-	\item The category whose objects are profinite sets $S$ (topological spaces homeomorphic to an inverse limit of finite discrete topological spaces, a.k.a. totally disconnected compact Hausdorff spaces) and whose morphisms are continuous maps.
-	\item For a profinite set $S$, its covering sieves are all finite families $\{ S_{j}\to S\}_{j\in J}$ of jointly surjective maps, i.e. $\sqcup_{j\in J}S_{j}\twoheadrightarrow S$ with $J$ a finite indexing set.
-    \end{itemize}
-\end{defn}
-
-\bibliographystyle{alpha}
-\bibliography{refs}
 
 \end{document}
