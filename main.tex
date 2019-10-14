@@ -71,7 +71,7 @@ Let us start by characterizing sheaves on this site:
 
 \begin{lm}\label{lm:pesheaves}
     A contravariant functor $T$ from $\pe$ to the category of abelian groups $\Ab$ is a sheaf if and only if the following hold:
-    \begin{enumerate}[label=\roman*)]
+    \begin{enumerate}[label=\alph*)]
 	\item $T(\varnothing)=0$,
 	\item $T(S_{1}\sqcup S_{2})\cong T(S_{1})\op T(S_{2})$, and
 	\item For any surjection $S'\twoheadrightarrow S$, $T$ induces a group isomorphism
@@ -80,8 +80,37 @@ Let us start by characterizing sheaves on this site:
     \end{enumerate}
     \begin{proof}
 	By definition, a functor $T$ is a sheaf on $\pe$ if and only if for every finite family $\{ S_{i}\to S\}_{i\in I}$ of jointly surjective morphisms the diagram
-	\[ T(S)\to \prod_{i\in I} T(S_{i})\overset{p_{1}^{*}}{\underset{p_{2}^{*}}{\rightrightarrows}}\prod_{i,j\in I} T(S_{i}\times_{S} S_{j}) \]
+	\[ T(S)\to \prod_{i\in I} T(S_{i})\overset{p_{1}^{*}}{\underset{p_{2}^{*}}{\rightrightarrows}}\prod_{(i,j)\in I^{2}} T(S_{i}\times_{S} S_{j}) \]
 	is exact, meaning that the left arrow is an equalizer of the two arrows on the right.
+	Since we are in $\Ab$ and $I$ is a finite set, we can reformulate this as the sequence
+	\begin{equation}\label{eqn:sheaf}
+	    0\to T(S)\to \bigoplus_{i\in I} T(S_{i})\xrightarrow{p_{1}^{*}-p_{2}^{*}} \bigoplus_{(i,j)\in I^{2}} T(S_{i}\times_{S}S_{j})
+	\end{equation}
+	being exact.
+
+	So assume first that this is the case.
+	The empty set is covered by the empty family, so the $T(\varnothing)$ must be a subgroup of $0$, hence $0$ itself.
+	This shows $a)$.
+	The natural inclusions $S_{i}\to S_{1}\sqcup S_{2}=S$ cover $S$ for $i\in I=\{1,2\}$, so it suffices to show that $p_{1}^{*}=p_{2}^{*}$ to verify $b)$.
+	Since $i_{1}(S_{1})\cap i_{2}(S_{2})=\varnothing $, we have $S_{1}\times_{S}S_{2}=S_{2}\times_{S}S_{1}=\varnothing $.
+	So if $(g,h)\in T(S_{1})\op T(S_{2})$, then
+	\begin{multline*}
+	    p_{1}^{*}(g,h)=(T(p_{1}^{S_{1}\times_{S}S_{1}})(g),T(p_{1}^{S_{1}\times_{S}S_{2}})(g),T(p_{1}^{S_{2}\times_{S}S_{1}})(h),T(p_{1}^{S_{2}\times_{S}S_{2}})(h)) \\ 
+	    =(T(p_{1}^{S_{1}\times_{S}S_{1}})(g),0,0,T(p_{1}^{S_{2}\times_{S}S_{2}})(h)) \\
+	    =(T(p_{2}^{S_{1}\times_{S}S_{1}})(g),T(p_{2}^{S_{1}\times_{S}S_{2}})(h),T(p_{2}^{S_{2}\times_{S}S_{1}})(g),T(p_{2}^{S_{2}\times_{S}S_{2}})(h))=p_{2}^{*}(g,h).
+	\end{multline*}
+	To show $c)$, note that $S'\twoheadrightarrow S$ is already a cover, so \cref{eqn:sheaf} immediately implies the result.
+
+	Let us now see the converse by induction on the cardinality of $I$.
+	If $I=\{1\}$, then we have a surjection $S_{1}\twoheadrightarrow S$ and we are done by $c)$.
+	If $I=\{ 1,\ldots, m\}$, then we have $m$ morphisms $f_{i}\colon S_{i}\to S$ such that $\sqcup_{i=1}^{m} S_{i}\twoheadrightarrow S$ is surjective.
+	Write $S'=f_{1}(S_{1})\subseteq S$ and $S''=S\setminus S'$.
+	By $b)$ we have $T(S)=T(S')\op T(S'')$.
+	By $c)$ we have an exact sequence
+	\[ 0\to T(S')\to T(S_{1})\to T(S_{1}\times_{S'}S_{1})=T(S_{1}\times_{S}S_{1}), \]
+	and since $S''$ is covered by the remaining $m-1$ morphisms, by induction hypothesis we have an exact sequence
+	\[ 0\to T(S'')\to \bigoplus_{i=2}^{m}T(S_{i})\to \bigoplus_{(i,j)\in I^{2}\setminus \{(1,1)\}} T(S_{i}\times_{S}S_{j}). \]
+	Taking the direct sum of these two exact sequences finishes the proof.
     \end{proof}
 \end{lm}
 
