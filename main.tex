@@ -54,5 +54,38 @@
 
 \tableofcontents
 
+\section{The category of condensed abelian groups}
+
+Recall from the previous talk:
+
+\begin{defn}
+    The \textit{pro-étale site} of a point, denoted $*_{proét}$, consists of:
+    \begin{itemize}
+	\item The category whose objects are profinite sets $S$ (topological spaces homeomorphic to an inverse limit of finite discrete topological spaces, a.k.a. totally disconnected compact Hausdorff spaces) and whose morphisms are continuous maps.
+	\item The coverings of a profinite set $S$ are all finite families of jointly surjective maps, i.e. all families of morphisms $\{ S_{i}\to S\}_{i\in I}$ indexed by finite sets $J$ such that $\sqcup_{i\in I}S_{i}\to S$ is surjective.
+    \end{itemize}
+\end{defn}
+
+It is easy to check that the axioms of a covering family are satisfied (see \cite[\href{https://stacks.math.columbia.edu/tag/00VH}{Tag 00VH}]{sta19}), so we have a well-defined site.
+Let us start by characterizing sheaves on this site:
+
+\begin{lm}\label{lm:pesheaves}
+    A contravariant functor $T$ from $\pe$ to the category of abelian groups $\Ab$ is a sheaf if and only if the following hold:
+    \begin{enumerate}[label=\roman*)]
+	\item $T(\varnothing)=0$,
+	\item $T(S_{1}\sqcup S_{2})\cong T(S_{1})\op T(S_{2})$, and
+	\item For any surjection $S'\twoheadrightarrow S$, $T$ induces a group isomorphism
+	    \[ T(S)\to \{ g\in T(S') \mid p_{1}^{*}(g)=p_{2}^{*}(g) \in T(S'\times_{S}S') \}, \]
+	    where $p_{1},p_{2}\colon S'\times_{S}S'\to S'$ denote the projections.
+    \end{enumerate}
+    \begin{proof}
+	By definition, a functor $T$ is a sheaf on $\pe$ if and only if for every finite family $\{ S_{i}\to S\}_{i\in I}$ of jointly surjective morphisms the diagram
+	\[ T(S)\to \prod_{i\in I} T(S_{i})\overset{p_{1}^{*}}{\underset{p_{2}^{*}}{\rightrightarrows}}\prod_{i,j\in I} T(S_{i}\times_{S} S_{j}) \]
+	is exact, meaning that the left arrow is an equalizer of the two arrows on the right.
+    \end{proof}
+\end{lm}
+
+\bibliographystyle{alpha}
+\bibliography{refs}
 
 \end{document}
