@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex main"] 1571069928 "main.aux" "main.bbl" "main" 1571070010
+["bibtex main"] 1571138936 "main.aux" "main.bbl" "main" 1571139527
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/alpha.bst" 1480098433 23907 a5f93555796fb564b924339521f10a7c ""
-  "main.aux" 1571070009 1105 aa9f7e93072c87aac4dd8eef9e80ae0d ""
+  "main.aux" 1571139527 1101 157d29f2a525c436d13812873979f1b9 ""
   "refs.bib" 1571061650 27481 7a8aed07747bc799bba6fca227799377 ""
   (generated)
   "main.blg"
   "main.bbl"
-["pdflatex"] 1571070009 "main.tex" "main.pdf" "main" 1571070010
+["pdflatex"] 1571139527 "main.tex" "main.pdf" "main" 1571139527
   "/etc/texmf/web2c/texmf.cnf" 1567423373 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/pedro/.texlive2018/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk" 1569223484 28952 bae6363876bde347b4275e82aa883b60 ""
   "/home/pedro/.texlive2018/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk" 1569223485 40112 be32227866794fb613877a922877dc70 ""
@@ -193,14 +193,14 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1551493644 34566 ab5be96bde1a5acfd4f881dbe566b5fb ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1567423795 2948181 845e3844416a72b2958b3c37a5c4593a ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1567510044 1974844 1f956701ff938d42ce4c6ecbf065cde3 ""
-  "main.aux" 1571070009 1105 aa9f7e93072c87aac4dd8eef9e80ae0d ""
-  "main.bbl" 1571069928 198 544036b286e027b5dde54d4ce7b45b02 "bibtex main"
-  "main.out" 1571070009 75 18af3dc66a4396862a6545a5c7b74f17 ""
-  "main.tex" 1571070009 5408 6ba9032078463a01fc04e5b2ffe08bfa ""
-  "main.toc" 1571070009 122 612d224afb13418f6af461cb517980e5 ""
+  "main.aux" 1571139527 1101 157d29f2a525c436d13812873979f1b9 ""
+  "main.bbl" 1571138936 198 544036b286e027b5dde54d4ce7b45b02 "bibtex main"
+  "main.out" 1571139527 75 18af3dc66a4396862a6545a5c7b74f17 ""
+  "main.tex" 1571139526 8364 f2eecc77bebd408ba1025aedc9f15bdb ""
+  "main.toc" 1571139527 122 612d224afb13418f6af461cb517980e5 ""
   (generated)
-  "main.pdf"
   "main.toc"
+  "main.out"
+  "main.pdf"
   "main.aux"
   "main.log"
-  "main.out"

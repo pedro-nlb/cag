@@ -33,6 +33,7 @@
 \newcommand{\C}{\mathscr{C}}
 \newcommand{\Top}{\mathscr{T}op}
 \newcommand{\Ab}{\mathscr{A}b}
+\newcommand{\Set}{\mathscr{S}et}
 
 % Math operators
 \DeclareMathOperator{\Hom}{Hom}
@@ -43,6 +44,8 @@
 \renewcommand{\u}[1]{\underline{#1}}
 \newcommand{\ot}{\otimes}
 \newcommand{\op}{\oplus}
+\newcommand{\fp}[1]{\times_{#1}}
+
 
 \title{Seminar on Condensed Mathematics \\ \large Talk 2: Condensed Abelian Groups}
 \author{Pedro Núñez}
@@ -69,7 +72,7 @@ Recall from the previous talk:
 It is easy to check that the axioms of a covering family are satisfied (see \cite[\href{https://stacks.math.columbia.edu/tag/00VH}{Tag 00VH}]{sta19}), so we have a well-defined site.
 Let us start by characterizing sheaves on this site:
 
-\begin{lm}\label{lm:pesheaves}
+\begin{lm}\label{lm:sheaves}
     A contravariant functor $T$ from $\pe$ to the category of abelian groups $\Ab$ is a sheaf if and only if the following hold:
     \begin{enumerate}[label=\alph*)]
 	\item $T(\varnothing)=0$,
@@ -103,16 +106,48 @@ Let us start by characterizing sheaves on this site:
 
 	Let us now see the converse by induction on the cardinality of $I$.
 	If $I=\{1\}$, then we have a surjection $S_{1}\twoheadrightarrow S$ and we are done by $c)$.
-	If $I=\{ 1,\ldots, m\}$, then we have $m$ morphisms $f_{i}\colon S_{i}\to S$ such that $\sqcup_{i=1}^{m} S_{i}\twoheadrightarrow S$ is surjective.
-	Write $S'=f_{1}(S_{1})\subseteq S$ and $S''=S\setminus S'$.
-	By $b)$ we have $T(S)=T(S')\op T(S'')$.
-	By $c)$ we have an exact sequence
-	\[ 0\to T(S')\to T(S_{1})\to T(S_{1}\times_{S'}S_{1})=T(S_{1}\times_{S}S_{1}), \]
-	and since $S''$ is covered by the remaining $m-1$ morphisms, by induction hypothesis we have an exact sequence
-	\[ 0\to T(S'')\to \bigoplus_{i=2}^{m}T(S_{i})\to \bigoplus_{(i,j)\in I^{2}\setminus \{(1,1)\}} T(S_{i}\times_{S}S_{j}). \]
-	Taking the direct sum of these two exact sequences finishes the proof.
+	If $I=\{1,2\}$, then we consider $S'=S_{1}\sqcup S_{2}\twoheadrightarrow S$.
+	By the previous case and $b)$ we have
+	\[ T(S)=\{(g_{1},g_{2})\in T(S_{1})\op T(S_{2})\mid T(p_{1}^{S'\fp{S}S'})(g_{1},g_{2})=T(p_{2}^{S'\fp{S}S'})(g_{1},g_{2})\}.\]
+	Since $S'\fp{S}S'=\sqcup_{(i,j)\in I^{2}}S_{i}\fp{S}S_{j}$, the previous condition is equivalent to the conditions
+	\[ P_{i,j}(g_{i},g_{j}):\equiv T(p_{1}^{S_{i}\fp{S}S_{j}})(g_{i})=T(p_{2}^{S_{i}\fp{S}S_{j}})(g_{j}) \]
+	for $(i,j)\in I^{2}$, which is what we wanted.
+	If $I=\{ 1,\ldots, m\}$ with $m\geqslant 3$, then we have $m$ morphisms $f_{i}\colon S_{i}\to S$ such that $\sqcup_{i=1}^{m} S_{i}\twoheadrightarrow S$ is surjective.
+	Write $S'=f_{1}(S_{1})\subseteq S$ and $S''=\cup_{i=2}^{m}f_{i}(S_{i})\subseteq S$.
+	These are compact subsets of a profinite set, hence profinite sets themselves.
+	By $c)$ and using that $S_{i}\fp{S'}S_{j}=S_{i}\fp{S}S_{j}$ we have an exact sequence
+	\[ 0\to T(S')\to T(S_{1})\to T(S_{1}\times_{S}S_{1}), \]
+	and since $S''$ is covered by the remaining $m-1$ morphisms, by induction hypothesis and the same identification as before we have an exact sequence
+	\[ 0\to T(S'')\to \bigoplus_{i=2}^{m}T(S_{i})\to \bigoplus_{(i,j)\in J^{2}} T(S_{i}\fp{S}S_{j}), \]
+	where $J=\{2,\ldots,m\}$.
+	This means that $T(S')=\{g_{1}\in T(S_{1})\mid P_{1,1}(g_{1},g_{1})\}$ and that $T(S'')=\bigcap_{(i,j)\in J^{2}}\{(g_{2},\ldots,g_{m})\in \op_{i=2}^{m}T(S_{i})\mid P_{i,j}(g_{i},g_{j})\}$.
+	We need to show $T(S)=\bigcap_{(i,j)\in I^{2}}\{ (g_{1},\ldots,g_{m})\in \op_{i=1}^{m}T(S_{i})\mid P_{i,j}(g_{i},g_{j})\}$.
+	For this we use the cover given by the two inclusions $i'\colon S'\to S$ and $i''\colon S''\to S$, which by induction hypothesis yields
+	\begin{multline*}
+	T(S)=\{(g_{1};g_{2},\ldots,g_{m})\in T(S')\op T(S'')\mid \\
+	T(p_{1}^{(S'\cap S'')^{2}})(g_{1})=T(p_{2}^{(S'\cap S'')^{2}})(g_{2},\ldots,g_{m})\}.
+	\end{multline*}
+	Besides of the conditions $P_{i,j}$ already present in $T(S')$ and in $T(S'')$ for $(i,j)\in I^{2}\setminus (\{1\}\times J\cup J\times \{1\})$, the previous equality shows that the conditions $P_{i,j}$ for $(i,j)\in \{1\}\times J\cup J\times \{1\}$ are also satisfied.
     \end{proof}
 \end{lm}
+
+With this characterization we can already produce some examples:
+
+\begin{exa}
+    Let $G$ be a topological abelian group. Then the functor $\u{G}=\Hom_{\Top}(-,G)\colon \pe\to \Ab$ is a condensed abelian group.
+    Conditions $a)$ and $b)$ in \cref{lm:sheaves} are clear.
+    For condition $c)$, let $f\colon S'\twoheadrightarrow S$ be a surjection.
+    We want to show that $f^{*}\colon \u{G}(S)\to \u{G}(S')$ induces an isomorphism between the set of continuous maps $g\colon S\to G$ and the set of continous maps $h\colon S'\to G$ such that $h\circ p_{1}=h\circ p_{2}$.
+    The image of $f^{*}$ is indeed contained in the set of all such maps, because $f\circ p_{1}=f\circ p_{2}$.
+    Moreover, since $f$ is an epimorphism, $f^{*}$ is injective.
+    So it only remains to show surjectivity.
+    Let $h\colon S'\to G$ be a map such that $h\circ p_{1}=h\circ p_{2}$.
+    For each $s\in S$, let $g(s):=h(s')$ for some $s'\in f^{-1}(\{s\})$.
+    This is well-defined in $\Set$, because if $f(s')=f(s'')=s$, then $(s',s'')\in S'\times_{S}S'$, and thus we can write
+    \[ g(s)=h(s')=h\circ p_{1}(s',s'')=h\circ p_{2}(s',s'')=h(s'').\]
+    But in fact it is a morphism in $\Top$.
+    Indeed, $S$ carries the quotient topology induced by $f$, so $f^{-1}(g^{-1}(U))=h^{-1}(U)$ being open in $S'$ for all $U$ open in $G$ implies that $g^{-1}(U)$ is open in $S$ for all $U$ open in $G$.
+\end{exa}
 
 \bibliographystyle{alpha}
 \bibliography{refs}
