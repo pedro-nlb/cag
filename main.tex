@@ -73,28 +73,28 @@ It is easy to check that the axioms of a covering family are satisfied (see \cit
 Let us start by characterizing sheaves on this site:
 
 \begin{lm}\label{lm:sheaves}
-    A contravariant functor $T$ from $\pe$ to the category of abelian groups $\Ab$ is a sheaf if and only if the following hold:
+    A contravariant functor $T$ from $\pe$ to the category of abelian groups $\Ab$ is a sheaf if and only if the following three conditions hold:
     \begin{enumerate}[label=\alph*)]
-	\item $T(\varnothing)=0$,
-	\item $T(S_{1}\sqcup S_{2})\cong T(S_{1})\op T(S_{2})$, and
-	\item For any surjection $S'\twoheadrightarrow S$, $T$ induces a group isomorphism
-	    \[ T(S)\to \{ g\in T(S') \mid p_{1}^{*}(g)=p_{2}^{*}(g) \in T(S'\times_{S}S') \}, \]
+	\item $T(\varnothing)=0$.
+	\item For all profinite sets $S_{1}$ and $S_{2}$, the inclusions $i_{1}\colon S_{1}\to S_{1}\sqcup S_{2}$ and $i_{2}\colon S_{2}\to S_{1}\sqcup S_{2}$ induce a group isomorphism
+	    \[ T(S_{1}\sqcup S_{2})\xrightarrow{T(i_{1})\times T(i_{2})} T(S_{1})\op T(S_{2}).\]
+	\item Every surjection $f\colon S'\twoheadrightarrow S$ induces a group isomorphism
+	    \[ T(S)\xrightarrow{T(f)} \{ g\in T(S') \mid T(p_{1})(g)=T(p_{2})(g) \in T(S'\times_{S}S') \}, \]
 	    where $p_{1},p_{2}\colon S'\times_{S}S'\to S'$ denote the projections.
     \end{enumerate}
     \begin{proof}
 	By definition, a functor $T$ is a sheaf on $\pe$ if and only if for every finite family $\{ S_{i}\to S\}_{i\in I}$ of jointly surjective morphisms the diagram
 	\[ T(S)\to \prod_{i\in I} T(S_{i})\overset{p_{1}^{*}}{\underset{p_{2}^{*}}{\rightrightarrows}}\prod_{(i,j)\in I^{2}} T(S_{i}\times_{S} S_{j}) \]
-	is exact, meaning that the left arrow is an equalizer of the two arrows on the right.
+	is exact, meaning that the left arrow is an equalizer of the two arrows on the right, which are explicitly described below.
 	Since we are in $\Ab$ and $I$ is a finite set, we can reformulate this as the sequence
 	\begin{equation}\label{eqn:sheaf}
 	    0\to T(S)\to \bigoplus_{i\in I} T(S_{i})\xrightarrow{p_{1}^{*}-p_{2}^{*}} \bigoplus_{(i,j)\in I^{2}} T(S_{i}\times_{S}S_{j})
 	\end{equation}
 	being exact.
 
-	So assume first that this is the case.
+	So assume first that \ref{eqn:sheaf} is exact.
 	The empty set is covered by the empty family, so the $T(\varnothing)$ must be a subgroup of $0$, hence $0$ itself.
-	This shows $a)$.
-	The natural inclusions $S_{i}\to S_{1}\sqcup S_{2}=S$ cover $S$ for $i\in I=\{1,2\}$, so it suffices to show that $p_{1}^{*}=p_{2}^{*}$ to verify $b)$.
+	The natural inclusions $S_{i}\to S_{1}\sqcup S_{2}=S$ cover $S$ for $i\in I=\{1,2\}$, so it suffices to show that $T(p_{1})=T(p_{2})$ to verify $b)$.
 	Since $i_{1}(S_{1})\cap i_{2}(S_{2})=\varnothing $, we have $S_{1}\times_{S}S_{2}=S_{2}\times_{S}S_{1}=\varnothing $.
 	So if $(g,h)\in T(S_{1})\op T(S_{2})$, then
 	\begin{multline*}
@@ -102,32 +102,14 @@ Let us start by characterizing sheaves on this site:
 	    =(T(p_{1}^{S_{1}\times_{S}S_{1}})(g),0,0,T(p_{1}^{S_{2}\times_{S}S_{2}})(h)) \\
 	    =(T(p_{2}^{S_{1}\times_{S}S_{1}})(g),T(p_{2}^{S_{1}\times_{S}S_{2}})(h),T(p_{2}^{S_{2}\times_{S}S_{1}})(g),T(p_{2}^{S_{2}\times_{S}S_{2}})(h))=p_{2}^{*}(g,h).
 	\end{multline*}
-	To show $c)$, note that $S'\twoheadrightarrow S$ is already a cover, so \cref{eqn:sheaf} immediately implies the result.
+	To show $c)$, note that $S'\twoheadrightarrow S$ is already a cover, so the exactness of \ref{eqn:sheaf} immediately implies the result.
 
-	Let us now see the converse by induction on the cardinality of $I$.
-	If $I=\{1\}$, then we have a surjection $S_{1}\twoheadrightarrow S$ and we are done by $c)$.
-	If $I=\{1,2\}$, then we consider $S'=S_{1}\sqcup S_{2}\twoheadrightarrow S$.
-	By the previous case and $b)$ we have
-	\[ T(S)=\{(g_{1},g_{2})\in T(S_{1})\op T(S_{2})\mid T(p_{1}^{S'\fp{S}S'})(g_{1},g_{2})=T(p_{2}^{S'\fp{S}S'})(g_{1},g_{2})\}.\]
-	Since $S'\fp{S}S'=\sqcup_{(i,j)\in I^{2}}S_{i}\fp{S}S_{j}$, the previous condition is equivalent to the conditions
-	\[ P_{i,j}(g_{i},g_{j}):\equiv T(p_{1}^{S_{i}\fp{S}S_{j}})(g_{i})=T(p_{2}^{S_{i}\fp{S}S_{j}})(g_{j}) \]
-	for $(i,j)\in I^{2}$, which is what we wanted.
-	If $I=\{ 1,\ldots, m\}$ with $m\geqslant 3$, then we have $m$ morphisms $f_{i}\colon S_{i}\to S$ such that $\sqcup_{i=1}^{m} S_{i}\twoheadrightarrow S$ is surjective.
-	Write $S'=f_{1}(S_{1})\subseteq S$ and $S''=\cup_{i=2}^{m}f_{i}(S_{i})\subseteq S$.
-	These are compact subsets of a profinite set, hence profinite sets themselves.
-	By $c)$ and using that $S_{i}\fp{S'}S_{j}=S_{i}\fp{S}S_{j}$ we have an exact sequence
-	\[ 0\to T(S')\to T(S_{1})\to T(S_{1}\times_{S}S_{1}), \]
-	and since $S''$ is covered by the remaining $m-1$ morphisms, by induction hypothesis and the same identification as before we have an exact sequence
-	\[ 0\to T(S'')\to \bigoplus_{i=2}^{m}T(S_{i})\to \bigoplus_{(i,j)\in J^{2}} T(S_{i}\fp{S}S_{j}), \]
-	where $J=\{2,\ldots,m\}$.
-	This means that $T(S')=\{g_{1}\in T(S_{1})\mid P_{1,1}(g_{1},g_{1})\}$ and that $T(S'')=\bigcap_{(i,j)\in J^{2}}\{(g_{2},\ldots,g_{m})\in \op_{i=2}^{m}T(S_{i})\mid P_{i,j}(g_{i},g_{j})\}$.
-	We need to show $T(S)=\bigcap_{(i,j)\in I^{2}}\{ (g_{1},\ldots,g_{m})\in \op_{i=1}^{m}T(S_{i})\mid P_{i,j}(g_{i},g_{j})\}$.
-	For this we use the cover given by the two inclusions $i'\colon S'\to S$ and $i''\colon S''\to S$, which by induction hypothesis yields
-	\begin{multline*}
-	T(S)=\{(g_{1};g_{2},\ldots,g_{m})\in T(S')\op T(S'')\mid \\
-	T(p_{1}^{(S'\cap S'')^{2}})(g_{1})=T(p_{2}^{(S'\cap S'')^{2}})(g_{2},\ldots,g_{m})\}.
-	\end{multline*}
-	Besides of the conditions $P_{i,j}$ already present in $T(S')$ and in $T(S'')$ for $(i,j)\in I^{2}\setminus (\{1\}\times J\cup J\times \{1\})$, the previous equality shows that the conditions $P_{i,j}$ for $(i,j)\in \{1\}\times J\cup J\times \{1\}$ are also satisfied.
+	For the converse, suppose that $\{f_{j}\colon S_{j}\to S\}_{j\in J}$ is a collection of jointly surjective morphisms indexed by $J=\{ 1,\ldots,m\}$.
+	We have then a surjection $f\colon S \twoheadrightarrow S$, where $S':=\sqcup_{j=1}^{m}S_{j}$ and $f:=\sqcup_{j=1}^{m}f_{j}$.
+	By $c)$ we can write $T(S)=\{ g\in T(S')\mid T(p_{1}^{S'\fp{S}S'})(g)=T(p_{2}^{S'\fp{S}S'})(g)\}$.
+	But $S'\fp{S}S'=\sqcup_{(a,b)\in J^{2}} S_{a}\fp{S}S_{b}$ and $p_{\varepsilon }^{S'\fp{S}S'}=\sqcup_{(a,b)\in J^{2}} i_{a}\circ p_{\varepsilon }^{S_{a}\fp{S}S_{b}}$ for $\varepsilon \in \{1,2\}$ and for $i_{a}\colon S_{a}\to S'$ the inclusions, so condition $b)$ allows us to rewrite this as
+	\[ T(S)=\bigcap_{(a,b)\in J^{2}} \{ (g_{1},\ldots,g_{m})\in T(S_{1})\op \cdots \op T(S_{m})\mid P_{a,b}(g_{a},g_{b})\}\]
+	with $P_{a,b}(g_{a},g_{b}):\equiv T(p_{1}^{S_{a}\fp{S}S_{b}})(g_{a})=T(p_{2}^{S_{a}\fp{S}S_{b}})(g_{b})$, which is what we wanted.	
     \end{proof}
 \end{lm}
 
