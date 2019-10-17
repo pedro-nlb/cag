@@ -32,17 +32,23 @@
 % Mathscr for categories
 \newcommand{\C}{\mathscr{C}}
 \newcommand{\Top}{\mathscr{T}op}
+\newcommand{\CHaus}{\mathscr{CH}aus}
 \newcommand{\Ab}{\mathscr{A}b}
+\newcommand{\Set}{\mathscr{S}et}
 
 % Math operators
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\Cond}{Cond}
+\DeclareMathOperator{\Ob}{Ob}
 
 % New commands
 \newcommand{\pe}{*_{pro\acute et}}
 \renewcommand{\u}[1]{\underline{#1}}
 \newcommand{\ot}{\otimes}
 \newcommand{\op}{\oplus}
+\newcommand{\fp}[1]{\times_{#1}}
+\newcommand{\id}{\mathrm{id}}
+
 
 \title{Seminar on Condensed Mathematics \\ \large Talk 2: Condensed Abelian Groups}
 \author{Pedro Núñez}
@@ -69,29 +75,29 @@ Recall from the previous talk:
 It is easy to check that the axioms of a covering family are satisfied (see \cite[\href{https://stacks.math.columbia.edu/tag/00VH}{Tag 00VH}]{sta19}), so we have a well-defined site.
 Let us start by characterizing sheaves on this site:
 
-\begin{lm}\label{lm:pesheaves}
-    A contravariant functor $T$ from $\pe$ to the category of abelian groups $\Ab$ is a sheaf if and only if the following hold:
+\begin{lm}\label{lm:sheaf}
+    A contravariant functor $T$ from $\pe$ to the category of abelian groups $\Ab$ is a sheaf if and only if the following three conditions hold:
     \begin{enumerate}[label=\alph*)]
-	\item $T(\varnothing)=0$,
-	\item $T(S_{1}\sqcup S_{2})\cong T(S_{1})\op T(S_{2})$, and
-	\item For any surjection $S'\twoheadrightarrow S$, $T$ induces a group isomorphism
-	    \[ T(S)\to \{ g\in T(S') \mid p_{1}^{*}(g)=p_{2}^{*}(g) \in T(S'\times_{S}S') \}, \]
+	\item $T(\varnothing)=0$.
+	\item For all profinite sets $S_{1}$ and $S_{2}$, the inclusions $i_{1}\colon S_{1}\to S_{1}\sqcup S_{2}$ and $i_{2}\colon S_{2}\to S_{1}\sqcup S_{2}$ induce a group isomorphism
+	    \[ T(S_{1}\sqcup S_{2})\xrightarrow{T(i_{1})\times T(i_{2})} T(S_{1})\op T(S_{2}).\]
+	\item Every surjection $f\colon S'\twoheadrightarrow S$ induces a group isomorphism
+	    \[ T(S)\xrightarrow{T(f)} \{ g\in T(S') \mid T(p_{1})(g)=T(p_{2})(g) \in T(S'\times_{S}S') \}, \]
 	    where $p_{1},p_{2}\colon S'\times_{S}S'\to S'$ denote the projections.
     \end{enumerate}
     \begin{proof}
 	By definition, a functor $T$ is a sheaf on $\pe$ if and only if for every finite family $\{ S_{i}\to S\}_{i\in I}$ of jointly surjective morphisms the diagram
 	\[ T(S)\to \prod_{i\in I} T(S_{i})\overset{p_{1}^{*}}{\underset{p_{2}^{*}}{\rightrightarrows}}\prod_{(i,j)\in I^{2}} T(S_{i}\times_{S} S_{j}) \]
-	is exact, meaning that the left arrow is an equalizer of the two arrows on the right.
+	is exact, meaning that the left arrow is an equalizer of the two arrows on the right, which are explicitly described below.
 	Since we are in $\Ab$ and $I$ is a finite set, we can reformulate this as the sequence
 	\begin{equation}\label{eqn:sheaf}
 	    0\to T(S)\to \bigoplus_{i\in I} T(S_{i})\xrightarrow{p_{1}^{*}-p_{2}^{*}} \bigoplus_{(i,j)\in I^{2}} T(S_{i}\times_{S}S_{j})
 	\end{equation}
 	being exact.
 
-	So assume first that this is the case.
+	So assume first that \ref{eqn:sheaf} is exact.
 	The empty set is covered by the empty family, so the $T(\varnothing)$ must be a subgroup of $0$, hence $0$ itself.
-	This shows $a)$.
-	The natural inclusions $S_{i}\to S_{1}\sqcup S_{2}=S$ cover $S$ for $i\in I=\{1,2\}$, so it suffices to show that $p_{1}^{*}=p_{2}^{*}$ to verify $b)$.
+	The natural inclusions $S_{i}\to S_{1}\sqcup S_{2}=S$ cover $S$ for $i\in I=\{1,2\}$, so it suffices to show that $T(p_{1})=T(p_{2})$ to verify $b)$.
 	Since $i_{1}(S_{1})\cap i_{2}(S_{2})=\varnothing $, we have $S_{1}\times_{S}S_{2}=S_{2}\times_{S}S_{1}=\varnothing $.
 	So if $(g,h)\in T(S_{1})\op T(S_{2})$, then
 	\begin{multline*}
@@ -99,20 +105,102 @@ Let us start by characterizing sheaves on this site:
 	    =(T(p_{1}^{S_{1}\times_{S}S_{1}})(g),0,0,T(p_{1}^{S_{2}\times_{S}S_{2}})(h)) \\
 	    =(T(p_{2}^{S_{1}\times_{S}S_{1}})(g),T(p_{2}^{S_{1}\times_{S}S_{2}})(h),T(p_{2}^{S_{2}\times_{S}S_{1}})(g),T(p_{2}^{S_{2}\times_{S}S_{2}})(h))=p_{2}^{*}(g,h).
 	\end{multline*}
-	To show $c)$, note that $S'\twoheadrightarrow S$ is already a cover, so \cref{eqn:sheaf} immediately implies the result.
+	To show $c)$, note that $S'\twoheadrightarrow S$ is already a cover, so the exactness of \ref{eqn:sheaf} immediately implies the result.
 
-	Let us now see the converse by induction on the cardinality of $I$.
-	If $I=\{1\}$, then we have a surjection $S_{1}\twoheadrightarrow S$ and we are done by $c)$.
-	If $I=\{ 1,\ldots, m\}$, then we have $m$ morphisms $f_{i}\colon S_{i}\to S$ such that $\sqcup_{i=1}^{m} S_{i}\twoheadrightarrow S$ is surjective.
-	Write $S'=f_{1}(S_{1})\subseteq S$ and $S''=S\setminus S'$.
-	By $b)$ we have $T(S)=T(S')\op T(S'')$.
-	By $c)$ we have an exact sequence
-	\[ 0\to T(S')\to T(S_{1})\to T(S_{1}\times_{S'}S_{1})=T(S_{1}\times_{S}S_{1}), \]
-	and since $S''$ is covered by the remaining $m-1$ morphisms, by induction hypothesis we have an exact sequence
-	\[ 0\to T(S'')\to \bigoplus_{i=2}^{m}T(S_{i})\to \bigoplus_{(i,j)\in I^{2}\setminus \{(1,1)\}} T(S_{i}\times_{S}S_{j}). \]
-	Taking the direct sum of these two exact sequences finishes the proof.
+	For the converse, suppose that $\{f_{j}\colon S_{j}\to S\}_{j\in J}$ is a collection of jointly surjective morphisms indexed by $J=\{ 1,\ldots,m\}$.
+	We have then a surjection $f\colon S \twoheadrightarrow S$, where $S':=\sqcup_{j=1}^{m}S_{j}$ and $f:=\sqcup_{j=1}^{m}f_{j}$.
+	By $c)$ we can write $T(S)=\{ g\in T(S')\mid T(p_{1}^{S'\fp{S}S'})(g)=T(p_{2}^{S'\fp{S}S'})(g)\}$.
+	But $S'\fp{S}S'=\sqcup_{(a,b)\in J^{2}} S_{a}\fp{S}S_{b}$ and $p_{\varepsilon }^{S'\fp{S}S'}=\sqcup_{(a,b)\in J^{2}} i_{a}\circ p_{\varepsilon }^{S_{a}\fp{S}S_{b}}$ for $\varepsilon \in \{1,2\}$ and for $i_{a}\colon S_{a}\to S'$ the inclusions, so condition $b)$ allows us to rewrite this as
+	\[ T(S)=\bigcap_{(a,b)\in J^{2}} \{ (g_{1},\ldots,g_{m})\in T(S_{1})\op \cdots \op T(S_{m})\mid P_{a,b}(g_{a},g_{b})\}\]
+	with $P_{a,b}(g_{a},g_{b}):\equiv T(p_{1}^{S_{a}\fp{S}S_{b}})(g_{a})=T(p_{2}^{S_{a}\fp{S}S_{b}})(g_{b})$, which is what we wanted.	
     \end{proof}
 \end{lm}
+
+\begin{defn}
+    A \textit{condensed abelian group} is a sheaf of abelian groups on $\pe$.
+    We denote the category of condensed abelian groups by $\Cond(\Ab)$.
+\end{defn}
+
+From \cref{lm:sheaf} we deduce:
+
+\begin{exa}
+    Let $G$ be a topological abelian group. Then the functor $\u{G}=\Hom_{\Top}(-,G)\colon \pe\to \Ab$ is a condensed abelian group.
+    Conditions $a)$ and $b)$ in \cref{lm:sheaf} are clear.
+    For condition $c)$, let $f\colon S'\twoheadrightarrow S$ be a surjection.
+    We want to show that $f^{*}\colon \u{G}(S)\to \u{G}(S')$ induces an isomorphism between the set of continuous maps $g\colon S\to G$ and the set of continous maps $h\colon S'\to G$ such that $h\circ p_{1}=h\circ p_{2}$.
+    The image of $f^{*}$ is indeed contained in the set of all such maps, because $f\circ p_{1}=f\circ p_{2}$.
+    Moreover, since $f$ is an epimorphism, $f^{*}$ is injective.
+    So it only remains to show surjectivity.
+    Let $h\colon S'\to G$ be a map such that $h\circ p_{1}=h\circ p_{2}$.
+    For each $s\in S$, let $g(s):=h(s')$ for some $s'\in f^{-1}(\{s\})$.
+    This is well-defined in $\Set$, because if $f(s')=f(s'')=s$, then $(s',s'')\in S'\times_{S}S'$, and thus we can write
+    \[ g(s)=h(s')=h\circ p_{1}(s',s'')=h\circ p_{2}(s',s'')=h(s'').\]
+    But in fact it is a morphism in $\Top$.
+    Indeed, $S$ carries the quotient topology induced by $f$, so $f^{-1}(g^{-1}(U))=h^{-1}(U)$ being open in $S'$ for all $U$ open in $G$ implies that $g^{-1}(U)$ is open in $S$ for all $U$ open in $G$.
+\end{exa}
+
+Recall that a category $\C$ is called \textit{abelian} if it satisfies the following properties:
+\begin{enumerate}[label=\roman*)]
+    \item There exists a zero object $0\in \Ob(\C)$.
+    \item For all $A,B\in \Ob(\C)$, their product $A\xleftarrow{p_{A}} A\times B\xrightarrow{p_{B}} B$ and their coproduct $A\xrightarrow{i_{A}}A\sqcup B\xleftarrow{i_{B}} B$ exist in $\C$ and the canonical morphism $A\sqcup B\xrightarrow{(\id_{A}\times 0) \sqcup (0\times \id_{B})} A\times B$ is an isomorphism\footnote{We identify $A\sqcup B$ with $A\times B$ via this isomorphism and call the result the \textit{direct sum} of $A$ and $B$, denoted $A\op B$.} in $\C$.
+    \item Every morphisms has a kernel and a cokernel in $\C$.
+    \item Every monomorphism in $\C$ is a kernel and every epimorphism in $\C$ is a cokernel.
+\end{enumerate}
+
+In particular, $\C$ is naturally an additive category and all finite limits and colimits exist in $\C$.
+
+Recall also Grothendieck's axioms:
+\begin{description}
+    \item[(AB3)] All colimits exist.
+    \item[(AB3*)] All limits exist.
+    \item[(AB4)] (AB3) holds and all coproducts are exact.
+    \item[(AB4*)] (AB3*) holds and all products are exact.
+    \item[(AB5)] (AB3) holds and filtered colimits are exact.
+    \item[(AB6)] (AB3) holds and for any family $\{ I_{j}\}_{j\in J}$ of filtered categories indexed by a set $J$ with functors $F_{j}\colon I_{j}\to \C$ the canonical morphism
+	\[ \varinjlim_{(i_{j}\in I_{j})_{j}} \prod_{j\in J}F_{j}(i_{j})\to \prod_{j\in J}\varinjlim_{i_{j}\in I_{j}} F_{j}(i_{j}) \]
+	is an isomorphism in $\C$.
+\end{description}
+
+\begin{rem}
+    To check (AB3) on an abelian category it suffices to show that arbitrary coproducts exist, since we can build any colimit from coproducts and coequalizers, and similarly for the dual statement (AB3*).
+    Colimits preserve colimits because the colimit functor is left adjoint to the diagonal functor.
+    In particular coproducts are always right exact, so to check (AB4) on an abelian category satisfying (AB3) it suffices to check that coproducts preserve monomorphisms, and similarly for the dual statement (AB4*).
+\end{rem}
+
+The main goal of this talk is to show that the category $\Cond(\Ab)$ is an abelian category which verifies all the previous axioms.
+Except for axioms (AB4*) and (AB6), this is a general fact which holds on any category of sheaves of abelian groups on a site, but we will still give an explicit proof in our situation.
+This will be much easier after we express $\Cond(\Ab)$ as the category of sheaves of abelian groups on a simpler site.
+
+\begin{defn}
+    A compact Hausdorff\footnote{If we do not require Hausdorffness, an extremally disconnected space could be very connected, e.g. any irreducible topological space.} topological space is called \textit{extremally disconnected} if the closure of every open set is again open.
+\end{defn}
+
+Equivalently, a compact Hausdorff topological space is extremally disconnected if the closures of every pair of disjoint open sets are also disjoint.
+Therefore extremally disconnected spaces are totally disconnected compact Hausdorff spaces, hence profinite spaces.
+The converse is not true:
+
+\begin{exa}
+    In an extremally disconnected space every convergent sequence is eventually constant (see \cite[Theorem 1.3]{gle58}), so the $p$-adic integers are profinite but not extremally disconnected, because $(p^{n})_{n=1}^{\infty}$ converges to $0$.
+\end{exa}
+    
+Extremally disconnected spaces are precisely the projective objects in the category $\CHaus$ of compact Hausdorff spaces (see \cite[Theorem 2.5]{gle58}).
+Since pullbacks exist and preserve epimorphisms (i.e. surjective continuous functions\footnote{Urysohn's lemma implies that epimorphisms in the category of compact Hausdorff spaces are precisely surjective continuous functions, which is not true in the whole category of Hausdorff spaces (e.g. the inclusion of the complement of a point in the real line).}) in $\CHaus$, a compact Hausdorff space $S$ is extremally disconnected if and only if any surjection $S'\twoheadrightarrow S$ from a compact Hausdorff space admits a section:
+\begin{center}
+    \begin{tikzcd}
+	& S'\arrow[twoheadrightarrow]{d} \\
+	S\arrow[equal]{r}\arrow[dashed]{ur} & S
+    \end{tikzcd}
+\end{center}
+
+The inclusion functor $U\colon \CHaus\to \Top$ has a left adjoint $\beta\colon \Top\to \CHaus$ called the \textit{Stone-\v{C}ech compactification}.
+If $X$ is a discrete topological space, then $\beta X$ is extremally disconnected, because if $S\twoheadrightarrow \beta X$ is a continuous surjection from a compact Hausdorff topological space we may first lift the canonical map $X\to \beta X$ to $S$ and then extend it to a section from $\beta X$ by its universal property.
+In particular, every compact Hausdorff space admits a surjection $\beta(X_{disc})\twoheadrightarrow X$ from an extremally disconnected space.
+This has the following consequence:
+
+\begin{prop}
+    $\Cond(\Ab)$ is equvalent to the category of sheaves of abelian groups on the site of extremally disconnected spaces via the restriction from profinite sets.
+\end{prop}
+
 
 \bibliographystyle{alpha}
 \bibliography{refs}
