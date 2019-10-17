@@ -32,12 +32,14 @@
 % Mathscr for categories
 \newcommand{\C}{\mathscr{C}}
 \newcommand{\Top}{\mathscr{T}op}
+\newcommand{\CHaus}{\mathscr{CH}aus}
 \newcommand{\Ab}{\mathscr{A}b}
 \newcommand{\Set}{\mathscr{S}et}
 
 % Math operators
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\Cond}{Cond}
+\DeclareMathOperator{\Ob}{Ob}
 
 % New commands
 \newcommand{\pe}{*_{pro\acute et}}
@@ -45,6 +47,7 @@
 \newcommand{\ot}{\otimes}
 \newcommand{\op}{\oplus}
 \newcommand{\fp}[1]{\times_{#1}}
+\newcommand{\id}{\mathrm{id}}
 
 
 \title{Seminar on Condensed Mathematics \\ \large Talk 2: Condensed Abelian Groups}
@@ -72,7 +75,7 @@ Recall from the previous talk:
 It is easy to check that the axioms of a covering family are satisfied (see \cite[\href{https://stacks.math.columbia.edu/tag/00VH}{Tag 00VH}]{sta19}), so we have a well-defined site.
 Let us start by characterizing sheaves on this site:
 
-\begin{lm}\label{lm:sheaves}
+\begin{lm}\label{lm:sheaf}
     A contravariant functor $T$ from $\pe$ to the category of abelian groups $\Ab$ is a sheaf if and only if the following three conditions hold:
     \begin{enumerate}[label=\alph*)]
 	\item $T(\varnothing)=0$.
@@ -113,11 +116,16 @@ Let us start by characterizing sheaves on this site:
     \end{proof}
 \end{lm}
 
-With this characterization we can already produce some examples:
+\begin{defn}
+    A \textit{condensed abelian group} is a sheaf of abelian groups on $\pe$.
+    We denote the category of condensed abelian groups by $\Cond(\Ab)$.
+\end{defn}
+
+From \cref{lm:sheaf} we deduce:
 
 \begin{exa}
     Let $G$ be a topological abelian group. Then the functor $\u{G}=\Hom_{\Top}(-,G)\colon \pe\to \Ab$ is a condensed abelian group.
-    Conditions $a)$ and $b)$ in \cref{lm:sheaves} are clear.
+    Conditions $a)$ and $b)$ in \cref{lm:sheaf} are clear.
     For condition $c)$, let $f\colon S'\twoheadrightarrow S$ be a surjection.
     We want to show that $f^{*}\colon \u{G}(S)\to \u{G}(S')$ induces an isomorphism between the set of continuous maps $g\colon S\to G$ and the set of continous maps $h\colon S'\to G$ such that $h\circ p_{1}=h\circ p_{2}$.
     The image of $f^{*}$ is indeed contained in the set of all such maps, because $f\circ p_{1}=f\circ p_{2}$.
@@ -130,6 +138,69 @@ With this characterization we can already produce some examples:
     But in fact it is a morphism in $\Top$.
     Indeed, $S$ carries the quotient topology induced by $f$, so $f^{-1}(g^{-1}(U))=h^{-1}(U)$ being open in $S'$ for all $U$ open in $G$ implies that $g^{-1}(U)$ is open in $S$ for all $U$ open in $G$.
 \end{exa}
+
+Recall that a category $\C$ is called \textit{abelian} if it satisfies the following properties:
+\begin{enumerate}[label=\roman*)]
+    \item There exists a zero object $0\in \Ob(\C)$.
+    \item For all $A,B\in \Ob(\C)$, their product $A\xleftarrow{p_{A}} A\times B\xrightarrow{p_{B}} B$ and their coproduct $A\xrightarrow{i_{A}}A\sqcup B\xleftarrow{i_{B}} B$ exist in $\C$ and the canonical morphism $A\sqcup B\xrightarrow{(\id_{A}\times 0) \sqcup (0\times \id_{B})} A\times B$ is an isomorphism\footnote{We identify $A\sqcup B$ with $A\times B$ via this isomorphism and call the result the \textit{direct sum} of $A$ and $B$, denoted $A\op B$.} in $\C$.
+    \item Every morphisms has a kernel and a cokernel in $\C$.
+    \item Every monomorphism in $\C$ is a kernel and every epimorphism in $\C$ is a cokernel.
+\end{enumerate}
+
+In particular, $\C$ is naturally an additive category and all finite limits and colimits exist in $\C$.
+
+Recall also Grothendieck's axioms:
+\begin{description}
+    \item[(AB3)] All colimits exist.
+    \item[(AB3*)] All limits exist.
+    \item[(AB4)] (AB3) holds and all coproducts are exact.
+    \item[(AB4*)] (AB3*) holds and all products are exact.
+    \item[(AB5)] (AB3) holds and filtered colimits are exact.
+    \item[(AB6)] (AB3) holds and for any family $\{ I_{j}\}_{j\in J}$ of filtered categories indexed by a set $J$ with functors $F_{j}\colon I_{j}\to \C$ the canonical morphism
+	\[ \varinjlim_{(i_{j}\in I_{j})_{j}} \prod_{j\in J}F_{j}(i_{j})\to \prod_{j\in J}\varinjlim_{i_{j}\in I_{j}} F_{j}(i_{j}) \]
+	is an isomorphism in $\C$.
+\end{description}
+
+\begin{rem}
+    To check (AB3) on an abelian category it suffices to show that arbitrary coproducts exist, since we can build any colimit from coproducts and coequalizers, and similarly for the dual statement (AB3*).
+    Colimits preserve colimits because the colimit functor is left adjoint to the diagonal functor.
+    In particular coproducts are always right exact, so to check (AB4) on an abelian category satisfying (AB3) it suffices to check that coproducts preserve monomorphisms, and similarly for the dual statement (AB4*).
+\end{rem}
+
+The main goal of this talk is to show that the category $\Cond(\Ab)$ is an abelian category which verifies all the previous axioms.
+Except for axioms (AB4*) and (AB6), this is a general fact which holds on any category of sheaves of abelian groups on a site, but we will still give an explicit proof in our situation.
+This will be much easier after we express $\Cond(\Ab)$ as the category of sheaves of abelian groups on a simpler site.
+
+\begin{defn}
+    A compact Hausdorff\footnote{If we do not require Hausdorffness, an extremally disconnected space could be very connected, e.g. any irreducible topological space.} topological space is called \textit{extremally disconnected} if the closure of every open set is again open.
+\end{defn}
+
+Equivalently, a compact Hausdorff topological space is extremally disconnected if the closures of every pair of disjoint open sets are also disjoint.
+Therefore extremally disconnected spaces are totally disconnected compact Hausdorff spaces, hence profinite spaces.
+The converse is not true:
+
+\begin{exa}
+    In an extremally disconnected space every convergent sequence is eventually constant (see \cite[Theorem 1.3]{gle58}), so the $p$-adic integers are profinite but not extremally disconnected, because $(p^{n})_{n=1}^{\infty}$ converges to $0$.
+\end{exa}
+    
+Extremally disconnected spaces are precisely the projective objects in the category $\CHaus$ of compact Hausdorff spaces (see \cite[Theorem 2.5]{gle58}).
+Since pullbacks exist and preserve epimorphisms (i.e. surjective continuous functions\footnote{Urysohn's lemma implies that epimorphisms in the category of compact Hausdorff spaces are precisely surjective continuous functions, which is not true in the whole category of Hausdorff spaces (e.g. the inclusion of the complement of a point in the real line).}) in $\CHaus$, a compact Hausdorff space $S$ is extremally disconnected if and only if any surjection $S'\twoheadrightarrow S$ from a compact Hausdorff space admits a section:
+\begin{center}
+    \begin{tikzcd}
+	& S'\arrow[twoheadrightarrow]{d} \\
+	S\arrow[equal]{r}\arrow[dashed]{ur} & S
+    \end{tikzcd}
+\end{center}
+
+The inclusion functor $U\colon \CHaus\to \Top$ has a left adjoint $\beta\colon \Top\to \CHaus$ called the \textit{Stone-\v{C}ech compactification}.
+If $X$ is a discrete topological space, then $\beta X$ is extremally disconnected, because if $S\twoheadrightarrow \beta X$ is a continuous surjection from a compact Hausdorff topological space we may first lift the canonical map $X\to \beta X$ to $S$ and then extend it to a section from $\beta X$ by its universal property.
+In particular, every compact Hausdorff space admits a surjection $\beta(X_{disc})\twoheadrightarrow X$ from an extremally disconnected space.
+This has the following consequence:
+
+\begin{prop}
+    $\Cond(\Ab)$ is equvalent to the category of sheaves of abelian groups on the site of extremally disconnected spaces via the restriction from profinite sets.
+\end{prop}
+
 
 \bibliographystyle{alpha}
 \bibliography{refs}
