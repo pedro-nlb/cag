@@ -204,7 +204,31 @@ This has the following consequence:
 
 \begin{prop}
     $\Cond(\Ab)$ is equvalent to the category of sheaves of abelian groups on the site of extremally disconnected spaces via the restriction from profinite sets.
+    \begin{proof}
+	Let $T\in \Cond(\Ab)$ and let $S$ be a profinite set.
+	Let $f\colon \tilde{S}\twoheadrightarrow S$ and $g\colon \tilde{\tilde{S}}\twoheadrightarrow \tilde{S}\fp{S}\tilde{S}$ be continuous surjections from extremally disconnected spaces.
+	By \cref{lm:sheaf} we have $T(S)=\ker(T(p_{1})-T(p_{2}))$, where $p_{1},p_{2}\colon \tilde{S}\fp{S}\tilde{S}$ denote the projections from the fiber product.
+	Since $T(\tilde{S}\fp{S}\tilde{S})\xrightarrow{T(g)} T(\tilde{\tilde{S}})$ is injective, the kernel of $T(\tilde{S})\xrightarrow{T(p_{1})-T(p_{2})} T(\tilde{S}\fp{S}\tilde{S})$ is the same as the kernel of the composition $T(\tilde{S})\xrightarrow{T(p_{1}\circ g)-T(p_{2}\circ g)} T(\tilde{\tilde{S}})$.
+	Therefore the value of $T$ at the profinite set $S$ is completely determined by the value of $T$ at the extremally disconnected sets $\tilde{S}$ and $\tilde{\tilde{S}}$.
+    \end{proof}
 \end{prop}
+
+\begin{cor}\label{cor:sheaf}
+    $\Cond(\Ab)$ is equivalent to the category of contravariant functors $T$ from the category of extremally disconnected sets to the category of abelian groups such that:
+    \begin{enumerate}[label=\alph*)]
+	\item $T(\varnothing)=0$.
+	\item For all extremally disconnected sets $S_{1}$ and $S_{2}$, the inclusions $i_{1}\colon S_{1}\to S_{1}\sqcup S_{2}$ and $i_{2}\colon S_{2}\to S_{1}\sqcup S_{2}$ induce a group isomorphism
+	    \[ T(S_{1}\sqcup S_{2})\xrightarrow{T(i_{1})\times T(i_{2})} T(S_{1})\op T(S_{2}).\]
+    \end{enumerate}
+    \begin{proof}
+	We need to show that condition $c)$ in \cref{lm:sheaf} is automatically satisfied.
+	So let $f\colon S'\twoheadrightarrow S$ be a continuous surjection of extremally disconnected spaces.
+	Then we can find a section $\sigma\colon S\to S'$ with $f\circ \sigma =\id_{S}$.
+	This implies that $T(\sigma)\circ T(f)=\id_{T(S)}$, so $T(f)$ is injective.
+	The image of $T(f)$ is contained in $\{ g\in T(\tilde{S})\mid T(p_{1})(g)=T(p_{2})(g)\}$, because $f\circ p_{1}=f\circ p_{2}$.
+	And conversely if $g\in T(\tilde{S})$ is such that $T(p_{1})(g)=T(p_{2})(g)$...
+    \end{proof}
+\end{cor}
 
 \section{$\infty$-categories}
 
