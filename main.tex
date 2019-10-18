@@ -28,6 +28,10 @@
 % Remark theorems
 \theoremstyle{remark}
 \newtheorem{rem}[thm]{Remark}
+\newtheorem{q}[thm]{Question}
+
+% Mathbb for sets of numbers
+\newcommand{\N}{\mathbb{N}}
 
 % Mathscr for categories
 \newcommand{\C}{\mathscr{C}}
@@ -35,6 +39,7 @@
 \newcommand{\CHaus}{\mathscr{CH}aus}
 \newcommand{\Ab}{\mathscr{A}b}
 \newcommand{\Set}{\mathscr{S}et}
+\newcommand{\D}{\mathscr{D}}
 
 % Math operators
 \DeclareMathOperator{\Hom}{Hom}
@@ -200,6 +205,35 @@ This has the following consequence:
 \begin{prop}
     $\Cond(\Ab)$ is equvalent to the category of sheaves of abelian groups on the site of extremally disconnected spaces via the restriction from profinite sets.
 \end{prop}
+
+\section{$\infty$-categories}
+
+\subsection{Motivation}
+
+Let $X$ be a topological space.
+We can try to consider this as a category in which the objects are the points of $X$ and the ($1$-)morphisms are the paths in $X$, which can be seen as homotopies between maps $\{ *\}\to X$.
+We can consider a homotopy between paths a $2$-morphism, a homotopy between homotopies of paths a $3$-morphism, and so on.
+We obtain an object called the \textit{fundamental $\infty$-grupoid} of $X$, denoted $\pi_{\leqslant \infty}(X)$.
+Even if we just consider its objects and its $1$-morphisms, $\pi_{\leqslant \infty }(X)$ is not a category, because the composition of paths is not associative.
+But it is associative up to a $2$-morphism, and similarly composition of $n$-morphisms is only associative up to an $n+1$-morphism.
+Note also that $n$-morphisms are invertible up to an $n+1$-morphism for all $n\in \N_{>0}$.
+
+\begin{q}
+    How similar or different is $\pi_{\leqslant \infty}(X)$ from an usual category?
+\end{q}
+
+If $\C$ is any category, then we can think of it as having no $n$-morphisms for any $n\in \N_{>1}$.
+Then associativity up to higher morphisms is still true in this case, so we can say that this is something that $\C$ and $\pi_{\leqslant \infty }(X)$ have in common.
+On the other hand, the $1$-morphisms in $\C$ may not be invertible, so this is a feature that $\pi_{\leqslant \infty}(X)$ has but $\C$ does not have.
+
+So we want to find a more general notion of which both $\C$ and $\pi_{\leqslant \infty}(X)$ are particular cases.
+This is the notion of an $\infty$-category: a collection of objects and a collection of $n$-morphisms for each $n\in \N_{>0}$ such that composition of $n$-morphisms is associative up to $n+1$-morphism and such that all $n$-morphisms are invertible up to $n+1$-morphism for all $n\in\N_{>1}$.
+
+Besides of being a natural generalization, $\infty$-categories also solve some issues that arise in classical category theory.
+The derived category of an abelian category carries a natural triangulated structure, but triangulated categories are not well-behaved with respect to many usual constructions in category theory due to the lack of functoriality of cones.
+In particular, despite $\D(\Ab)$ carrying a natural triangulated structure, one should not expect $\Cond(\D(\Ab))$ to be triangulated.
+Therefore we should neither expect to have an equivalence $\D(\Cond(\Ab))\cong \Cond(\D(\Ab))$, because even if a triangulation is by definition an extra structure on our category, admitting such an extra structure has very strong implications on the properties of the underlying category, e.g. all monomorphisms and all epimorphisms have to split.
+
 
 
 \bibliographystyle{alpha}
