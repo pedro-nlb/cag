@@ -32,6 +32,7 @@
 
 % Mathbb for sets of numbers
 \newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
 
 % Mathscr for categories
 \newcommand{\C}{\mathscr{C}}
@@ -45,6 +46,7 @@
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\Cond}{Cond}
 \DeclareMathOperator{\Ob}{Ob}
+\DeclareMathOperator{\im}{im}
 
 % New commands
 \newcommand{\pe}{*_{pro\acute et}}
@@ -53,6 +55,7 @@
 \newcommand{\op}{\oplus}
 \newcommand{\fp}[1]{\times_{#1}}
 \newcommand{\id}{\mathrm{id}}
+\newcommand{\ev}{\mathrm{ev}}
 
 
 \title{Seminar on Condensed Mathematics \\ \large Talk 2: Condensed Abelian Groups}
@@ -229,6 +232,94 @@ This has the following consequence:
 	And conversely if $g\in T(\tilde{S})$ is such that $T(p_{1})(g)=T(p_{2})(g)$, then $T((\sigma \circ f)\fp{S}\id_{\tilde{S}})(T(p_{1})(g))=T((\sigma \circ f)\fp{S}\id_{\tilde{S}})(T(p_{2})(g))$, so $T(f)(T(\sigma)(g))=g$ and $g$ is in the image of $T(f)$.
     \end{proof}
 \end{cor}
+
+\begin{rem}\label{rem:sumcomponent}
+    The following formal consequence of $b)$ will be useful later.
+    Let $\eta\colon T_{1}\to T_{2}$ be a morphism in $\Cond(\Ab)$ and let $S_{1}$ and $S_{2}$ be two extremally disconnected sets.
+    Then under the isomorphisms of \cref{cor:sheaf} $b)$ the component of $\eta$ at $S_{1}\sqcup S_{2}$ is given by $\eta_{S_{1}}\op \eta_{S_{2}}$, i.e. by
+    \[ T_{1}(S_{1})\op T_{1}(S_{1})\xrightarrow{\begin{pmatrix} \eta_{S_{1}} & 0 \\ 0 & \eta_{S_{2}} \end{pmatrix}} T_{2}(S_{1})\op T_{2}(S_{2}).\]
+	Indeed, $\eta_{S_{1}}\op \eta_{S_{2}}=(\eta_{S_{1}}\circ p_{T_{1}(S_{1})})\times (\eta_{S_{2}}\circ p_{T_{1}(S_{2})})$, so this follows from the commutativity of the following diagram:
+	\begin{center}
+	    \begin{tikzcd}
+		T_{1}(S_{1})\arrow{r}{\eta_{S_{1}}} & T_{2}(S_{1}) \\
+		T_{1}(S_{1}\sqcup S_{2})\arrow{u}{T_{1}(i_{1})}\arrow{r}{\eta_{S_{1}\sqcup S_{2}}}\arrow[swap]{d}{T_{1}(i_{1})\times T_{1}(i_{2})} & T_{2}(S_{1}\sqcup S_{2})\arrow[swap]{u}{T_{2}(i_{1})}\arrow{d}{T_{2}(i_{1})\times T_{2}(i_{2})} \\
+		T_{1}(S_{1})\op T_{1}(S_{2})\arrow[bend left=90]{uu}{p_{T_{1}(S_{1})}}\arrow[bend right=90,swap]{dd}{p_{T_{1}(S_{2})}}\arrow[dashed]{r} & T_{2}(S_{1})\op T_{2}(S_{2})\arrow[bend right=90,swap]{uu}{p_{T_{2}(S_{1})}}\arrow[bend left=90]{dd}{p_{T_{2}(S_{2})}} \\
+		T_{1}(S_{1}\sqcup S_{2})\arrow{u}{T_{1}(i_{1})\times T_{1}(i_{2})}\arrow{r}{\eta_{S_{1}\sqcup S_{2}}}\arrow[swap]{d}{T_{1}(i_{2})} & T_{2}(S_{1}\sqcup S_{2})\arrow[swap]{u}{T_{2}(i_{1})\times T_{2}(i_{2})}\arrow{d}{T_{2}(i_{2})} \\
+		T_{1}(S_{2})\arrow[swap]{r}{\eta_{S_{2}}} & T_{2}(S_{2})
+	    \end{tikzcd}
+	\end{center}
+\end{rem}
+
+With this nice description we are ready to prove the main result of this talk:
+
+\begin{thm}
+    $\Cond(\Ab)$ is an abelian category satisfying axioms (AB3), (AB3*), (AB4), (AB4*), (AB5) and (AB6).
+    Moreover, it is generated
+    \footnote{Recall that a category $\C$ is said to be \textit{generated} by a set $\mathscr{S}\subseteq \Ob(\C)$ if for all pairs of distinct parallel arrows $f\neq g\colon A\rightrightarrows B$ we can find some $h\colon S\to A$ with $S\in \mathscr{S}$ such that $fh\neq gh$.
+    As Mac Lane points out, the word \textit{separated} would have been a better choice (see \cite[Section V.7]{mac78}).}
+    by compact
+    \footnote{Recall that an object $M$ on an abelian category $\C$ is called \textit{compact} if $\Hom_{\C}(M,-)$ commutes with filtered colimits.} projective objects.
+    \begin{proof}
+	In \cref{cor:sheaf} we have described $\Cond(\Ab)$ as the category of contravariant functors from extremally disconnected spaces to $\Ab$ sending finite disjoint unions to finite products.
+	The idea is to use this description to see that we can construct limits and colimits pointwise.
+	Once we have shown that pointwise limits and colimits are sheaves, checking the necessary universal properties and isomorphisms is reduced to checking the corresponding statements in $\Ab$ pointwise, so we will not mention these computations explicitly.
+	
+	Let us do the case of limits, for example.
+	Let $F\colon \mathscr{J}\to \Cond(\Ab)$ be a diagram in $\Cond(\Ab)$, i.e. a functor from some indexing category $\mathscr{J}$.
+	For an extremally disconnected set $S$, let $L(S)=\lim(\ev_{S}\circ F)$ in $\Ab$ and for all $\alpha \in \Ob(\mathscr{J})$ denote by $\varepsilon^{\alpha}_{S}\colon L(S)\to F_{\alpha}(S)$ the corresponding canonical map.
+	If $f\colon S\to S'$ is a continuous map of extremally disconnected sets, we have a cone to $\ev_{S}\circ F$ given by the compositions $L(S')\to F_{\alpha}(S')\xrightarrow{F_{\alpha}(f)} F_{\alpha}(S)$ for all $\alpha\in\Ob(\mathscr{J})$, so we get a canonical homomorphism to the terminal cone $L(f)\colon L(S')\to L(S)$ making the resulting diagram commute.
+	To show that $L$ is a sheaf we use \cref{cor:sheaf}.
+	Condition $a)$ is verified because $\ev_{\varnothing}$ is the constantly zero functor.
+	For condition $b)$ let $i_{1}\colon S_{1}\to S_{1}\sqcup S_{2}$ and $i_{2}\colon S_{2}\to S_{1}\sqcup S_{2}$ be the inclusion of two extremally disconnected sets in their disjoint union and consider the following diagram:
+	\begin{center}
+	    \begin{tikzcd}
+		&[-50pt] L(S_{1}\sqcup S_{2})\arrow{rrr}{L(i_{1})\times L(i_{2})}\arrow[swap]{dl}{\varepsilon^{\alpha}_{S_{1}\sqcup S_{2}}} &[-50pt] &[-25pt] &[-50pt] L(S_{1})\op L(S_{2})\arrow{dl}{\varepsilon^{\alpha}_{S_{1}}\op \varepsilon^{\alpha}_{S_{2}}}\arrow{ddr}{\varepsilon^{\beta}_{S_{1}}\op \varepsilon^{\beta}_{S_{2}}} &[-50pt] \\
+		T_{\alpha}(S_{1}\sqcup S_{2})\arrow[swap, pos=0.6]{rrr}{T_{\alpha}(i_{1})\times T_{\alpha}(i_{2})}\arrow[swap]{drr}{\eta_{S_{1}\sqcup S_{2}}} & & & T_{\alpha}(S_{1})\op T_{\alpha}(S_{2})\arrow[swap]{drr}{\eta_{S_{1}}\op \eta_{S_{2}}} & & \\
+		& & T_{\beta}(S_{1}\sqcup S_{2})\ar[from=uul, "\varepsilon^{\beta}_{S_{1}\sqcup S_{2}}", pos=0.3, crossing over]\arrow[swap]{rrr}{T_{\beta}(i_{1})\times T_{\beta}(i_{2})} & & & T_{\beta}(S_{1})\op T_{\beta}(S_{2})%\arrow{d}{p_{T_{\beta}(S_{1})}} %\\
+		% & & & & & T_{\beta}(S_{1})
+	    \end{tikzcd}
+	\end{center}
+	Since limits commute with finite direct sums, the right triangle is the cone corresponding to the limit of the direct sum of diagrams.
+	The left triangle is by definition the cone corresponding to the limit of the diagram at its base.
+	The bottom square commutes by \cref{rem:sumcomponent}, so the universal property of the limit $L(S_{1})\op L(S_{2})$ induces a unique group homomorphism $L(S_{1}\sqcup S_{2})\to L(S_{1})\op L(S_{2})$ making everything commute.
+	Since all arrows going right at the bottom are isomorphisms, this unique morphism is a group isomorphism, so it suffices to show that $L(i_{1})\times L(i_{2})$ makes the whole diagram commute.
+	Let us see for example that the $\beta$ square commutes.
+	By the universal property of the product, it suffices to show commutativity after composing with each projection.
+	Composing with the first projection $p_{T_{\beta}(S_{1})}$ we further reduce our problem to the commutativity of the following square:
+	\begin{center}
+	    \begin{tikzcd}
+		L(S_{1}\sqcup S_{2})\arrow{r}{L(i_{1})} \arrow[swap]{d}{\varepsilon^{\beta}_{S_{1}\sqcup S_{2}}} & L(S_{1})\arrow{d}{\varepsilon^{\beta}_{S_{1}}} \\
+		T_{\beta}(S_{1}\sqcup S_{2})\arrow{r}{T_{\beta}(i_{1})} & T_{\beta}(S_{1})
+	    \end{tikzcd}
+	\end{center}
+	But this square commutes by construction of $L(i_{1})$, so we are done proving that $L$ is a sheaf.
+
+	Let us see now that $\Cond(\Ab)$ is generated by compact projective objects.
+	The forgetful functor $U\colon \Cond(\Ab)\to \Cond(\Set)$ preserves all limits.
+	This follows from the pointwise construction of limits in both cases and for the corresponding statement for the forgetful functor $\Ab\to \Set$.
+	Both $\Cond(\Ab)$ and $\Cond(\Set)$ satisfy the necessary conditions for the adjoint functor theorem, so we have a left adjoint functor $\Z[-]\colon\Cond(\Set)\to \Cond(\Ab)$.
+	This functor attaches to a condensed set $T$ the sheafification of the presheaf which sends an extremally disconnected set $S$ to the free abelian group generated by $T(S)$, hence the notation.
+	For an extremally disconnected set $S$ consider the condensed set $\u{S}=\Hom_{\Top}(S,-)$.
+	A morphism between two sheaves in $\Cond(\Set)$ is just a natural transformation between them, so by the Yoneda lemma we have a natural bijection $\Hom_{\Cond(\Ab)}(\u{S},U(M))\cong M(S)$ for all condensed abelian groups $M$.
+	Combining this with the previous adjunction we obtain natural bijections $\Hom_{\Cond(\Ab)}(\Z[\u{S}],M)\cong M(S)$ for all condensed abelian groups $M$.
+	Since limits and colimits are constructed pointwise in $\Cond(\Ab)$, the evaluation functor $\ev_{S}$ commutes with all limits and colimits, which implies by the previous natural bijection that $\Z[\u{S}]$ is both compact and projective.
+	The coproduct of compact objects is compact, and the same for projective objects.
+	Hence to prove generation by compact projective objects it suffices to find for all condensed abelian group $M$ a surjection $\bigoplus_{\alpha \in \Lambda}\Z[\u{S_{\alpha}}]\twoheadrightarrow M$ for some collection of extremally disconnected sets $\{S_{\alpha}\}_{\alpha\in \Lambda}$.
+	
+	So let $M\in \Ob(\Cond(\Ab))$.
+	By Zorn's lemma, there is a maximal subobject $M'$ of $M$ such that $M'$ admits a surjection $f\colon \bigoplus_{\alpha\in \Lambda}\Z[\u{S_{\alpha}}]\twoheadrightarrow M'$ for some collection of extremally disconnected sets $\{S_{\alpha}\}_{\alpha\in \Lambda}$.
+	Suppose $M'\neq M$, i.e. suppose $M/M'\neq 0$.
+	Then we can find some extremally disconnected set $S$ such that $(M/M')(S)\neq 0$.
+	By Yoneda this means that we can find at least one non-zero morphism $\bar{g}\colon \Z[\u{S}]\to M/M'$, which by projectivity of $\Z[\u{S}]$ can be lifted to a morphism $g\colon \Z[\u{S}]\to M$ such that $\im(g)\not\subseteq M'$.
+	Let then $M''$ be the smallest subobject of $M$ containing $M'$ and $\im(g)$, so that $M'\subsetneq M''\subsetneq M$.
+	Then we can find a surjection $(\bigoplus_{\alpha\in \Lambda} \Z[\u{S_{\alpha}}])\op \Z[\u{S}]\overset{f\sqcup g}{\twoheadrightarrow} M''$ contradicting maximality of $M'$.
+	This implies that $M'=M$ and finishes the proof.
+    \end{proof}
+\end{thm}
+
+\begin{rem}
+    Compact generation in triangulated categories, Brown representability, etc.
+\end{rem}
 
 \section{$\infty$-categories}
 
