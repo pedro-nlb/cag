@@ -151,6 +151,30 @@ From \cref{lm:sheaf} we deduce:
     Indeed, $S$ carries the quotient topology induced by $f$, so $f^{-1}(g^{-1}(U))=h^{-1}(U)$ being open in $S'$ for all $U$ open in $G$ implies that $g^{-1}(U)$ is open in $S$ for all $U$ open in $G$.
 \end{exa}
 
+Sometimes it will be necessary to consider sheafification of presheaves:
+
+\begin{defn}
+    Let $\C$ be a site and let $\Sh(\C)\hookrightarrow \PSh(\C)$ be the inclusion of the category of sheaves to the category of presheaves on $\C$. 
+    A \textit{sheafification} functor is a left adjoint $(-)^{a}\colon \PSh(\C)\to \Sh(\C)$ to this inclusion.
+\end{defn}
+
+We can explicitly describe the sheafification of a presheaf $F$ as follows.
+For a covering family $\mathcal{U}=\{f_{j}\colon U_{j}\to U\}_{j\in J}$ with $J=\{1,\ldots,m\}$ we define the \textit{zero \v{C}ech cohomology} of $F$ with respect to $\mathcal{U}$ as
+\[ \check{H}^{0}(\mathcal{U},F)=\bigcap_{(a,b)\in J^{2}} \{ (g_{1},\ldots,g_{m})\in \bigoplus_{j=1}^{m}F(U_{j}) \mid P_{a,b}(g_{a},g_{b})\} \]
+with the notation from \cref{lm:sheaf}.
+If $\mathcal{U}'\to \mathcal{U}$ is a morphism of covering families of $U$, then we obtain a pullback morphism $\check{H}^{0}(\mathcal{U},F)\to \check{H}^{0}(\mathcal{U}',F)$ between zero \v{C}ech cohomology groups which does not depend on the particular morphism of covering families but only on the covering families themselves.
+Define then a presheaf $F^{+}$ by setting
+\[ F^{+}(U):=\varinjlim_{\mathcal{U}} \check{H}^{0}(\mathcal{U},F) \]
+where the direct limit runs over all covering families of $U$ with $\mathcal{U}\leqslant \mathcal{U'}$ if and only if we have a morphism of covering families $\mathcal{U'}\to \mathcal{U}$ (we can think of $\mathcal{U'}$ being finer $\mathcal{U}$).
+This construction takes presheaves into separated presheaves and separated presheaves into sheaves, so taking $F^{a}:=(F^{+})^{+}$ we obtain the desired sheafification.
+See \cite[\href{https://stacks.math.columbia.edu/tag/03NQ}{Tag 03NQ}]{sta19} for the precise statements and proofs.
+
+\begin{rem}
+    Since $(-)^{a}$ has a right adjoint, it preserves all colimits, in particular all finite colimits.
+    And since finite limits commute with direct limits in $\Ab$, it follows from the previous description that $(-)^{a}$ also preserves finite limits.
+    Hence sheafification is exact.
+\end{rem}
+
 \subsection{Properties}
 
 A category $\C$ is called \textit{abelian} if it satisfies the following properties:
@@ -163,17 +187,10 @@ A category $\C$ is called \textit{abelian} if it satisfies the following propert
 
 In particular, $\C$ is naturally an additive category and all finite limits and colimits exist in $\C$.
 
-Recall also Grothendieck's axioms:
-\begin{description}
-    \item[(AB3)] All colimits exist.
-    \item[(AB3*)] All limits exist.
-    \item[(AB4)] (AB3) holds and all coproducts are exact.
-    \item[(AB4*)] (AB3*) holds and all products are exact.
-    \item[(AB5)] (AB3) holds and filtered colimits are exact.
-    \item[(AB6)] (AB3) holds and for any family $\{ I_{j}\}_{j\in J}$ of filtered categories indexed by a set $J$ with functors $F_{j}\colon I_{j}\to \C$ the canonical morphism
+In addition to these properties, Grothendieck introduced a series of extra axioms in his T\^{o}hoku paper \cite{gro57}.
+The ones that we will be considering are (AB3) [\textit{all colimits exist}], (AB3*) [\textit{all limits exist}], (AB4) [\textit{all colimits exist and coproducts are exact}], (AB4*) [\textit{all limits exist and products are exact}], (AB5) [\textit{all colimits exist and filtered colimits are exact}] and (AB6) [\textit{all colimits exist and for any family $\{ I_{j}\}_{j\in J}$ of filtered categories indexed by a set $J$ with functors $F_{j}\colon I_{j}\to \C$ the canonical morphism
 	\[ \varinjlim_{(i_{j}\in I_{j})_{j}} \prod_{j\in J}F_{j}(i_{j})\to \prod_{j\in J}\varinjlim_{i_{j}\in I_{j}} F_{j}(i_{j}) \]
-	is an isomorphism in $\C$.
-\end{description}
+is an isomorphism in $\C$}].
 
 \begin{rem}
     To check (AB3) on an abelian category it suffices to show that arbitrary coproducts exist, since we can build any colimit from coproducts and coequalizers, and similarly for the dual statement (AB3*).
@@ -258,7 +275,7 @@ This has the following consequence:
 
 With this nice description we are ready to prove the main result of this talk:
 
-\begin{thm}
+\begin{thm}\label{thm:abelian}
     $\Cond(\Ab)$ is an abelian category satisfying axioms (AB3), (AB3*), (AB4), (AB4*), (AB5) and (AB6).
     Moreover, it is generated\footnote{A category $\C$ is said to be \textit{generated} by a set $\mathscr{S}\subseteq \Ob(\C)$ if for all pairs of distinct parallel arrows $f\neq g\colon A\rightrightarrows B$ we can find some $h\colon S\to A$ with $S\in \mathscr{S}$ such that $fh\neq gh$.
     As Mac Lane points out, the word \textit{separated} would have been a better choice (see \cite[Section V.7]{mac78}).} by compact\footnote{An object $M$ on an abelian category $\C$ is called \textit{compact} if $\Hom_{\C}(M,-)$ commutes with filtered colimits.} projective objects.
@@ -306,8 +323,7 @@ With this nice description we are ready to prove the main result of this talk:
 	A morphism between two sheaves in $\Cond(\Set)$ is just a natural transformation between them, so by the Yoneda lemma we have a natural bijection $\Hom_{\Cond(\Ab)}(\u{S},U(M))\cong M(S)$ for all condensed abelian groups $M$.
 	Combining this with the previous adjunction we obtain natural bijections $\Hom_{\Cond(\Ab)}(\Z[\u{S}],M)\cong M(S)$ for all condensed abelian groups $M$.
 	Since limits and colimits are constructed pointwise in $\Cond(\Ab)$, the evaluation functor $\ev_{S}$ commutes with all limits and colimits, which implies by the previous natural bijection that $\Z[\u{S}]$ is both compact and projective.
-	The coproduct of compact objects is compact, and the same for projective objects.
-	Hence to prove generation by compact projective objects it suffices to find for all condensed abelian group $M$ a surjection $\bigoplus_{\alpha \in \Lambda}\Z[\u{S_{\alpha}}]\twoheadrightarrow M$ for some collection of extremally disconnected sets $\{S_{\alpha}\}_{\alpha\in \Lambda}$.
+	Let us prove now that these objects generate $\Cond(\Ab)$, for which it suffices to find for all condensed abelian group $M$ a surjection $\bigoplus_{\alpha \in \Lambda}\Z[\u{S_{\alpha}}]\twoheadrightarrow M$ for some collection of extremally disconnected sets $\{S_{\alpha}\}_{\alpha\in \Lambda}$.
 	
 	So let $M\in \Ob(\Cond(\Ab))$.
 	By Zorn's lemma, there is a maximal subobject $M'$ of $M$ such that $M'$ admits a surjection $f\colon \bigoplus_{\alpha\in \Lambda}\Z[\u{S_{\alpha}}]\twoheadrightarrow M'$ for some collection of extremally disconnected sets $\{S_{\alpha}\}_{\alpha\in \Lambda}$.
@@ -333,27 +349,50 @@ When $\C$ is considered endowed with this extra structure we call it a (\textit{
     $\Ab$ is a symmetric monoidal category with respect to the usual tensor product and with unit object $\Z$.
 \end{exa}
 
-We want to show that $\Cond(\Ab)$ is also a symmetric monoidal category, but for this we need sheafification:
-
-\begin{defn}
-    Let $\C$ be a site and let $\Sh(\C)\hookrightarrow \PSh(\C)$ be the inclusion of the category of sheaves to the category of presheaves on $\C$. 
-    A \textit{sheafification} functor is a left adjoint $(-)^{a}\colon \PSh(\C)\to \Sh(\C)$ to this inclusion.
-\end{defn}
-
-We can explicitly describe the sheafification of a presheaf $F$ as follows.
-For a covering family $\mathcal{U}=\{f_{j}\colon U_{j}\to U\}_{j\in J}$ with $J=\{1,\ldots,m\}$ we define the \textit{zero \v{C}ech cohomology} of $F$ with respect to $\mathcal{U}$ as
-\[ \check{H}^{0}(\mathcal{U},F)=\bigcap_{(a,b)\in J^{2}} \{ (g_{1},\ldots,g_{m})\in \bigoplus_{j=1}^{m}F(U_{j}) \mid P_{a,b}(g_{a},g_{b})\} \]
-with the notation from \cref{lm:sheaf}.
-If $\mathcal{U}'\to \mathcal{U}$ is a morphism of covering families of $U$, then we obtain a pullback morphism $\check{H}^{0}(\mathcal{U},F)\to \check{H}^{0}(\mathcal{U}',F)$ between zero \v{C}ech cohomology groups which does not depend on the particular morphism of covering families but only on the covering families themselves.
-Define then a presheaf $F^{+}$ by setting
-\[ F^{+}(U):=\varinjlim_{\mathcal{U}} \check{H}^{0}(\mathcal{U},F) \]
-where the direct limit runs over all covering families of $U$ with $\mathcal{U}\leqslant \mathcal{U'}$ if and only if we have a morphism of covering families $\mathcal{U'}\to \mathcal{U}$ (we can think of $\mathcal{U'}$ being finer $\mathcal{U}$).
-This construction takes presheaves into separated presheaves and separated presheaves into sheaves, so taking $F^{a}:=(F^{+})^{+}$ we obtain the desired sheafification.
-See \cite[\href{https://stacks.math.columbia.edu/tag/03NQ}{Tag 03NQ}]{sta19} for the precise statements and proofs.
+Let us see now that $\Cond(\Ab)$ is also a symmetric monoidal category:
 
 \begin{prop}\label{prop:sm}
     The functor $\ot\colon \Cond(\Ab)\times \Cond(\Ab)\to \Cond(\Ab)$ with $A\ot B:=(S\mapsto A(S)\ot B(S))^{a}$ makes $\Cond(\Ab)$ a symmetric monoidal category with unit given by the constant sheaf $\Z:=(S\mapsto \Z)^{a}$.
+	\begin{proof}
+	    Note that the pointwise tensor product induces a symmetric monoidal structure on the category $\PSh(\Ab)$ of presheaves of abelian groups in which associator, unitors and braiding are given pointwise by the corresopnding associator and unitors from $\Ab$.
+	    We can write the tensor product on $\Cond(\Ab)$ as the composition $(-)^{a}\circ \ot_{\PSh(\Ab)} \circ i$ where $i$ denotes the inclusion $\Cond(\Ab)\times\Cond(\Ab)\to \PSh(\Ab)\times\PSh(\Ab)$, which shows that $\ot$ is indeed a functor.
+	    Associator, unitors and braiding are obtained by applying $(-)^{a}$ componentwise.
+	    Since functors preserve commutative diagrams, all coherence diagrams are still commutative.
+	\end{proof}
 \end{prop}
+
+The category $\Cond(\Set)$ is also symmetric monoidal with respect to cartesian product
+Relating these two symmetric monoidal categories we have the following:
+
+\begin{prop}
+    The functor $\Z[-]\colon \Cond(\Set)\to \Cond(\Ab)$ is symmetric monoidal, i.e. it sends cartesian products to tensor products.
+    \begin{proof}
+	Recall from the proof of \cref{thm:abelian} that $\Z[-]$ sends a condensed set $T$ to the sheafification of the presheaf $S\mapsto \Z[T(S)]$.
+	Hence we only have to show that $\Z[(T_{1}\times T_{2})(S)]\cong \Z[T_{1}(S)]\ot \Z[T_{2}(S)]$.
+	But the cartesian product is formed pointwise, so the result follows from the functor $\Z[-]\colon (\Set,\times )\to (\Ab,\ot)$ being monoidal.
+	The word symmetric can be added since the isomorphisms $\Z[A\times B]\cong \Z[A]\ot\Z[B]$ are compatible with the braiding natural transformations $A\times B\cong B\times A$ and $\Z[A]\ot \Z[B]\cong \Z[B]\ot \Z[A]$.
+    \end{proof}
+\end{prop}
+
+It is also worth to point out that the objects $\Z[T]$ are flat for all condensed sets $T$.
+Indeed, since sheafification is exact it suffices to check that tensoring pointwise with the presheaf $S\mapsto \Z[T(S)]$ is exact, which follows from all $\Z[T(S)]$ being free abelian groups.
+
+The next natural step is to check that our symmetric monoidal category $\Cond(\Ab)$ is closed:
+
+\begin{prop}
+    For all $M\in \Ob(\Cond(\Ab))$ the functor $(-)\ot M$ has a right adjoint $[M,-]\colon \Cond(\Ab)\to \Cond(\Ab)$, called the \textit{internal hom} in $\Cond(\Ab)$.
+    \begin{proof}
+	Pointwise tensor product preserves pointwise colimits, because the tensor product of abelian groups has a right adjoint.
+	Sheafification also has a right adjoint, hence $(-)\ot M$ preserves colimits.
+	This implies the existence of a right adjoint functor $[M,-]$ by the adjoint functor theorem.
+    \end{proof}
+\end{prop}
+
+To get an explicit description of the internal-hom we can use the Yoneda isomorphisms in the proof of \cref{thm:abelian} again.
+More precisely, let $M$ and $N$ be condensed abelian groups and let $S$ be an extremally disconnected set.
+Then we have a natural isomorphism $[M,N](S)\cong \Hom(\Z[\u{S}],[M,N])$ by Yoneda and the free-forgetful adjunction, so by the tensor-hom adjunction we get a natural isomorphism
+\[ [M,N](S)\cong \Hom(\Z[\u{S}]\ot M,N).\]
+
 
 \section{$\infty$-categories}
 
