@@ -1,4 +1,9 @@
-\begin{thebibliography}{{Sta}19}
+\begin{thebibliography}{{nLa}19}
+
+\bibitem[BH19]{bh19}
+Clark {Barwick} and Peter {Haine}.
+\newblock {Pyknotic objects, I. Basic notions}.
+\newblock {\em arXiv e-prints}, page arXiv:1904.09966, Apr 2019.
 
 \bibitem[Gle58]{gle58}
 Andrew~M. Gleason.
@@ -9,6 +14,14 @@ Andrew~M. Gleason.
 S.~Mac~Lane.
 \newblock {\em Categories for the Working Mathematician}.
 \newblock Graduate Texts in Mathematics. Springer-Verlag New York, 1978.
+
+\bibitem[{nLa}19]{nlab:monoidal_category}
+{nLab authors}.
+\newblock monoidal category.
+\newblock \url{http://ncatlab.org/nlab/show/monoidal%20category}, October 2019.
+\newblock
+  \href{http://ncatlab.org/nlab/revision/monoidal%20category/116}{Revision
+  116}.
 
 \bibitem[{Sta}19]{sta19}
 The {Stacks project authors}.

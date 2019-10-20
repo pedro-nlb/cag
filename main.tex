@@ -12,6 +12,7 @@
 \usepackage{hyperref}
 \usepackage[noabbrev]{cleveref}
 \usepackage{todonotes}
+\usepackage{bbm}
 
 % Plain theorems
 \theoremstyle{plain}
@@ -30,9 +31,10 @@
 \newtheorem{rem}[thm]{Remark}
 \newtheorem{q}[thm]{Question}
 
-% Mathbb for sets of numbers
+% Mathbb
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\1}{\mathbbm{1}}
 
 % Mathscr for categories
 \newcommand{\C}{\mathscr{C}}
@@ -47,6 +49,8 @@
 \DeclareMathOperator{\Cond}{Cond}
 \DeclareMathOperator{\Ob}{Ob}
 \DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\PSh}{PSh}
+\DeclareMathOperator{\Sh}{Sh}
 
 % New commands
 \newcommand{\pe}{*_{pro\acute et}}
@@ -147,7 +151,9 @@ From \cref{lm:sheaf} we deduce:
     Indeed, $S$ carries the quotient topology induced by $f$, so $f^{-1}(g^{-1}(U))=h^{-1}(U)$ being open in $S'$ for all $U$ open in $G$ implies that $g^{-1}(U)$ is open in $S$ for all $U$ open in $G$.
 \end{exa}
 
-Recall that a category $\C$ is called \textit{abelian} if it satisfies the following properties:
+\subsection{Properties}
+
+A category $\C$ is called \textit{abelian} if it satisfies the following properties:
 \begin{enumerate}[label=\roman*)]
     \item There exists a zero object $0\in \Ob(\C)$.
     \item For all $A,B\in \Ob(\C)$, their product $A\xleftarrow{p_{A}} A\times B\xrightarrow{p_{B}} B$ and their coproduct $A\xrightarrow{i_{A}}A\sqcup B\xleftarrow{i_{B}} B$ exist in $\C$ and the canonical morphism $A\sqcup B\xrightarrow{(\id_{A}\times 0) \sqcup (0\times \id_{B})} A\times B$ is an isomorphism\footnote{We identify $A\sqcup B$ with $A\times B$ via this isomorphism and call the result the \textit{direct sum} of $A$ and $B$, denoted $A\op B$.} in $\C$.
@@ -254,11 +260,8 @@ With this nice description we are ready to prove the main result of this talk:
 
 \begin{thm}
     $\Cond(\Ab)$ is an abelian category satisfying axioms (AB3), (AB3*), (AB4), (AB4*), (AB5) and (AB6).
-    Moreover, it is generated
-    \footnote{Recall that a category $\C$ is said to be \textit{generated} by a set $\mathscr{S}\subseteq \Ob(\C)$ if for all pairs of distinct parallel arrows $f\neq g\colon A\rightrightarrows B$ we can find some $h\colon S\to A$ with $S\in \mathscr{S}$ such that $fh\neq gh$.
-    As Mac Lane points out, the word \textit{separated} would have been a better choice (see \cite[Section V.7]{mac78}).}
-    by compact
-    \footnote{Recall that an object $M$ on an abelian category $\C$ is called \textit{compact} if $\Hom_{\C}(M,-)$ commutes with filtered colimits.} projective objects.
+    Moreover, it is generated\footnote{A category $\C$ is said to be \textit{generated} by a set $\mathscr{S}\subseteq \Ob(\C)$ if for all pairs of distinct parallel arrows $f\neq g\colon A\rightrightarrows B$ we can find some $h\colon S\to A$ with $S\in \mathscr{S}$ such that $fh\neq gh$.
+    As Mac Lane points out, the word \textit{separated} would have been a better choice (see \cite[Section V.7]{mac78}).} by compact\footnote{An object $M$ on an abelian category $\C$ is called \textit{compact} if $\Hom_{\C}(M,-)$ commutes with filtered colimits.} projective objects.
     \begin{proof}
 	In \cref{cor:sheaf} we have described $\Cond(\Ab)$ as the category of contravariant functors from extremally disconnected spaces to $\Ab$ sending finite disjoint unions to finite products.
 	The idea is to use this description to see that we can construct limits and colimits pointwise.
@@ -321,9 +324,38 @@ With this nice description we are ready to prove the main result of this talk:
     Compact generation in triangulated categories, Brown representability, etc.
 \end{rem}
 
-\section{$\infty$-categories}
+\subsection{Extra structure}
 
-\subsection{Motivation}
+Roughly speaking, a (\textit{symmetric}) \textit{monoidal structure} on a category $\C$ consists of a functor $(-)\ot(-)\colon \C\times \C\to \C$ which turns $\C$ into a (commutative up to natural isomorphism) monoid with associativity and unit up to natural isomorphism (see \cite{nlab:monoidal_category} for the precise definition).
+When $\C$ is considered endowed with this extra structure we call it a (\textit{symmetric}) \textit{monoidal category}.
+
+\begin{exa}
+    $\Ab$ is a symmetric monoidal category with respect to the usual tensor product and with unit object $\Z$.
+\end{exa}
+
+We want to show that $\Cond(\Ab)$ is also a symmetric monoidal category, but for this we need sheafification:
+
+\begin{defn}
+    Let $\C$ be a site and let $\Sh(\C)\hookrightarrow \PSh(\C)$ be the inclusion of the category of sheaves to the category of presheaves on $\C$. 
+    A \textit{sheafification} functor is a left adjoint $(-)^{a}\colon \PSh(\C)\to \Sh(\C)$ to this inclusion.
+\end{defn}
+
+We can explicitly describe the sheafification of a presheaf $F$ as follows.
+For a covering family $\mathcal{U}=\{f_{j}\colon U_{j}\to U\}_{j\in J}$ with $J=\{1,\ldots,m\}$ we define the \textit{zero \v{C}ech cohomology} of $F$ with respect to $\mathcal{U}$ as
+\[ \check{H}^{0}(\mathcal{U},F)=\bigcap_{(a,b)\in J^{2}} \{ (g_{1},\ldots,g_{m})\in \bigoplus_{j=1}^{m}F(U_{j}) \mid P_{a,b}(g_{a},g_{b})\} \]
+with the notation from \cref{lm:sheaf}.
+If $\mathcal{U}'\to \mathcal{U}$ is a morphism of covering families of $U$, then we obtain a pullback morphism $\check{H}^{0}(\mathcal{U},F)\to \check{H}^{0}(\mathcal{U}',F)$ between zero \v{C}ech cohomology groups which does not depend on the particular morphism of covering families but only on the covering families themselves.
+Define then a presheaf $F^{+}$ by setting
+\[ F^{+}(U):=\varinjlim_{\mathcal{U}} \check{H}^{0}(\mathcal{U},F) \]
+where the direct limit runs over all covering families of $U$ with $\mathcal{U}\leqslant \mathcal{U'}$ if and only if we have a morphism of covering families $\mathcal{U'}\to \mathcal{U}$ (we can think of $\mathcal{U'}$ being finer $\mathcal{U}$).
+This construction takes presheaves into separated presheaves and separated presheaves into sheaves, so taking $F^{a}:=(F^{+})^{+}$ we obtain the desired sheafification.
+See \cite[\href{https://stacks.math.columbia.edu/tag/03NQ}{Tag 03NQ}]{sta19} for the precise statements and proofs.
+
+\begin{prop}\label{prop:sm}
+    The functor $\ot\colon \Cond(\Ab)\times \Cond(\Ab)\to \Cond(\Ab)$ with $A\ot B:=(S\mapsto A(S)\ot B(S))^{a}$ makes $\Cond(\Ab)$ a symmetric monoidal category with unit given by the constant sheaf $\Z:=(S\mapsto \Z)^{a}$.
+\end{prop}
+
+\section{$\infty$-categories}
 
 Let $X$ be a topological space.
 We can try to consider this as a category in which the objects are the points of $X$ and the ($1$-)morphisms are the paths in $X$, which can be seen as homotopies between maps $\{ *\}\to X$.
@@ -348,6 +380,11 @@ Besides of being a natural generalization, $\infty$-categories also solve some i
 The derived category of an abelian category carries a natural triangulated structure, but triangulated categories are not well-behaved with respect to many usual constructions in category theory due to the lack of functoriality of cones.
 In particular, despite $\D(\Ab)$ carrying a natural triangulated structure, one should not expect $\Cond(\D(\Ab))$ to be triangulated.
 Therefore we should neither expect to have an equivalence $\D(\Cond(\Ab))\cong \Cond(\D(\Ab))$, because even if a triangulation is by definition an extra structure on our category, admitting such an extra structure has very strong implications on the properties of the underlying category, e.g. all monomorphisms and all epimorphisms have to split.
+
+\section{Comparison with Pyknotic objects}
+
+Barwick and Haine have developed independently a notion very similar to the condensed objects of Clausen and Scholze in their recent paper \cite{bh19}.
+This is the notion of \textit{Pyknotic}\footnote{This name comes from the greek word \textit{pykno}, which means dense, compact or thick.} object, which differs from the notion of condensed object on set theoretical matters.
 
 
 

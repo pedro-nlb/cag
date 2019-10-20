@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex main"] 1571526276 "main.aux" "main.bbl" "main" 1571526582
+["bibtex main"] 1571577739 "main.aux" "main.bbl" "main" 1571577740
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/alpha.bst" 1480098433 23907 a5f93555796fb564b924339521f10a7c ""
-  "main.aux" 1571526582 1643 318545761ecfbe0599cb1400b8a6dd05 ""
-  "refs.bib" 1571323568 27844 00ca3a99b68be34b114ec045ca9a86ff ""
+  "main.aux" 1571577740 2130 82f9832a5c6ecc5c122fb43524e6d18f ""
+  "refs.bib" 1571571045 28753 f1b2e9f52d419e725b03152a8e370dd2 ""
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1571526581 "main.tex" "main.pdf" "main" 1571526582
+["pdflatex"] 1571577739 "main.tex" "main.pdf" "main" 1571577740
   "/etc/texmf/web2c/texmf.cnf" 1567423373 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/pedro/.texlive2018/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk" 1569223484 28952 bae6363876bde347b4275e82aa883b60 ""
   "/home/pedro/.texlive2018/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk" 1571401599 31928 d830ebe8212d86e53704336717c634f1 ""
@@ -172,6 +172,7 @@
   "/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo" 1544567569 8310 3be7fb8fac17ab8f3f822aa0c9800815 ""
   "/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd" 1523050425 2446 898e9a1961d873c4471b5d9a683366d0 ""
   "/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def" 1544567569 10689 ce0f2353f9a1f42b29f591f3fe8e040a ""
+  "/usr/share/texlive/texmf-dist/tex/latex/bbm-macros/bbm.sty" 1480098821 1644 1e0d54b051369c3f457872824cac219f ""
   "/usr/share/texlive/texmf-dist/tex/latex/cleveref/cleveref.sty" 1525128982 329481 7fc6b003158402a4c694bc0a1b729308 ""
   "/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty" 1549316214 51603 ccc7546d1e15809a779ade2c44d54044 ""
   "/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg" 1480098830 1213 620bba36b25224fa9b7e1ccb4ecb76fd ""
@@ -215,14 +216,14 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1551493644 34566 ab5be96bde1a5acfd4f881dbe566b5fb ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1567423795 2948181 845e3844416a72b2958b3c37a5c4593a ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1567510044 1974844 1f956701ff938d42ce4c6ecbf065cde3 ""
-  "main.aux" 1571526582 1643 318545761ecfbe0599cb1400b8a6dd05 ""
-  "main.bbl" 1571526276 509 8be92e779d7f8fd50bd5f6190ed518ad "bibtex main"
-  "main.out" 1571526582 180 ad8f01790cce9ddd186f9e3edb579f17 ""
-  "main.tex" 1571526581 27037 68b521af17a0225a1ad14de890b7e031 ""
-  "main.toc" 1571526582 276 1e47d048668d10e64f6eff78f88f8bd6 ""
+  "main.aux" 1571577740 2130 82f9832a5c6ecc5c122fb43524e6d18f ""
+  "main.bbl" 1571577739 940 b2bd563d3b890b6ac6479f8624890a26 "bibtex main"
+  "main.out" 1571577740 311 52544713c7adf5576fcf62396d856efa ""
+  "main.tex" 1571577738 30198 831de1514a4b91d05da453fee677b533 ""
+  "main.toc" 1571577740 450 77327ac9901b98571119bdd8ba4eb6a1 ""
   (generated)
-  "main.out"
-  "main.aux"
-  "main.toc"
   "main.log"
+  "main.out"
+  "main.toc"
   "main.pdf"
+  "main.aux"
