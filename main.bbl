@@ -26,6 +26,11 @@ S.~Mac~Lane.
 \newblock {\em Categories for the Working Mathematician}.
 \newblock Graduate Texts in Mathematics. Springer-Verlag New York, 1978.
 
+\bibitem[Nee01]{nee01}
+A.~Neeman.
+\newblock {\em Triangulated categories}.
+\newblock Annals of Mathematics Studies. Princeton University Press, 2001.
+
 \bibitem[{nLa}19]{nlab:monoidal_category}
 {nLab authors}.
 \newblock monoidal category.
@@ -38,5 +43,11 @@ S.~Mac~Lane.
 The {Stacks project authors}.
 \newblock The stacks project.
 \newblock \url{https://stacks.math.columbia.edu}, 2019.
+
+\bibitem[Wei94]{wei94}
+C.~A. Weibel.
+\newblock {\em An introduction to homological algebra}.
+\newblock Cambridge Studies in Advanced Mathematics. Cambridge University
+  Press, 1994.
 
 \end{thebibliography}

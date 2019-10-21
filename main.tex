@@ -61,6 +61,7 @@
 \newcommand{\fp}[1]{\times_{#1}}
 \newcommand{\id}{\mathrm{id}}
 \newcommand{\ev}{\mathrm{ev}}
+\newcommand{\grd}{^{\bullet}}
 
 
 \title{Seminar on Condensed Mathematics \\ \large Talk 2: Condensed Abelian Groups}
@@ -285,7 +286,7 @@ With this nice description we are ready to prove the main result of this talk:
 \begin{thm}\label{thm:abelian}
     $\Cond(\Ab)$ is an abelian category satisfying axioms (AB3), (AB3*), (AB4), (AB4*), (AB5) and (AB6).
     Moreover, it is generated\footnote{A category $\C$ is said to be \textit{generated} by a set $\mathscr{S}\subseteq \Ob(\C)$ if for all pairs of distinct parallel arrows $f\neq g\colon A\rightrightarrows B$ we can find some $h\colon S\to A$ with $S\in \mathscr{S}$ such that $fh\neq gh$.
-    As Mac Lane points out, the word \textit{separated} would have been a better choice (see \cite[Section V.7]{mac78}).} by compact\footnote{An object $M$ on an abelian category $\C$ is called \textit{compact} if $\Hom_{\C}(M,-)$ commutes with filtered colimits.} projective objects.
+    As Mac Lane points out, the word \textit{separated} would have been a better choice (see \cite[Section V.7]{mac78}).} by compact\footnote{An object $M$ on a category $\C$ is called \textit{compact} if $\Hom_{\C}(M,-)$ commutes with filtered colimits.} projective objects.
     \begin{proof}
 	In \cref{cor:sheaf} we have described $\Cond(\Ab)$ as the category of contravariant functors from extremally disconnected spaces to $\Ab$ sending finite disjoint unions to finite products.
 	The idea is to use this description to see that we can construct limits and colimits pointwise.
@@ -413,6 +414,9 @@ So let us say a few words about the derived category of condensed abelian grouop
 
 Let $\D^{\star}=\D^{\star}(\Cond(\Ab))$ be the derived categroy of $\Cond(\Ab)$, where $\star\in \{\quad,\mathrm{b},+,-\}$ stands for unbounded, bounded above and below, bounded below and bounded above complexes.
 This can be constructed as usual, passing first to the homotopy category and then inverting the remaining quasi-isomorphisms with roofs (see e.g. \cite{gm03}).
+We will see these things in detail in Tanuj's seminar this semester, and it does not seem necessary to get into these details now, so we will postpone them for future talks.
+The upshot is that the objects in $\D$ are cochain complexes of condesned abelian groups and we identify two complexes whenever they are quasi-isomorphic, i.e. whenever there is a morphism from one to the other inducing isomorphisms in cohomology.
+
 Since $\Cond(\Ab)$ has enough injectives and enough projectives, we can identify
 \[ \D^{-}=\K^{-}(\mathscr{P}) \quad \text{and} \quad \D^{+}=\K^{+}(\mathscr{I}),\]
 where $\mathscr{P}$ and $\mathscr{I}$ are the full subcategories of projective and injective objects respectively.
@@ -428,6 +432,51 @@ In the previous section we have seen that the tensor-hom adjunction $(-)\ot M\da
 From this adjunction we deduce that $(-)\ot M$ commutes with all colimits and that $[M,-]$ commutes with all limits.
 Hence we can form the derived functors $(-)\ot^{L}M\colon \D\to \D$ and $R[M,-]\colon \D\to \D$.
 These still form an adjoint pair $(-)\ot^{L}M\dashv R[M,-]$ making $\D$ a closed symmetric monoidal category as well (see \cite[\href{https://stacks.math.columbia.edu/tag/09T5}{Tag 09T5}]{sta19}).
+
+The category $\D$ is not abelian anymore\footnote{$\D(\mathscr{A})$ is abelian if and only if $\mathscr{A}$ is semisimple, meaning that every short exact sequence splits.}, but it does carry a natural triangulated structure.
+A \textit{triangulated structure} on an additive category consists of an additive automorphism $\Sigma$, called the \textit{suspension} functor, and a collection of \textit{distinguished triangles}, which are diagrams of the form
+\[ A\to B\to C\to\Sigma(A) \]
+satisfying some axioms (TR1) to (TR4) (see e.g. \cite{gm03}).
+To describe this triangulated structure we need the following:
+
+\begin{defn}
+    Let $A\grd$ be a cochain complex.
+    Define its \textit{shift} as the complex $A[p]\grd$ with $A[p]^{i}=A^{i+p}$ and with differential $d_{A[p]}=(-1)^{p}d_{A}$.
+
+    Define the \textit{mapping cone} of a morphism of cochain complexes $f\colon A\grd\to B\grd$ as the complex $C(f)\grd$ with $C(f)^{i}=A^{i+1}\op B^{i}$ and with differential $d_{C(f)}=\bigl( \begin{smallmatrix} d_{A[1]} & 0 \\ f & d_{B} \end{smallmatrix} \bigr)$.
+\end{defn}
+
+We take the shift $[1]$ as our suspension functor and we take distinguished triangles to be all triangles isomorphic to one of the form
+\[A\grd\xrightarrow{f} B\grd\to C(f)\grd \to A[1]\grd. \]
+
+Because of the cone short exact sequence (see e.g. \cite{wei94}) every distinguished triangle comes from a short exact sequence of complexes.
+And conversely, every short exact sequence of complexes gives rise to a distinguished triangle in $\D$ (but not on the homotopy category).
+
+\begin{rem}
+    Triangulated categories are not a very good notion, and this will be our main reason to introduce $\infty$-categories later on.
+    Philosophically they are not good because they are an extra structure on the category, unlike being an abelian category which is a property that any given category may or may not have.
+    But in practice they are also very inconvenient because of their lack of stability with respect to many usual categorical constructions, which in turn usually goes back to the non-functoriality of cones.
+    For instance, categories of functors on a triangulated category are usually not triangulated.
+    This implies that $\D$ is probably not equivalent to $\Cond(\D(\Ab))$, because one of them is triangulated and the other one probably is not\footnote{Since triangulated categories are an extra structure, this should not strike as a valid reason for them not to be equivalent at first glance. But admitting a triangulated structure has very strong consequences on the category, for instance, all monomorphisms and all epimorphisms split on triangulated categories, and with such properties we can discard equivalences between them.}.
+\end{rem}
+
+Let us close this section with a few words on compact generation.
+This is particularly relevant in the context of triangulated categories.
+As Thomason said to Neeman (see \cite{nee01}), ``compact objects are as necessary to this theory as air to breathe''.
+
+Let $P\in \Cond(\Ab)$ be a compact projective object.
+We regard $P\in \D$ by seeing it as a complex concentrated on degree $0$.
+Then $P$ is a compact\footnote{In the context of additive categories $\C$, an object $C$ is called compact if $\Hom_{\C}(C,-)\colon \C\to \Ab$ preserves coproducts, i.e. for every set $\{A_{i}\}_{i\in I}\subseteq \Ob(\C)$ such that $\op_{i}A_{i}$ exists in $\C$, the canonical map $\op_{i}\Hom_{\C}(C,A_{i})\to \Hom_{\C}(C,\op_{i}A_{i})$ is a group isomorphism.} object in the derived category.
+Since being compact is shift invariant and $\Cond(\Ab)$ is compactly generated, so is $\D$.
+Hence our triangulated category $\D$ is compactly generated.
+This has the following advantage:
+
+\begin{thm}[Brown Representability]
+    Let $\mathscr{T}$ be a compactly generated triangulated category and let $F\colon \mathscr{T}\to \mathscr{S}$ be a triangulated functor which preserves coproducts.
+    Then $F$ has a right adjoint.
+\end{thm}
+
+Note that if we already know $F$ to be triangulated, then this theorem is much stronger than the usual adjoint functor theorems, because we only need to check that the functor preserves coproducts.
 
 \section{$\infty$-categories}
 
