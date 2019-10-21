@@ -133,6 +133,12 @@ Let us start by characterizing sheaves on this site:
     We denote the category of condensed abelian groups by $\Cond(\Ab)$.
 \end{defn}
 
+\begin{rem}
+    Barwick and Haine have developed independently a notion very similar to the condensed objects of Clausen and Scholze in their recent paper \cite{bh19}.
+    This is the notion of \textit{Pyknotic}\footnote{This name comes from the greek word \textit{pykno}, which means dense, compact or thick.} object, which differs from the notion of condensed object on set theoretical matters.
+    Since we are not discussing set theoretical issues, we will also not discuss the differences between these two notions here.
+\end{rem}
+
 From \cref{lm:sheaf} we deduce:
 
 \begin{exa}
@@ -175,7 +181,7 @@ See \cite[\href{https://stacks.math.columbia.edu/tag/03NQ}{Tag 03NQ}]{sta19} for
     Hence sheafification is exact.
 \end{rem}
 
-\subsection{Properties}
+\subsection{Grothendieck category}
 
 A category $\C$ is called \textit{abelian} if it satisfies the following properties:
 \begin{enumerate}[label=\roman*)]
@@ -229,7 +235,7 @@ In particular, every compact Hausdorff space admits a surjection $\beta(X_{disc}
 This has the following consequence:
 
 \begin{prop}
-    $\Cond(\Ab)$ is equvalent to the category of sheaves of abelian groups on the site of extremally disconnected spaces via the restriction from profinite sets.
+    $\Cond(\Ab)$ is equivalent to the category of sheaves of abelian groups on the site of extremally disconnected spaces via the restriction from profinite sets.
     \begin{proof}
 	Let $T\in \Cond(\Ab)$ and let $S$ be a profinite set.
 	Let $f\colon \tilde{S}\twoheadrightarrow S$ and $g\colon \tilde{\tilde{S}}\twoheadrightarrow \tilde{S}\fp{S}\tilde{S}$ be continuous surjections from extremally disconnected spaces.
@@ -336,11 +342,20 @@ With this nice description we are ready to prove the main result of this talk:
     \end{proof}
 \end{thm}
 
-\begin{rem}
-    Compact generation in triangulated categories, Brown representability, etc.
-\end{rem}
+Categories nice enough to have some of the previous properties deserve a name of their own:
 
-\subsection{Extra structure}
+\begin{defn}
+    We say that $\C$ is a \textit{Grothendieck category} if it is an (AB5) abelian category with a generator.
+\end{defn}
+
+By definition $G\in \Ob(\C)$ is a generator precisely when the functor $\Hom_{\C}(G,-)\colon \C\to \Set$ is faithful.
+Note that if $\{G_{i}\}_{i\in I}$ is a set of generators and arbitrary coproducts exist in $\C$, then $G=\bigoplus_{i\in I}G_{i}$ is a generator.
+
+\begin{cor}
+    $\Cond(\Ab)$ is a Grothendieck category with generator $G=\bigoplus_{S}\Z[\u{S}]$, where $S$ ranges over all extremally disconnected sets.
+\end{cor}
+
+\subsection{Closed symmetric monoidal}
 
 Roughly speaking, a (\textit{symmetric}) \textit{monoidal structure} on a category $\C$ consists of a functor $(-)\ot(-)\colon \C\times \C\to \C$ which turns $\C$ into a (commutative up to natural isomorphism) monoid with associativity and unit up to natural isomorphism (see \cite{nlab:monoidal_category} for the precise definition).
 When $\C$ is considered endowed with this extra structure we call it a (\textit{symmetric}) \textit{monoidal category}.
@@ -361,7 +376,7 @@ Let us see now that $\Cond(\Ab)$ is also a symmetric monoidal category:
 	\end{proof}
 \end{prop}
 
-The category $\Cond(\Set)$ is also symmetric monoidal with respect to cartesian product
+The category $\Cond(\Set)$ is also symmetric monoidal with respect to cartesian product.
 Relating these two symmetric monoidal categories we have the following:
 
 \begin{prop}
@@ -374,10 +389,10 @@ Relating these two symmetric monoidal categories we have the following:
     \end{proof}
 \end{prop}
 
-It is also worth to point out that the objects $\Z[T]$ are flat for all condensed sets $T$.
+It is also worth pointing out that the objects $\Z[T]$ are flat for all condensed sets $T$.
 Indeed, since sheafification is exact it suffices to check that tensoring pointwise with the presheaf $S\mapsto \Z[T(S)]$ is exact, which follows from all $\Z[T(S)]$ being free abelian groups.
 
-The next natural step is to check that our symmetric monoidal category $\Cond(\Ab)$ is closed:
+One last natural step is to check that our symmetric monoidal category $\Cond(\Ab)$ is closed:
 
 \begin{prop}
     For all $M\in \Ob(\Cond(\Ab))$ the functor $(-)\ot M$ has a right adjoint $[M,-]\colon \Cond(\Ab)\to \Cond(\Ab)$, called the \textit{internal hom} in $\Cond(\Ab)$.
@@ -419,11 +434,6 @@ Besides of being a natural generalization, $\infty$-categories also solve some i
 The derived category of an abelian category carries a natural triangulated structure, but triangulated categories are not well-behaved with respect to many usual constructions in category theory due to the lack of functoriality of cones.
 In particular, despite $\D(\Ab)$ carrying a natural triangulated structure, one should not expect $\Cond(\D(\Ab))$ to be triangulated.
 Therefore we should neither expect to have an equivalence $\D(\Cond(\Ab))\cong \Cond(\D(\Ab))$, because even if a triangulation is by definition an extra structure on our category, admitting such an extra structure has very strong implications on the properties of the underlying category, e.g. all monomorphisms and all epimorphisms have to split.
-
-\section{Comparison with Pyknotic objects}
-
-Barwick and Haine have developed independently a notion very similar to the condensed objects of Clausen and Scholze in their recent paper \cite{bh19}.
-This is the notion of \textit{Pyknotic}\footnote{This name comes from the greek word \textit{pykno}, which means dense, compact or thick.} object, which differs from the notion of condensed object on set theoretical matters.
 
 \bibliographystyle{alpha}
 \bibliography{refs}
