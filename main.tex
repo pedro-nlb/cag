@@ -199,7 +199,7 @@ is an isomorphism in $\C$}].
 \end{rem}
 
 The main goal of this talk is to show that the category $\Cond(\Ab)$ is an abelian category which verifies all the previous axioms.
-Except for axioms (AB4*) and (AB6), this is a general fact which holds on any category of sheaves of abelian groups on a site, but we will still give an explicit proof in our situation.
+Except for axioms (AB4*) and (AB6), this is a general fact which holds on any category of sheaves of abelian groups on a site, but we will give a proof specific to our situation.
 This will be much easier after we express $\Cond(\Ab)$ as the category of sheaves of abelian groups on a simpler site.
 
 \begin{defn}
@@ -398,22 +398,22 @@ Then we have a natural isomorphism $[M,N](S)\cong \Hom(\Z[\u{S}],[M,N])$ by Yone
 
 Let $X$ be a topological space.
 We can try to consider this as a category in which the objects are the points of $X$ and the ($1$-)morphisms are the paths in $X$, which can be seen as homotopies between maps $\{ *\}\to X$.
-We can consider a homotopy between paths a $2$-morphism, a homotopy between homotopies of paths a $3$-morphism, and so on.
+We call a homotopy between paths a $2$-morphism, a homotopy between homotopies of paths a $3$-morphism, and so on.
 We obtain an object called the \textit{fundamental $\infty$-grupoid} of $X$, denoted $\pi_{\leqslant \infty}(X)$.
-Even if we just consider its objects and its $1$-morphisms, $\pi_{\leqslant \infty }(X)$ is not a category, because the composition of paths is not associative.
-But it is associative up to a $2$-morphism, and similarly composition of $n$-morphisms is only associative up to an $n+1$-morphism.
+Even if we just consider its objects and its $1$-morphisms, $\pi_{\leqslant \infty }(X)$ is not a category, because composition of paths is not uniquely defined, and even if we agree on a formula, it would not be associative.
+But it is uniquely defined and associative up to a $2$-morphism, and similarly composition of $n$-morphisms is only uniquely defined and associative up to an $n+1$-morphism.
 Note also that $n$-morphisms are invertible up to an $n+1$-morphism for all $n\in \N_{>0}$.
 
 \begin{q}
-    How similar or different is $\pi_{\leqslant \infty}(X)$ from an usual category?
+    How similar or different is $\pi_{\leqslant \infty}(X)$ from a usual category?
 \end{q}
 
 If $\C$ is any category, then we can think of it as having no $n$-morphisms for any $n\in \N_{>1}$.
-Then associativity up to higher morphisms is still true in this case, so we can say that this is something that $\C$ and $\pi_{\leqslant \infty }(X)$ have in common.
+Then uniqueness of composition and associativity up to higher morphisms is still true in this case, so we can say that this is something that $\C$ and $\pi_{\leqslant \infty }(X)$ have in common.
 On the other hand, the $1$-morphisms in $\C$ may not be invertible, so this is a feature that $\pi_{\leqslant \infty}(X)$ has but $\C$ does not have.
 
-So we want to find a more general notion of which both $\C$ and $\pi_{\leqslant \infty}(X)$ are particular cases.
-This is the notion of an $\infty$-category: a collection of objects and a collection of $n$-morphisms for each $n\in \N_{>0}$ such that composition of $n$-morphisms is associative up to $n+1$-morphism and such that all $n$-morphisms are invertible up to $n+1$-morphism for all $n\in\N_{>1}$.
+We want to find a more general notion of which both $\C$ and $\pi_{\leqslant \infty}(X)$ are particular cases.
+This will be the notion of an $\infty$-category: a collection of objects and for each $n\in \N_{>0}$ a collection of $n$-morphisms such that composition of $n$-morphisms is uniquely defined and associative only up to $n+1$-morphism and such that all $n$-morphisms are invertible up to $n+1$-morphism for all $n\in\N_{>1}$.
 
 Besides of being a natural generalization, $\infty$-categories also solve some issues that arise in classical category theory.
 The derived category of an abelian category carries a natural triangulated structure, but triangulated categories are not well-behaved with respect to many usual constructions in category theory due to the lack of functoriality of cones.
@@ -424,8 +424,6 @@ Therefore we should neither expect to have an equivalence $\D(\Cond(\Ab))\cong \
 
 Barwick and Haine have developed independently a notion very similar to the condensed objects of Clausen and Scholze in their recent paper \cite{bh19}.
 This is the notion of \textit{Pyknotic}\footnote{This name comes from the greek word \textit{pykno}, which means dense, compact or thick.} object, which differs from the notion of condensed object on set theoretical matters.
-
-
 
 \bibliographystyle{alpha}
 \bibliography{refs}
