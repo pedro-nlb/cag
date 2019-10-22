@@ -47,6 +47,7 @@
 
 % Math operators
 \DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Ext}{Ext}
 \DeclareMathOperator{\Cond}{Cond}
 \DeclareMathOperator{\Ob}{Ob}
 \DeclareMathOperator{\im}{im}
@@ -79,10 +80,10 @@
 Recall from the previous talk:
 
 \begin{defn}
-    The \textit{pro-étale site} of a point, denoted $*_{proét}$, consists of:
+    The \textit{pro-étale site} of a point, denoted $\pe$, consists of:
     \begin{itemize}
-	\item The category whose objects are profinite sets $S$ (topological spaces homeomorphic to an inverse limit of finite discrete topological spaces, a.k.a. totally disconnected compact Hausdorff spaces) and whose morphisms are continuous maps.
-	\item The coverings of a profinite set $S$ are all finite families of jointly surjective maps, i.e. all families of morphisms $\{ S_{i}\to S\}_{i\in I}$ indexed by finite sets $J$ such that $\sqcup_{i\in I}S_{i}\to S$ is surjective.
+	\item The category whose objects are profinite sets $S$ (topological spaces homeomorphic to an inverse limit of finite discrete topological spaces, or equivalently totally disconnected compact Hausdorff spaces) and whose morphisms are continuous maps.
+	\item The coverings of a profinite set $S$ are all finite families of jointly surjective maps, i.e. all families of morphisms $\{ S_{j}\to S\}_{j\in J}$ indexed by finite sets $J$ such that $\bigsqcup_{j\in J}S_{j}\twoheadrightarrow S$ is surjective.
     \end{itemize}
 \end{defn}
 
@@ -331,15 +332,15 @@ With this nice description we are ready to prove the main result of this talk:
 	A morphism between two sheaves in $\Cond(\Set)$ is just a natural transformation between them, so by the Yoneda lemma we have a natural bijection $\Hom_{\Cond(\Ab)}(\u{S},U(M))\cong M(S)$ for all condensed abelian groups $M$.
 	Combining this with the previous adjunction we obtain natural bijections $\Hom_{\Cond(\Ab)}(\Z[\u{S}],M)\cong M(S)$ for all condensed abelian groups $M$.
 	Since limits and colimits are constructed pointwise in $\Cond(\Ab)$, the evaluation functor $\ev_{S}$ commutes with all limits and colimits, which implies by the previous natural bijection that $\Z[\u{S}]$ is both compact and projective.
-	Let us prove now that these objects generate $\Cond(\Ab)$, for which it suffices to find for all condensed abelian group $M$ a surjection $\bigoplus_{\alpha \in \Lambda}\Z[\u{S_{\alpha}}]\twoheadrightarrow M$ for some collection of extremally disconnected sets $\{S_{\alpha}\}_{\alpha\in \Lambda}$.
+	Let us prove now that these objects generate $\Cond(\Ab)$, for which it suffices to find for all condensed abelian group $M$ a surjection $\coprod_{\alpha \in \Lambda}\Z[\u{S_{\alpha}}]\twoheadrightarrow M$ for some collection of extremally disconnected sets $\{S_{\alpha}\}_{\alpha\in \Lambda}$.
 	
 	So let $M\in \Ob(\Cond(\Ab))$.
-	By Zorn's lemma, there is a maximal subobject $M'$ of $M$ such that $M'$ admits a surjection $f\colon \bigoplus_{\alpha\in \Lambda}\Z[\u{S_{\alpha}}]\twoheadrightarrow M'$ for some collection of extremally disconnected sets $\{S_{\alpha}\}_{\alpha\in \Lambda}$.
+	By Zorn's lemma, there is a maximal subobject $M'$ of $M$ such that $M'$ admits a surjection $f\colon \coprod_{\alpha\in \Lambda}\Z[\u{S_{\alpha}}]\twoheadrightarrow M'$ for some collection of extremally disconnected sets $\{S_{\alpha}\}_{\alpha\in \Lambda}$.
 	Suppose $M'\neq M$, i.e. suppose $M/M'\neq 0$.
 	Then we can find some extremally disconnected set $S$ such that $(M/M')(S)\neq 0$.
 	By Yoneda this means that we can find at least one non-zero morphism $\bar{g}\colon \Z[\u{S}]\to M/M'$, which by projectivity of $\Z[\u{S}]$ can be lifted to a morphism $g\colon \Z[\u{S}]\to M$ such that $\im(g)\not\subseteq M'$.
 	Let then $M''$ be the smallest subobject of $M$ containing $M'$ and $\im(g)$, so that $M'\subsetneq M''\subsetneq M$.
-	Then we can find a surjection $(\bigoplus_{\alpha\in \Lambda} \Z[\u{S_{\alpha}}])\op \Z[\u{S}]\overset{f\sqcup g}{\twoheadrightarrow} M''$ contradicting maximality of $M'$.
+	Then we can find a surjection $(\coprod_{\alpha\in \Lambda} \Z[\u{S_{\alpha}}])\op \Z[\u{S}]\overset{f\sqcup g}{\twoheadrightarrow} M''$ contradicting maximality of $M'$.
 	This implies that $M'=M$ and finishes the proof.
     \end{proof}
 \end{thm}
@@ -347,10 +348,10 @@ With this nice description we are ready to prove the main result of this talk:
 Categories nice enough to have some of the previous properties deserve a name of their own.
 We say that $\C$ is a \textit{Grothendieck category} if it is an (AB5) abelian category with a generator.
 By definition $G\in \Ob(\C)$ is a generator precisely when the functor $\Hom_{\C}(G,-)\colon \C\to \Set$ is faithful.
-Note that if $\{G_{i}\}_{i\in I}$ is a set of generators and arbitrary coproducts exist in $\C$, then $G=\bigoplus_{i\in I}G_{i}$ is a generator.
+Note that if $\{G_{i}\}_{i\in I}$ is a set of generators and arbitrary coproducts exist in $\C$, then $G=\coprod_{i\in I}G_{i}$ is a generator.
 
 \begin{cor}
-    $\Cond(\Ab)$ is a Grothendieck category with generator $G=\bigoplus_{S}\Z[\u{S}]$, where $S$ ranges over all extremally disconnected sets.
+    $\Cond(\Ab)$ is a Grothendieck category with generator $G=\coprod_{S}\Z[\u{S}]$, where $S$ ranges over all extremally disconnected sets.
 \end{cor}
 
 \subsection{Closed symmetric monoidal}
@@ -437,20 +438,7 @@ The category $\D$ is not abelian anymore\footnote{$\D(\mathscr{A})$ is abelian i
 A \textit{triangulated structure} on an additive category consists of an additive automorphism $\Sigma$, called the \textit{suspension} functor, and a collection of \textit{distinguished triangles}, which are diagrams of the form
 \[ A\to B\to C\to\Sigma(A) \]
 satisfying some axioms (TR1) to (TR4) (see e.g. \cite{gm03}).
-To describe this triangulated structure we need the following:
-
-\begin{defn}
-    Let $A\grd$ be a cochain complex.
-    Define its \textit{shift} as the complex $A[p]\grd$ with $A[p]^{i}=A^{i+p}$ and with differential $d_{A[p]}=(-1)^{p}d_{A}$.
-
-    Define the \textit{mapping cone} of a morphism of cochain complexes $f\colon A\grd\to B\grd$ as the complex $C(f)\grd$ with $C(f)^{i}=A^{i+1}\op B^{i}$ and with differential $d_{C(f)}=\bigl( \begin{smallmatrix} d_{A[1]} & 0 \\ f & d_{B} \end{smallmatrix} \bigr)$.
-\end{defn}
-
-We take the shift $[1]$ as our suspension functor and we take distinguished triangles to be all triangles isomorphic to one of the form
-\[A\grd\xrightarrow{f} B\grd\to C(f)\grd \to A[1]\grd. \]
-
-Because of the cone short exact sequence (see e.g. \cite{wei94}) every distinguished triangle comes from a short exact sequence of complexes.
-And conversely, every short exact sequence of complexes gives rise to a distinguished triangle in $\D$ (but not on the homotopy category).
+In our case every such distinguished triangle comes from a short exact sequence of complexes, and conversely, every short exact sequence of complexes gives rise to a distinguished triangle in $\D$.
 
 \begin{rem}
     Triangulated categories are not a very good notion, and this will be our main reason to introduce $\infty$-categories later on.
@@ -465,9 +453,21 @@ This is particularly relevant in the context of triangulated categories.
 As Thomason said to Neeman (see \cite{nee01}), ``compact objects are as necessary to this theory as air to breathe''.
 
 Let $P\in \Cond(\Ab)$ be a compact projective object.
-We regard $P\in \D$ by seeing it as a complex concentrated on degree $0$.
-Then $P$ is a compact\footnote{In the context of additive categories $\C$, an object $C$ is called compact if $\Hom_{\C}(C,-)\colon \C\to \Ab$ preserves coproducts, i.e. for every set $\{A_{i}\}_{i\in I}\subseteq \Ob(\C)$ such that $\op_{i}A_{i}$ exists in $\C$, the canonical map $\op_{i}\Hom_{\C}(C,A_{i})\to \Hom_{\C}(C,\op_{i}A_{i})$ is a group isomorphism.} object in the derived category.
-Since being compact is shift invariant and $\Cond(\Ab)$ is compactly generated, so is $\D$.
+We regard $P\in \D$ as a complex concentrated on degree $0$.
+Then $P$ is a compact\footnote{In the context of additive categories $\C$, an object $C$ is called \textit{compact} if $\Hom_{\C}(C,-)\colon \C\to \Ab$ preserves coproducts, i.e. for every set $\{A_{i}\}_{i\in I}\subseteq \Ob(\C)$ such that $\coprod_{i}A_{i}$ exists in $\C$, the canonical map $\coprod_{i}\Hom_{\C}(C,A_{i})\to \Hom_{\C}(C,\coprod_{i}A_{i})$ is a group isomorphism.} object in the derived category, because $\Hom_{\D}(P,A\grd)=H^{0}(\Hom_{\Cond(\Ab)}(P,A\grd))$ and cohomology commutes with direct sums in $\Ab$.
+To see that $\D$ is a compactly generated triangulated category (see \href{https://ncatlab.org/nlab/show/compactly+generated+triangulated+category}{nLab}), let $A\grd\in \D$ such that $\Hom_{\D}(P[n],A\grd)=0$ for all compact projective objects $P$ and all $n\in \Z$.
+A cochain complex is zero in $\D$ precisely when it is acyclic.
+Let us see for instance that $H^{0}(A\grd)=0$.
+Pick a surjection $f\colon P=\coprod_{i\in I}P_{i}\twoheadrightarrow \ker{d_{A}^{0}}\subseteq A\grd$, where all $P_{i}$ are compact projective objects.
+Since $\Hom_{\D}(-,A\grd)$ commutes with colimits and $P$ is still projective in $\Cond(\Ab)$, we deduce that $f$ is null-homotopic.
+This means that we can find a commutative diagram:
+\begin{center}
+    \begin{tikzcd}
+	P\arrow[dashed,swap]{dr}{s}\arrow[twoheadrightarrow]{r}{f} & \ker{d_{A}^{0}} \\
+	& A^{-1}\arrow[swap]{u}{d_{A}^{-1}}
+    \end{tikzcd}
+\end{center}
+In particular, $\im{d_{A}^{-1}}=\ker{d_{A}^{0}}$, so $A\grd$ is acyclic and $A\grd=0$ in $\D$.
 Hence our triangulated category $\D$ is compactly generated.
 This has the following advantage:
 
@@ -475,8 +475,6 @@ This has the following advantage:
     Let $\mathscr{T}$ be a compactly generated triangulated category and let $F\colon \mathscr{T}\to \mathscr{S}$ be a triangulated functor which preserves coproducts.
     Then $F$ has a right adjoint.
 \end{thm}
-
-Note that if we already know $F$ to be triangulated, then this theorem is much stronger than the usual adjoint functor theorems, because we only need to check that the functor preserves coproducts.
 
 \section{$\infty$-categories}
 
@@ -498,11 +496,6 @@ On the other hand, the $1$-morphisms in $\C$ may not be invertible, so this is a
 
 We want to find a more general notion of which both $\C$ and $\pi_{\leqslant \infty}(X)$ are particular cases.
 This will be the notion of an $\infty$-category: a collection of objects and for each $n\in \N_{>0}$ a collection of $n$-morphisms such that composition of $n$-morphisms is uniquely defined and associative only up to $n+1$-morphism and such that all $n$-morphisms are invertible up to $n+1$-morphism for all $n\in\N_{>1}$.
-
-Besides of being a natural generalization, $\infty$-categories also solve some issues that arise in classical category theory.
-The derived category of an abelian category carries a natural triangulated structure, but triangulated categories are not well-behaved with respect to many usual constructions in category theory due to the lack of functoriality of cones.
-In particular, despite $\D(\Ab)$ carrying a natural triangulated structure, one should not expect $\Cond(\D(\Ab))$ to be triangulated.
-Therefore we should neither expect to have an equivalence $\D(\Cond(\Ab))\cong \Cond(\D(\Ab))$, because even if a triangulation is by definition an extra structure on our category, admitting such an extra structure has very strong implications on the properties of the underlying category, e.g. all monomorphisms and all epimorphisms have to split.
 
 \bibliographystyle{alpha}
 \bibliography{refs}
