@@ -1,15 +1,14 @@
 # Fdb version 3
-["bibtex main"] 1571822656 "main.aux" "main.bbl" "main" 1571831004
+["bibtex main"] 1571859571 "main.aux" "main.bbl" "main" 1571859572
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/alpha.bst" 1480098433 23907 a5f93555796fb564b924339521f10a7c ""
-  "main.aux" 1571831003 2423 1f132d63eb9186ba26f5d9bcf312f03d ""
-  "refs.bib" 1571608794 29230 b4666c40de2608f664860610c9feab47 ""
+  "main.aux" 1571859572 2447 3fdc3987b0d51e0ffdb78d1ba3654785 ""
+  "refs.bib" 1571840351 29701 026568c08de44b7854b8b9b7518da8b4 ""
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1571831003 "main.tex" "main.pdf" "main" 1571831004
+["pdflatex"] 1571859571 "main.tex" "main.pdf" "main" 1571859572
   "/etc/texmf/web2c/texmf.cnf" 1567423373 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/pedro/.texlive2018/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk" 1569223484 28952 bae6363876bde347b4275e82aa883b60 ""
-  "/home/pedro/.texlive2018/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk" 1571401599 31928 d830ebe8212d86e53704336717c634f1 ""
   "/home/pedro/.texlive2018/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk" 1569223485 40112 be32227866794fb613877a922877dc70 ""
   "/home/pedro/.texlive2018/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk" 1570714156 14860 4e79cc9a1a5b258a14c587221b040275 ""
   "/home/pedro/.texlive2018/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk" 1570714157 19056 9f5c53e79a72ac31409c084f51f102ba ""
@@ -22,7 +21,6 @@
   "/home/pedro/.texlive2018/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk" 1570533836 21952 95f17286d356bf50d3c76f6b76cc43c9 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1095.tfm" 1480098696 3584 21b378cca2e40816b0e6d74a4dc98f04 ""
-  "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1200.tfm" 1480098696 3584 402da0b29eafbad07963b1224b222f18 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1440.tfm" 1480098696 3584 13049b61b922a28b158a38aeff75ee9b ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm0600.tfm" 1480098696 3584 291a5713401683441e0a8c8f4417b17b ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm0800.tfm" 1480098696 3584 49064b465390a8e316a3c8417a050403 ""
@@ -217,14 +215,14 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1551493644 34566 ab5be96bde1a5acfd4f881dbe566b5fb ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1567423795 2948181 845e3844416a72b2958b3c37a5c4593a ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1567510044 1974844 1f956701ff938d42ce4c6ecbf065cde3 ""
-  "main.aux" 1571831003 2423 1f132d63eb9186ba26f5d9bcf312f03d ""
-  "main.bbl" 1571822656 1451 2521502eafe14a726e2f5fbe9daf20d1 "bibtex main"
-  "main.out" 1571831003 330 e2f7150ee60a5555c3a6a9125fdde2fb ""
-  "main.tex" 1571831003 40919 a8f04047b77e6e27f8985a1eab39cab7 ""
-  "main.toc" 1571831003 465 38d342ea3f65c5d4e11c17273c54b634 ""
+  "main.aux" 1571859572 2447 3fdc3987b0d51e0ffdb78d1ba3654785 ""
+  "main.bbl" 1571859571 1451 2521502eafe14a726e2f5fbe9daf20d1 "bibtex main"
+  "main.out" 1571859572 368 5eb8ad2658bb66ccdc8d36bd60a9efb2 ""
+  "main.tex" 1571859570 38904 3b4106a8dda5c6ad5ed060f8db2afc98 ""
+  "main.toc" 1571859572 505 cf749e8a19b8653859ad6f8f2bdc7fcc ""
   (generated)
-  "main.out"
   "main.pdf"
-  "main.aux"
+  "main.out"
   "main.log"
+  "main.aux"
   "main.toc"

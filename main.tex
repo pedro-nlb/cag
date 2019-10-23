@@ -9,10 +9,10 @@
 \usepackage[mathscr]{euscript}
 \usepackage{enumitem}
 \usepackage{tikz-cd}
+\usepackage{bbm}
 \usepackage{hyperref}
 \usepackage[noabbrev]{cleveref}
 \usepackage{todonotes}
-\usepackage{bbm}
 
 % Plain theorems
 \theoremstyle{plain}
@@ -29,7 +29,6 @@
 % Remark theorems
 \theoremstyle{remark}
 \newtheorem{rem}[thm]{Remark}
-\newtheorem{q}[thm]{Question}
 
 % Mathbb
 \newcommand{\N}{\mathbb{N}}
@@ -75,7 +74,7 @@
 
 \tableofcontents
 
-\section{The category of condensed abelian groups}
+\section{Recollections and preliminaries}
 
 Recall from the previous talk:
 
@@ -184,31 +183,9 @@ See \cite[\href{https://stacks.math.columbia.edu/tag/03NQ}{Tag 03NQ}]{sta19} for
     Hence sheafification is exact.
 \end{rem}
 
-\subsection{Grothendieck category}
+\section{A nicer description of our category}
 
-A category $\C$ is called \textit{abelian} if it satisfies the following properties:
-\begin{enumerate}[label=\roman*)]
-    \item There exists a zero object $0\in \Ob(\C)$.
-    \item For all $A,B\in \Ob(\C)$, their product $A\xleftarrow{p_{A}} A\times B\xrightarrow{p_{B}} B$ and their coproduct $A\xrightarrow{i_{A}}A\sqcup B\xleftarrow{i_{B}} B$ exist in $\C$ and the canonical morphism $A\sqcup B\xrightarrow{(\id_{A}\times 0) \sqcup (0\times \id_{B})} A\times B$ is an isomorphism\footnote{We identify $A\sqcup B$ with $A\times B$ via this isomorphism and call the result the \textit{direct sum} of $A$ and $B$, denoted $A\op B$.} in $\C$.
-    \item Every morphisms has a kernel and a cokernel in $\C$.
-    \item Every monomorphism in $\C$ is a kernel and every epimorphism in $\C$ is a cokernel.
-\end{enumerate}
-
-In particular, $\C$ is naturally an additive category and all finite limits and colimits exist in $\C$.
-
-In addition to these properties, Grothendieck introduced a series of extra axioms in his T\^{o}hoku paper \cite{gro57}.
-The ones that we will be considering are (AB3) [\textit{all colimits exist}], (AB3*) [\textit{all limits exist}], (AB4) [\textit{all colimits exist and coproducts are exact}], (AB4*) [\textit{all limits exist and products are exact}], (AB5) [\textit{all colimits exist and filtered colimits are exact}] and (AB6) [\textit{all colimits exist and for any family $\{ I_{j}\}_{j\in J}$ of filtered categories indexed by a set $J$ with functors $F_{j}\colon I_{j}\to \C$ the canonical morphism
-	\[ \varinjlim_{(i_{j}\in I_{j})_{j}} \prod_{j\in J}F_{j}(i_{j})\to \prod_{j\in J}\varinjlim_{i_{j}\in I_{j}} F_{j}(i_{j}) \]
-is an isomorphism in $\C$}].
-
-\begin{rem}
-    To check (AB3) on an abelian category it suffices to show that arbitrary coproducts exist, since we can build any colimit from coproducts and coequalizers, and similarly for the dual statement (AB3*).
-    Colimits preserve colimits because the colimit functor is left adjoint to the diagonal functor.
-    In particular coproducts are always right exact, so to check (AB4) on an abelian category satisfying (AB3) it suffices to check that coproducts preserve monomorphisms, and similarly for the dual statement (AB4*).
-\end{rem}
-
-The main goal of this talk is to show that the category $\Cond(\Ab)$ is an abelian category which verifies all the previous axioms.
-Except for axioms (AB4*) and (AB6), this is a general fact which holds on any category of sheaves of abelian groups on a site, but we will give a proof specific to our situation.
+The goal of this section is to show that $\Cond(\Ab)$ has many nice categorical properties.
 This will be much easier after we express $\Cond(\Ab)$ as the category of sheaves of abelian groups on a simpler site.
 
 \begin{defn}
@@ -282,7 +259,30 @@ This has the following consequence:
 	\end{center}
 \end{rem}
 
-With this nice description we are ready to prove the main result of this talk:
+\section{Abelianity and compact-projective generation}
+
+A category $\C$ is called \textit{abelian} if it satisfies the following properties:
+\begin{enumerate}[label=\roman*)]
+    \item There exists a zero object $0\in \Ob(\C)$.
+    \item For all $A,B\in \Ob(\C)$, their product $A\xleftarrow{p_{A}} A\times B\xrightarrow{p_{B}} B$ and their coproduct $A\xrightarrow{i_{A}}A\sqcup B\xleftarrow{i_{B}} B$ exist in $\C$ and the canonical morphism $A\sqcup B\xrightarrow{(\id_{A}\times 0) \sqcup (0\times \id_{B})} A\times B$ is an isomorphism\footnote{We identify $A\sqcup B$ with $A\times B$ via this isomorphism and call the result the \textit{direct sum} of $A$ and $B$, denoted $A\op B$.} in $\C$.
+    \item Every morphisms has a kernel and a cokernel in $\C$.
+    \item Every monomorphism in $\C$ is a kernel and every epimorphism in $\C$ is a cokernel.
+\end{enumerate}
+
+In particular, $\C$ is naturally an additive category and all finite limits and colimits exist in $\C$.
+
+In addition to these properties, Grothendieck introduced a series of extra axioms in his T\^{o}hoku paper \cite{gro57}.
+The ones that we will be considering are (AB3) [\textit{all colimits exist}], (AB3*) [\textit{all limits exist}], (AB4) [\textit{all colimits exist and coproducts are exact}], (AB4*) [\textit{all limits exist and products are exact}], (AB5) [\textit{all colimits exist and filtered colimits are exact}] and (AB6) [\textit{all colimits exist and for any family $\{ I_{j}\}_{j\in J}$ of filtered categories indexed by a set $J$ with functors $F_{j}\colon I_{j}\to \C$ the canonical morphism
+	\[ \varinjlim_{(i_{j}\in I_{j})_{j}} \prod_{j\in J}F_{j}(i_{j})\to \prod_{j\in J}\varinjlim_{i_{j}\in I_{j}} F_{j}(i_{j}) \]
+is an isomorphism in $\C$}].
+
+\begin{rem}
+    To check (AB3) on an abelian category it suffices to show that arbitrary coproducts exist, since we can build any colimit from coproducts and coequalizers, and similarly for the dual statement (AB3*).
+    Colimits preserve colimits because the colimit functor is left adjoint to the diagonal functor.
+    In particular coproducts are always right exact, so to check (AB4) on an abelian category satisfying (AB3) it suffices to check that coproducts preserve monomorphisms, and similarly for the dual statement (AB4*).
+\end{rem}
+
+Except for axioms (AB4*) and (AB6), this is a general fact which holds on any category of sheaves of abelian groups on a site, but we will give a proof specific to our situation.
 
 \begin{thm}\label{thm:abelian}
     $\Cond(\Ab)$ is an abelian category satisfying axioms (AB3), (AB3*), (AB4), (AB4*), (AB5) and (AB6).
@@ -354,7 +354,7 @@ Note that if $\{G_{i}\}_{i\in I}$ is a set of generators and arbitrary coproduct
     $\Cond(\Ab)$ is a Grothendieck category with generator $G=\coprod_{S}\Z[\u{S}]$, where $S$ ranges over all extremally disconnected sets.
 \end{cor}
 
-\subsection{Closed symmetric monoidal}
+\section{Closed symmetric monoidal structure}
 
 Roughly speaking, a (\textit{symmetric}) \textit{monoidal structure} on a category $\C$ consists of a functor $(-)\ot(-)\colon \C\times \C\to \C$ which turns $\C$ into a (commutative up to natural isomorphism) monoid with associativity and unit up to natural isomorphism (see \cite{nlab:monoidal_category} for the precise definition).
 When $\C$ is considered endowed with this extra structure we call it a (\textit{symmetric}) \textit{monoidal category}.
@@ -407,7 +407,7 @@ More precisely, let $M$ and $N$ be condensed abelian groups and let $S$ be an ex
 Then we have a natural isomorphism $[M,N](S)\cong \Hom(\Z[\u{S}],[M,N])$ by Yoneda and the free-forgetful adjunction, so by the tensor-hom adjunction we get a natural isomorphism
 \[ [M,N](S)\cong \Hom(\Z[\u{S}]\ot M,N).\]
 
-\subsection{Derived category}
+\section{The derived category of condensed abelian groups}
 
 Grothendieck categories are a particularly nice setting for homological algebra, e.g. because they have enough injectives.
 But in our case it gets even better, because $\Cond(\Ab)$ also has enough projectives and is generated by its compact projective objects.
@@ -476,27 +476,6 @@ This has the following advantage:
     Let $\mathscr{T}$ be a compactly generated triangulated category and let $F\colon \mathscr{T}\to \mathscr{S}$ be a triangulated functor which preserves coproducts.
     Then $F$ has a right adjoint.
 \end{thm}
-
-\section{$\infty$-categories}
-
-Let $X$ be a topological space.
-We can try to consider this as a category in which the objects are the points of $X$ and the ($1$-)morphisms are the paths in $X$, which can be seen as homotopies between maps $\{ *\}\to X$.
-We call a homotopy between paths a $2$-morphism, a homotopy between homotopies of paths a $3$-morphism, and so on.
-We obtain an object called the \textit{fundamental $\infty$-grupoid} of $X$, denoted $\pi_{\leqslant \infty}(X)$.
-Even if we just consider its objects and its $1$-morphisms, $\pi_{\leqslant \infty }(X)$ is not a category, because composition of paths is not uniquely defined, and even if we agree on a formula, it would not be associative.
-But it is uniquely defined and associative up to a $2$-morphism, and similarly composition of $n$-morphisms is only uniquely defined and associative up to an $n+1$-morphism.
-Note also that $n$-morphisms are invertible up to an $n+1$-morphism for all $n\in \N_{>0}$.
-
-\begin{q}
-    How similar or different is $\pi_{\leqslant \infty}(X)$ from a usual category?
-\end{q}
-
-If $\C$ is any category, then we can think of it as having no $n$-morphisms for any $n\in \N_{>1}$.
-Then uniqueness of composition and associativity up to higher morphisms is still true in this case, so we can say that this is something that $\C$ and $\pi_{\leqslant \infty }(X)$ have in common.
-On the other hand, the $1$-morphisms in $\C$ may not be invertible, so this is a feature that $\pi_{\leqslant \infty}(X)$ has but $\C$ does not have.
-
-We want to find a more general notion of which both $\C$ and $\pi_{\leqslant \infty}(X)$ are particular cases.
-This will be the notion of an $\infty$-category: a collection of objects and for each $n\in \N_{>0}$ a collection of $n$-morphisms such that composition of $n$-morphisms is uniquely defined and associative only up to $n+1$-morphism and such that all $n$-morphisms are invertible up to $n+1$-morphism for all $n\in\N_{>1}$.
 
 \bibliographystyle{alpha}
 \bibliography{refs}
