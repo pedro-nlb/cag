@@ -1,6 +1,6 @@
 \babel@toc {UKenglish}{}
 \contentsline {section}{\numberline {1}Recollections and preliminaries}{1}{section.1}% 
-\contentsline {section}{\numberline {2}A nicer description of our category}{4}{section.2}% 
-\contentsline {section}{\numberline {3}Abelianity and compact-projective generation}{7}{section.3}% 
-\contentsline {section}{\numberline {4}Closed symmetric monoidal structure}{10}{section.4}% 
-\contentsline {section}{\numberline {5}The derived category of condensed abelian groups}{12}{section.5}% 
+\contentsline {section}{\numberline {2}A nicer description of our category}{5}{section.2}% 
+\contentsline {section}{\numberline {3}Abelianity and compact-projective generation}{9}{section.3}% 
+\contentsline {section}{\numberline {4}Closed symmetric monoidal structure}{11}{section.4}% 
+\contentsline {section}{\numberline {5}The derived category of condensed abelian groups}{13}{section.5}% 

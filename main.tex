@@ -32,13 +32,24 @@
 
 % Mathbb
 \newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\1}{\mathbbm{1}}
 
+% Mathcal for sheaves
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\G}{\mathcal{G}}
+\renewcommand{\L}{\mathcal{L}}
+
 % Mathscr for categories
-\newcommand{\C}{\mathscr{C}}
+\newcommand{\scrC}{\mathscr{C}}
+\newcommand{\Fun}{\mathscr{F}un}
+\newcommand{\Nat}{\mathscr{N}at}
 \newcommand{\Top}{\mathscr{T}op}
 \newcommand{\CHaus}{\mathscr{CH}aus}
+\newcommand{\ED}{\mathscr{ED}}
 \newcommand{\Ab}{\mathscr{A}b}
 \newcommand{\Set}{\mathscr{S}et}
 \newcommand{\D}{\mathscr{D}}
@@ -65,7 +76,7 @@
 
 
 \title{Seminar on Condensed Mathematics \\ \large Talk 2: Condensed Abelian Groups}
-\author{Pedro Núñez}
+\author{Pedro Núñez\thanks{I would like to thank Brad Drew for answering some questions that came up while preparing these notes!}}
 \date{\today}
 
 \begin{document}
@@ -90,43 +101,43 @@ It is easy to check that the axioms of a covering family are satisfied (see \cit
 Let us start by characterizing sheaves on this site:
 
 \begin{lm}\label{lm:sheaf}
-    A contravariant functor $T$ from $\pe$ to the category of abelian groups $\Ab$ is a sheaf if and only if the following three conditions hold:
+    A presheaf\footnote{Recall that a presheaf of abelian groups on a category $\scrC$ is just a functor $\F\colon \scrC^{\mathrm{op}}\to \Ab$.} of abelian groups $\F$ on $\pe$ is a sheaf if and only if the following three conditions hold:
     \begin{enumerate}[label=\alph*)]
-	\item $T(\varnothing)=0$.
+	\item $\F(\varnothing)=0$.
 	\item For all profinite sets $S_{1}$ and $S_{2}$, the inclusions $i_{1}\colon S_{1}\to S_{1}\sqcup S_{2}$ and $i_{2}\colon S_{2}\to S_{1}\sqcup S_{2}$ induce a group isomorphism
-	    \[ T(S_{1}\sqcup S_{2})\xrightarrow{T(i_{1})\times T(i_{2})} T(S_{1})\op T(S_{2}).\]
+	    \[ \F(S_{1}\sqcup S_{2})\xrightarrow{\F(i_{1})\times \F(i_{2})} \F(S_{1})\op \F(S_{2}).\]
 	\item Every surjection $f\colon S'\twoheadrightarrow S$ induces a group isomorphism
-	    \[ T(S)\xrightarrow{T(f)} \{ g\in T(S') \mid T(p_{1})(g)=T(p_{2})(g) \in T(S'\times_{S}S') \}, \]
+	    \[ \F(S)\xrightarrow{\F(f)} \{ g\in \F(S') \mid \F(p_{1})(g)=\F(p_{2})(g) \in \F(S'\times_{S}S') \}, \]
 	    where $p_{1},p_{2}\colon S'\times_{S}S'\to S'$ denote the projections.
     \end{enumerate}
     \begin{proof}
-	By definition, a functor $T$ is a sheaf on $\pe$ if and only if for every finite family $\{ S_{i}\to S\}_{i\in I}$ of jointly surjective morphisms the diagram
-	\[ T(S)\to \prod_{i\in I} T(S_{i})\overset{p_{1}^{*}}{\underset{p_{2}^{*}}{\rightrightarrows}}\prod_{(i,j)\in I^{2}} T(S_{i}\times_{S} S_{j}) \]
+	By definition, a presheaf of abelian groups $\F$ is a sheaf on $\pe$ if and only if for every finite family $\{ S_{i}\to S\}_{i\in I}$ of jointly surjective morphisms the diagram
+	\[ \F(S)\to \prod_{i\in I} \F(S_{i})\overset{p_{1}^{*}}{\underset{p_{2}^{*}}{\rightrightarrows}}\prod_{(i,j)\in I^{2}} \F(S_{i}\times_{S} S_{j}) \]
 	is exact, meaning that the left arrow is an equalizer of the two arrows on the right, which are explicitly described below.
 	Since we are in $\Ab$ and $I$ is a finite set, we can reformulate this as the sequence
 	\begin{equation}\label{eqn:sheaf}
-	    0\to T(S)\to \bigoplus_{i\in I} T(S_{i})\xrightarrow{p_{1}^{*}-p_{2}^{*}} \bigoplus_{(i,j)\in I^{2}} T(S_{i}\times_{S}S_{j})
+	    0\to \F(S)\to \bigoplus_{i\in I} \F(S_{i})\xrightarrow{p_{1}^{*}-p_{2}^{*}} \bigoplus_{(i,j)\in I^{2}} \F(S_{i}\times_{S}S_{j})
 	\end{equation}
 	being exact.
 
 	So assume first that \ref{eqn:sheaf} is exact.
-	The empty set is covered by the empty family, so the $T(\varnothing)$ must be a subgroup of $0$, hence $0$ itself.
-	The natural inclusions $S_{i}\to S_{1}\sqcup S_{2}=S$ cover $S$ for $i\in I=\{1,2\}$, so it suffices to show that $T(p_{1})=T(p_{2})$ to verify $b)$.
+	The empty set is covered by the empty family, so the $\F(\varnothing)$ must be a subgroup of $0$, hence $0$ itself.
+	The natural inclusions $S_{i}\to S_{1}\sqcup S_{2}=S$ cover $S$ for $i\in I=\{1,2\}$, so it suffices to show that $\F(p_{1})=\F(p_{2})$ to verify $b)$.
 	Since $i_{1}(S_{1})\cap i_{2}(S_{2})=\varnothing $, we have $S_{1}\times_{S}S_{2}=S_{2}\times_{S}S_{1}=\varnothing $.
-	So if $(g,h)\in T(S_{1})\op T(S_{2})$, then
+	So if $(g,h)\in \F(S_{1})\op \F(S_{2})$, then
 	\begin{multline*}
-	    p_{1}^{*}(g,h)=(T(p_{1}^{S_{1}\times_{S}S_{1}})(g),T(p_{1}^{S_{1}\times_{S}S_{2}})(g),T(p_{1}^{S_{2}\times_{S}S_{1}})(h),T(p_{1}^{S_{2}\times_{S}S_{2}})(h)) \\ 
-	    =(T(p_{1}^{S_{1}\times_{S}S_{1}})(g),0,0,T(p_{1}^{S_{2}\times_{S}S_{2}})(h)) \\
-	    =(T(p_{2}^{S_{1}\times_{S}S_{1}})(g),T(p_{2}^{S_{1}\times_{S}S_{2}})(h),T(p_{2}^{S_{2}\times_{S}S_{1}})(g),T(p_{2}^{S_{2}\times_{S}S_{2}})(h))=p_{2}^{*}(g,h).
+	    p_{1}^{*}(g,h)=(\F(p_{1}^{S_{1}\times_{S}S_{1}})(g),\F(p_{1}^{S_{1}\times_{S}S_{2}})(g),\F(p_{1}^{S_{2}\times_{S}S_{1}})(h),\F(p_{1}^{S_{2}\times_{S}S_{2}})(h)) \\ 
+	    =(\F(p_{1}^{S_{1}\times_{S}S_{1}})(g),0,0,\F(p_{1}^{S_{2}\times_{S}S_{2}})(h)) \\
+	    =(\F(p_{2}^{S_{1}\times_{S}S_{1}})(g),\F(p_{2}^{S_{1}\times_{S}S_{2}})(h),\F(p_{2}^{S_{2}\times_{S}S_{1}})(g),\F(p_{2}^{S_{2}\times_{S}S_{2}})(h))=p_{2}^{*}(g,h).
 	\end{multline*}
 	To show $c)$, note that $S'\twoheadrightarrow S$ is already a cover, so the exactness of \ref{eqn:sheaf} immediately implies the result.
 
 	For the converse, suppose that $\{f_{j}\colon S_{j}\to S\}_{j\in J}$ is a collection of jointly surjective morphisms indexed by $J=\{ 1,\ldots,m\}$.
 	We have then a surjection $f\colon S \twoheadrightarrow S$, where $S':=\sqcup_{j=1}^{m}S_{j}$ and $f:=\sqcup_{j=1}^{m}f_{j}$.
-	By $c)$ we can write $T(S)=\{ g\in T(S')\mid T(p_{1}^{S'\fp{S}S'})(g)=T(p_{2}^{S'\fp{S}S'})(g)\}$.
+	By $c)$ we can write $\F(S)=\{ g\in \F(S')\mid \F(p_{1}^{S'\fp{S}S'})(g)=\F(p_{2}^{S'\fp{S}S'})(g)\}$.
 	But $S'\fp{S}S'=\sqcup_{(a,b)\in J^{2}} S_{a}\fp{S}S_{b}$ and $p_{\varepsilon }^{S'\fp{S}S'}=\sqcup_{(a_{1},a_{2})\in J^{2}} i_{a_{\varepsilon}}\circ p_{\varepsilon }^{S_{a_{1}}\fp{S}S_{a_{2}}}$ for $\varepsilon \in \{1,2\}$ and for $i_{a}\colon S_{a}\to S'$ the inclusions, so condition $b)$ allows us to rewrite this as
-	\[ T(S)=\bigcap_{(a,b)\in J^{2}} \{ (g_{1},\ldots,g_{m})\in T(S_{1})\op \cdots \op T(S_{m})\mid P_{a,b}(g_{a},g_{b})\}\]
-	with $P_{a,b}(g_{a},g_{b}):\equiv T(p_{1}^{S_{a}\fp{S}S_{b}})(g_{a})=T(p_{2}^{S_{a}\fp{S}S_{b}})(g_{b})$, which is what we wanted.	
+	\[ \F(S)=\bigcap_{(a,b)\in J^{2}} \{ (g_{1},\ldots,g_{m})\in \F(S_{1})\op \cdots \op \F(S_{m})\mid P_{a,b}(g_{a},g_{b})\}\]
+	with $P_{a,b}(g_{a},g_{b}):\equiv \F(p_{1}^{S_{a}\fp{S}S_{b}})(g_{a})=\F(p_{2}^{S_{a}\fp{S}S_{b}})(g_{b})$, which is what we wanted.	
     \end{proof}
 \end{lm}
 
@@ -162,19 +173,19 @@ From \cref{lm:sheaf} we deduce:
 Sometimes it will be necessary to consider sheafification of presheaves:
 
 \begin{defn}
-    Let $\C$ be a site and let $\Sh(\C)\hookrightarrow \PSh(\C)$ be the inclusion of the category of sheaves to the category of presheaves on $\C$. 
-    A \textit{sheafification} functor is a left adjoint $(-)^{a}\colon \PSh(\C)\to \Sh(\C)$ to this inclusion.
+    Let $\scrC$ be a site and let $\Sh(\scrC)\hookrightarrow \PSh(\scrC)$ be the inclusion of the category of sheaves to the category of presheaves on $\scrC$. 
+    A \textit{sheafification} functor is a left adjoint $(-)^{a}\colon \PSh(\scrC)\to \Sh(\scrC)$ to this inclusion.
 \end{defn}
 
-We can explicitly describe the sheafification of a presheaf $F$ as follows.
-For a covering family $\mathcal{U}=\{f_{j}\colon U_{j}\to U\}_{j\in J}$ with $J=\{1,\ldots,m\}$ we define the \textit{zero \v{C}ech cohomology} of $F$ with respect to $\mathcal{U}$ as
-\[ \check{H}^{0}(\mathcal{U},F)=\bigcap_{(a,b)\in J^{2}} \{ (g_{1},\ldots,g_{m})\in \bigoplus_{j=1}^{m}F(U_{j}) \mid P_{a,b}(g_{a},g_{b})\} \]
+We can explicitly describe the sheafification of a presheaf $\F$ as follows.
+For a covering family $\mathcal{U}=\{f_{j}\colon U_{j}\to U\}_{j\in J}$ with $J=\{1,\ldots,m\}$ we define the \textit{zero \v{C}ech cohomology} of $\F$ with respect to $\mathcal{U}$ as
+\[ \check{H}^{0}(\mathcal{U},\F)=\bigcap_{(a,b)\in J^{2}} \{ (g_{1},\ldots,g_{m})\in \bigoplus_{j=1}^{m}\F(U_{j}) \mid P_{a,b}(g_{a},g_{b})\} \]
 with the notation from \cref{lm:sheaf}.
-If $\mathcal{U}'\to \mathcal{U}$ is a morphism of covering families of $U$, then we obtain a pullback morphism $\check{H}^{0}(\mathcal{U},F)\to \check{H}^{0}(\mathcal{U}',F)$ between zero \v{C}ech cohomology groups which does not depend on the particular morphism of covering families but only on the covering families themselves.
-Define then a presheaf $F^{+}$ by setting
-\[ F^{+}(U):=\varinjlim_{\mathcal{U}} \check{H}^{0}(\mathcal{U},F) \]
+If $\mathcal{U}'\to \mathcal{U}$ is a morphism of covering families of $U$, then we obtain a pullback morphism $\check{H}^{0}(\mathcal{U},\F)\to \check{H}^{0}(\mathcal{U}',\F)$ between zero \v{C}ech cohomology groups which does not depend on the particular morphism of covering families but only on the covering families themselves.
+Define then a presheaf $\F^{+}$ by setting
+\[ \F^{+}(U):=\varinjlim_{\mathcal{U}} \check{H}^{0}(\mathcal{U},\F) \]
 where the direct limit runs over all covering families of $U$ with $\mathcal{U}\leqslant \mathcal{U'}$ if and only if we have a morphism of covering families $\mathcal{U'}\to \mathcal{U}$ (we can think of $\mathcal{U'}$ being finer $\mathcal{U}$).
-This construction takes presheaves into separated presheaves and separated presheaves into sheaves, so taking $F^{a}:=(F^{+})^{+}$ we obtain the desired sheafification.
+This construction takes presheaves into separated presheaves and separated presheaves into sheaves, so taking $\F^{a}:=(\F^{+})^{+}$ we obtain the desired sheafification.
 See \cite[\href{https://stacks.math.columbia.edu/tag/03NQ}{Tag 03NQ}]{sta19} for the precise statements and proofs.
 
 \begin{rem}
@@ -185,11 +196,14 @@ See \cite[\href{https://stacks.math.columbia.edu/tag/03NQ}{Tag 03NQ}]{sta19} for
 
 \section{A nicer description of our category}
 
-The goal of this section is to show that $\Cond(\Ab)$ has many nice categorical properties.
+The main goal of this talk is to show that $\Cond(\Ab)$ has many nice categorical properties.
 This will be much easier after we express $\Cond(\Ab)$ as the category of sheaves of abelian groups on a simpler site.
 
 \begin{defn}
     A compact Hausdorff\footnote{If we do not require Hausdorffness, an extremally disconnected space could be very connected, e.g. any irreducible topological space.} topological space is called \textit{extremally disconnected} if the closure of every open set is again open.
+
+    We will denote by $\CHaus$ the full subcategory of $\Top$ whose objects are compact Hausdorff spaces and by $\ED$ the full subcategory of $\CHaus$ whose objects are extremally disconnected sets.
+    We also consider $\ED$ as a site with covering given by finite families of jointly surjective continuous functions.
 \end{defn}
 
 Equivalently, a compact Hausdorff topological space is extremally disconnected if the closures of every pair of disjoint open sets are also disjoint.
@@ -210,71 +224,124 @@ Since pullbacks exist and preserve epimorphisms (i.e. surjective continuous func
 \end{center}
 
 The inclusion functor $U\colon \CHaus\to \Top$ has a left adjoint $\beta\colon \Top\to \CHaus$ called the \textit{Stone-\v{C}ech compactification}.
-If $X$ is a discrete topological space, then $\beta X$ is extremally disconnected, because if $S\twoheadrightarrow \beta X$ is a continuous surjection from a compact Hausdorff topological space we may first lift the canonical map $X\to \beta X$ to $S$ and then extend it to a section from $\beta X$ by its universal property.
+If $X$ is a discrete topological space, then $\beta X$ is extremally disconnected.
+Indeed, if $S\twoheadrightarrow \beta X$ is a continuous surjection from a compact Hausdorff topological space, we may first lift the canonical map $X\to \beta X$ to $S$ and then extend it to a section from $\beta X$ by its universal property.
 In particular, every compact Hausdorff space admits a surjection $\beta(X_{disc})\twoheadrightarrow X$ from an extremally disconnected space.
 This has the following consequence:
 
 \begin{prop}
     $\Cond(\Ab)$ is equivalent to the category of sheaves of abelian groups on the site of extremally disconnected spaces via the restriction from profinite sets.
     \begin{proof}
-	Let $T\in \Cond(\Ab)$ and let $S$ be a profinite set.
+	Let $\F\in \Cond(\Ab)$ and let $S$ be a profinite set.
 	Let $f\colon \tilde{S}\twoheadrightarrow S$ and $g\colon \tilde{\tilde{S}}\twoheadrightarrow \tilde{S}\fp{S}\tilde{S}$ be continuous surjections from extremally disconnected spaces.
-	By \cref{lm:sheaf} we have $T(S)=\ker(T(p_{1})-T(p_{2}))$, where $p_{1},p_{2}\colon \tilde{S}\fp{S}\tilde{S}$ denote the projections from the fiber product.
-	Since $T(\tilde{S}\fp{S}\tilde{S})\xrightarrow{T(g)} T(\tilde{\tilde{S}})$ is injective, the kernel of $T(\tilde{S})\xrightarrow{T(p_{1})-T(p_{2})} T(\tilde{S}\fp{S}\tilde{S})$ is the same as the kernel of the composition $T(\tilde{S})\xrightarrow{T(p_{1}\circ g)-T(p_{2}\circ g)} T(\tilde{\tilde{S}})$.
-	Therefore the value of $T$ at the profinite set $S$ is completely determined by the value of $T$ at the extremally disconnected sets $\tilde{S}$ and $\tilde{\tilde{S}}$.
+	By \cref{lm:sheaf} we have $\F(S)=\ker(\F(p_{1})-\F(p_{2}))$, where $p_{1},p_{2}\colon \tilde{S}\fp{S}\tilde{S}$ denote the projections from the fiber product.
+	Since $\F(\tilde{S}\fp{S}\tilde{S})\xrightarrow{\F(g)} \F(\tilde{\tilde{S}})$ is injective, the kernel of $\F(\tilde{S})\xrightarrow{\F(p_{1})-\F(p_{2})} \F(\tilde{S}\fp{S}\tilde{S})$ is the same as the kernel of the composition $\F(\tilde{S})\xrightarrow{\F(p_{1}\circ g)-\F(p_{2}\circ g)} \F(\tilde{\tilde{S}})$.
+	Therefore the value of $\F$ at the profinite set $S$ is completely determined by the value of $\F$ at the extremally disconnected sets $\tilde{S}$ and $\tilde{\tilde{S}}$.
     \end{proof}
 \end{prop}
 
 \begin{cor}\label{cor:sheaf}
-    $\Cond(\Ab)$ is equivalent to the category of contravariant functors $T$ from the category of extremally disconnected sets to the category of abelian groups such that:
+    $\Cond(\Ab)$ is equivalent to the category of contravariant functors $\F$ from the category of extremally disconnected sets to the category of abelian groups such that:
     \begin{enumerate}[label=\alph*)]
-	\item $T(\varnothing)=0$.
+	\item $\F(\varnothing)=0$.
 	\item For all extremally disconnected sets $S_{1}$ and $S_{2}$, the inclusions $i_{1}\colon S_{1}\to S_{1}\sqcup S_{2}$ and $i_{2}\colon S_{2}\to S_{1}\sqcup S_{2}$ induce a group isomorphism
-	    \[ T(S_{1}\sqcup S_{2})\xrightarrow{T(i_{1})\times T(i_{2})} T(S_{1})\op T(S_{2}).\]
+	    \[ \F(S_{1}\sqcup S_{2})\xrightarrow{\F(i_{1})\times \F(i_{2})} \F(S_{1})\op \F(S_{2}).\]
     \end{enumerate}
     \begin{proof}
 	We need to show that condition $c)$ in \cref{lm:sheaf} is automatically satisfied.
 	So let $f\colon S'\twoheadrightarrow S$ be a continuous surjection of extremally disconnected spaces.
 	Then we can find a section $\sigma\colon S\to S'$ with $f\circ \sigma =\id_{S}$.
-	This implies that $T(\sigma)\circ T(f)=\id_{T(S)}$, so $T(f)$ is injective.
-	The image of $T(f)$ is contained in $\{ g\in T(\tilde{S})\mid T(p_{1})(g)=T(p_{2})(g)\}$, because $f\circ p_{1}=f\circ p_{2}$.
-	And conversely if $g\in T(\tilde{S})$ is such that $T(p_{1})(g)=T(p_{2})(g)$, then $T((\sigma \circ f)\fp{S}\id_{\tilde{S}})(T(p_{1})(g))=T((\sigma \circ f)\fp{S}\id_{\tilde{S}})(T(p_{2})(g))$, so $T(f)(T(\sigma)(g))=g$ and $g$ is in the image of $T(f)$.
+	This implies that $\F(\sigma)\circ \F(f)=\id_{\F(S)}$, so $\F(f)$ is injective.
+	The image of $\F(f)$ is contained in $\{ g\in \F(\tilde{S})\mid \F(p_{1})(g)=\F(p_{2})(g)\}$, because $f\circ p_{1}=f\circ p_{2}$.
+	And conversely if $g\in \F(\tilde{S})$ is such that $\F(p_{1})(g)=\F(p_{2})(g)$, then $\F((\sigma \circ f)\fp{S}\id_{\tilde{S}})(\F(p_{1})(g))=\F((\sigma \circ f)\fp{S}\id_{\tilde{S}})(\F(p_{2})(g))$, so $\F(f)(\F(\sigma)(g))=g$ and $g$ is in the image of $\F(f)$.
     \end{proof}
 \end{cor}
 
 \begin{rem}\label{rem:sumcomponent}
     The following formal consequence of $b)$ will be useful later.
-    Let $\eta\colon T_{1}\to T_{2}$ be a morphism in $\Cond(\Ab)$ and let $S_{1}$ and $S_{2}$ be two extremally disconnected sets.
+    Let $\eta\colon \F_{1}\to \F_{2}$ be a morphism in $\Cond(\Ab)$ and let $S_{1}$ and $S_{2}$ be two extremally disconnected sets.
     Then under the isomorphisms of \cref{cor:sheaf} $b)$ the component of $\eta$ at $S_{1}\sqcup S_{2}$ is given by $\eta_{S_{1}}\op \eta_{S_{2}}$, i.e. by
-    \[ T_{1}(S_{1})\op T_{1}(S_{1})\xrightarrow{\begin{pmatrix} \eta_{S_{1}} & 0 \\ 0 & \eta_{S_{2}} \end{pmatrix}} T_{2}(S_{1})\op T_{2}(S_{2}).\]
-	Indeed, $\eta_{S_{1}}\op \eta_{S_{2}}=(\eta_{S_{1}}\circ p_{T_{1}(S_{1})})\times (\eta_{S_{2}}\circ p_{T_{1}(S_{2})})$, so this follows from the commutativity of the following diagram:
+    \[ \F_{1}(S_{1})\op \F_{1}(S_{1})\xrightarrow{\begin{pmatrix} \eta_{S_{1}} & 0 \\ 0 & \eta_{S_{2}} \end{pmatrix}} \F_{2}(S_{1})\op \F_{2}(S_{2}).\]
+	Indeed, $\eta_{S_{1}}\op \eta_{S_{2}}=(\eta_{S_{1}}\circ p_{\F_{1}(S_{1})})\times (\eta_{S_{2}}\circ p_{\F_{1}(S_{2})})$, so this follows from the commutativity of the following diagram
 	\begin{center}
 	    \begin{tikzcd}
-		T_{1}(S_{1})\arrow{r}{\eta_{S_{1}}} & T_{2}(S_{1}) \\
-		T_{1}(S_{1}\sqcup S_{2})\arrow{u}{T_{1}(i_{1})}\arrow{r}{\eta_{S_{1}\sqcup S_{2}}}\arrow[swap]{d}{T_{1}(i_{1})\times T_{1}(i_{2})} & T_{2}(S_{1}\sqcup S_{2})\arrow[swap]{u}{T_{2}(i_{1})}\arrow{d}{T_{2}(i_{1})\times T_{2}(i_{2})} \\
-		T_{1}(S_{1})\op T_{1}(S_{2})\arrow[bend left=90]{uu}{p_{T_{1}(S_{1})}}\arrow[bend right=90,swap]{dd}{p_{T_{1}(S_{2})}}\arrow[dashed]{r} & T_{2}(S_{1})\op T_{2}(S_{2})\arrow[bend right=90,swap]{uu}{p_{T_{2}(S_{1})}}\arrow[bend left=90]{dd}{p_{T_{2}(S_{2})}} \\
-		T_{1}(S_{1}\sqcup S_{2})\arrow{u}{T_{1}(i_{1})\times T_{1}(i_{2})}\arrow{r}{\eta_{S_{1}\sqcup S_{2}}}\arrow[swap]{d}{T_{1}(i_{2})} & T_{2}(S_{1}\sqcup S_{2})\arrow[swap]{u}{T_{2}(i_{1})\times T_{2}(i_{2})}\arrow{d}{T_{2}(i_{2})} \\
-		T_{1}(S_{2})\arrow[swap]{r}{\eta_{S_{2}}} & T_{2}(S_{2})
+		\F_{1}(S_{1})\arrow{r}{\eta_{S_{1}}} & \F_{2}(S_{1}) \\
+		\F_{1}(S_{1}\sqcup S_{2})\arrow{u}{\F_{1}(i_{1})}\arrow{r}{\eta_{S_{1}\sqcup S_{2}}}\arrow[swap]{d}{\F_{1}(i_{1})\times \F_{1}(i_{2})} & \F_{2}(S_{1}\sqcup S_{2})\arrow[swap]{u}{\F_{2}(i_{1})}\arrow{d}{\F_{2}(i_{1})\times \F_{2}(i_{2})} \\
+		\F_{1}(S_{1})\op \F_{1}(S_{2})\arrow[bend left=95]{uu}{p_{\F_{1}(S_{1})}}\arrow[dashed]{r} & \F_{2}(S_{1})\op \F_{2}(S_{2})\arrow[bend right=95,swap]{uu}{p_{\F_{2}(S_{1})}}
+		%\F_{1}(S_{1}\sqcup S_{2})\arrow{u}{\F_{1}(i_{1})\times \F_{1}(i_{2})}\arrow{r}{\eta_{S_{1}\sqcup S_{2}}}\arrow[swap]{d}{\F_{1}(i_{2})} & \F_{2}(S_{1}\sqcup S_{2})\arrow[swap]{u}{\F_{2}(i_{1})\times \F_{2}(i_{2})}\arrow{d}{\F_{2}(i_{2})} \\
+		%\F_{1}(S_{2})\arrow[swap]{r}{\eta_{S_{2}}} & \F_{2}(S_{2})
 	    \end{tikzcd}
 	\end{center}
+	and the analogous diagram for the second projections.
 \end{rem}
+
+\begin{cor}\label{cor:limits}
+    Limits and colimits exist in $\Cond(\Ab)$ and can be constructed pointwise.
+    \begin{proof}
+	In \cref{cor:sheaf} we have described $\Cond(\Ab)$ as the category of contravariant functors from extremally disconnected spaces to $\Ab$ sending finite disjoint unions to finite products.
+	The idea is to use this description to see that we can construct limits and colimits pointwise.
+	Once we have shown that pointwise limits and colimits are sheaves, checking the necessary universal properties is reduced to checking the corresponding statements in $\Ab$ pointwise, so we will not mention these computations explicitly.
+	
+	Let us do the case of limits, for example.
+	Let $F\colon \mathscr{J}\to \Cond(\Ab)$ be a diagram in $\Cond(\Ab)$, i.e. a functor from some indexing category $\mathscr{J}$.
+	For an extremally disconnected set $S$, applying the evaluation functor at $S$ yields a diagram of abelian groups.
+	Let $\L(S)$ be the limit of this diagram, i.e. $\L(S)=\lim(\ev_{S}\circ F)\in\Ab$.
+	For all $\alpha \in \Ob(\mathscr{J})$ let $\F_{\alpha}\in \Cond(\Ab)$ denote its image $F(\alpha)$ and denote also by $\varepsilon^{S}_{\alpha}\colon \L(S)\to \F_{\alpha}(S)$ the corresponding canonical group homomorphism.
+	If $f\colon S\to S'$ is a continuous map of extremally disconnected sets, we have a cone to $\ev_{S}\circ F$ given by the compositions $\L(S')\to \F_{\alpha}(S')\xrightarrow{\F_{\alpha}(f)} \F_{\alpha}(S)$ for all $\alpha\in\Ob(\mathscr{J})$, so we get a canonical homomorphism to the terminal cone $\L(S')\to \L(S)$ making the resulting diagram commute.
+	This is what we define as the image $\L(f)$ of $f$ under $\L$.
+
+	To show that $\L$ is a sheaf on our site we use now \cref{cor:sheaf}.
+	Condition $a)$ is verified because $\ev_{\varnothing}$ is the constantly zero functor.
+	For condition $b)$ let $i_{1}\colon S_{1}\to S_{1}\sqcup S_{2}$ and $i_{2}\colon S_{2}\to S_{1}\sqcup S_{2}$ be the inclusion of two extremally disconnected sets in their disjoint union and consider the following diagram:
+	\begin{center}
+	    \begin{tikzcd}
+		&[-50pt] \L(S_{1}\sqcup S_{2})\arrow{rrr}{\L(i_{1})\times \L(i_{2})}\arrow[swap]{dl}{\varepsilon_{\alpha}^{S_{1}\sqcup S_{2}}} &[-50pt] &[-25pt] &[-50pt] \L(S_{1})\op \L(S_{2})\arrow{dl}{\varepsilon_{\alpha}^{S_{1}}\op \varepsilon_{\alpha}^{S_{2}}}\arrow{ddr}{\varepsilon_{\beta}^{S_{1}}\op \varepsilon_{\beta}^{S_{2}}} &[-50pt] \\
+		\F_{\alpha}(S_{1}\sqcup S_{2})\arrow[swap, pos=0.6]{rrr}{\F_{\alpha}(i_{1})\times \F_{\alpha}(i_{2})}\arrow[swap]{drr}{\eta_{S_{1}\sqcup S_{2}}} & & & \F_{\alpha}(S_{1})\op \F_{\alpha}(S_{2})\arrow[swap]{drr}{\eta_{S_{1}}\op \eta_{S_{2}}} & & \\
+		& & \F_{\beta}(S_{1}\sqcup S_{2})\ar[from=uul, "\varepsilon_{\beta}^{S_{1}\sqcup S_{2}}", pos=0.3, crossing over]\arrow[swap]{rrr}{\F_{\beta}(i_{1})\times \F_{\beta}(i_{2})} & & & \F_{\beta}(S_{1})\op \F_{\beta}(S_{2})%\arrow{d}{p_{\F_{\beta}(S_{1})}} %\\
+		% & & & & & \F_{\beta}(S_{1})
+	    \end{tikzcd}
+	\end{center}
+	Since limits commute with finite direct sums, the right triangle is the cone corresponding to the limit of the direct sum of diagrams.
+	The left triangle is by definition the cone corresponding to the limit of the diagram at its base.
+	The bottom square commutes by \cref{rem:sumcomponent}, so the universal property of the limit $\L(S_{1})\op \L(S_{2})$ induces a unique group homomorphism $\L(S_{1}\sqcup S_{2})\to \L(S_{1})\op \L(S_{2})$ making everything commute.
+	Since all arrows going right at the bottom are isomorphisms, this unique morphism is a group isomorphism by a standard universal property argument (put a copy of the prism above to its right and left with the inverses of the isomorphisms at the bottom, then use uniqueness of the universal property).
+	So it suffices to show that $\L(i_{1})\times \L(i_{2})$ makes the whole diagram commute.
+	Let us see for example that the $\beta$ square commutes.
+	By the universal property of the product, it suffices to show commutativity after composing with each projection.
+	Composing with the first projection $p_{\F_{\beta}(S_{1})}$ we further reduce our problem to the commutativity of the following square:
+	\begin{center}
+	    \begin{tikzcd}
+		\L(S_{1}\sqcup S_{2})\arrow{r}{\L(i_{1})} \arrow[swap]{d}{\varepsilon_{\beta}^{S_{1}\sqcup S_{2}}} & \L(S_{1})\arrow{d}{\varepsilon_{\beta}^{S_{1}}} \\
+		\F_{\beta}(S_{1}\sqcup S_{2})\arrow{r}{\F_{\beta}(i_{1})} & \F_{\beta}(S_{1})
+	    \end{tikzcd}
+	\end{center}
+	But this square commutes by construction of $\L(i_{1})$, so we are done proving that $\L$ is a sheaf.
+    \end{proof}
+\end{cor}
 
 \section{Abelianity and compact-projective generation}
 
-A category $\C$ is called \textit{abelian} if it satisfies the following properties:
+A category $\scrC$ is called \textit{abelian} if it satisfies the following properties:
 \begin{enumerate}[label=\roman*)]
-    \item There exists a zero object $0\in \Ob(\C)$.
-    \item For all $A,B\in \Ob(\C)$, their product $A\xleftarrow{p_{A}} A\times B\xrightarrow{p_{B}} B$ and their coproduct $A\xrightarrow{i_{A}}A\sqcup B\xleftarrow{i_{B}} B$ exist in $\C$ and the canonical morphism $A\sqcup B\xrightarrow{(\id_{A}\times 0) \sqcup (0\times \id_{B})} A\times B$ is an isomorphism\footnote{We identify $A\sqcup B$ with $A\times B$ via this isomorphism and call the result the \textit{direct sum} of $A$ and $B$, denoted $A\op B$.} in $\C$.
-    \item Every morphisms has a kernel and a cokernel in $\C$.
-    \item Every monomorphism in $\C$ is a kernel and every epimorphism in $\C$ is a cokernel.
+    \item There exists a zero object $0\in \Ob(\scrC)$.
+    \item For all $A,B\in \Ob(\scrC)$, their product $A\xleftarrow{p_{A}} A\times B\xrightarrow{p_{B}} B$ and their coproduct $A\xrightarrow{i_{A}}A\sqcup B\xleftarrow{i_{B}} B$ exist in $\scrC$ and the canonical morphism $A\sqcup B\xrightarrow{(\id_{A}\times 0) \sqcup (0\times \id_{B})} A\times B$ is an isomorphism\footnote{We identify $A\sqcup B$ with $A\times B$ via this isomorphism and call the result the \textit{direct sum} of $A$ and $B$, denoted $A\op B$.} in $\scrC$.
+    \item Every morphisms has a kernel and a cokernel in $\scrC$.
+    \item Every monomorphism in $\scrC$ is a kernel and every epimorphism in $\scrC$ is a cokernel.
 \end{enumerate}
 
-In particular, $\C$ is naturally an additive category and all finite limits and colimits exist in $\C$.
+In particular, $\scrC$ is naturally an additive category and all finite limits and colimits exist in $\scrC$.
+
+\begin{rem}
+    Note that these are properties that $\scrC$ may or may not have, but in any case they do not depend on any extra structure on $\scrC$.
+    This is a priori not so clear from the other most commond definition of abelian category which starts by assuming that $\scrC$ has a preadditive structure, beacuse being preadditive is indeed an extra structure (we may put two different preadditive structures on a same category).
+    The reason why preadditivity combined with the other properties is not an extra structure anymore is that this preadditive structure is completely determined by properties $i)$ and $ii)$ above\footnote{More precisely, on a category $\scrC$ with properties $i)$ and $ii)$ there is a unique commutative monoid structure on the hom-sets which makes composition bilinear.
+    The category $\scrC$ is then additive precisely when this commutative monoids are all honest abelian groups.}.
+\end{rem}
 
 In addition to these properties, Grothendieck introduced a series of extra axioms in his T\^{o}hoku paper \cite{gro57}.
-The ones that we will be considering are (AB3) [\textit{all colimits exist}], (AB3*) [\textit{all limits exist}], (AB4) [\textit{all colimits exist and coproducts are exact}], (AB4*) [\textit{all limits exist and products are exact}], (AB5) [\textit{all colimits exist and filtered colimits are exact}] and (AB6) [\textit{all colimits exist and for any family $\{ I_{j}\}_{j\in J}$ of filtered categories indexed by a set $J$ with functors $F_{j}\colon I_{j}\to \C$ the canonical morphism
+The ones that we will be considering are (AB3) [\textit{all colimits exist}], (AB3*) [\textit{all limits exist}], (AB4) [\textit{all colimits exist and coproducts are exact}], (AB4*) [\textit{all limits exist and products are exact}], (AB5) [\textit{all colimits exist and filtered colimits are exact}] and (AB6) [\textit{all colimits exist and for any family $\{ I_{j}\}_{j\in J}$ of filtered categories indexed by a set $J$ with functors $F_{j}\colon I_{j}\to \scrC$ the canonical morphism
 	\[ \varinjlim_{(i_{j}\in I_{j})_{j}} \prod_{j\in J}F_{j}(i_{j})\to \prod_{j\in J}\varinjlim_{i_{j}\in I_{j}} F_{j}(i_{j}) \]
-is an isomorphism in $\C$}].
+is an isomorphism in $\scrC$}].
 
 \begin{rem}
     To check (AB3) on an abelian category it suffices to show that arbitrary coproducts exist, since we can build any colimit from coproducts and coequalizers, and similarly for the dual statement (AB3*).
@@ -286,44 +353,10 @@ Except for axioms (AB4*) and (AB6), this is a general fact which holds on any ca
 
 \begin{thm}\label{thm:abelian}
     $\Cond(\Ab)$ is an abelian category satisfying axioms (AB3), (AB3*), (AB4), (AB4*), (AB5) and (AB6).
-    Moreover, it is generated\footnote{A category $\C$ is said to be \textit{generated} by a set $\mathscr{S}\subseteq \Ob(\C)$ if for all pairs of distinct parallel arrows $f\neq g\colon A\rightrightarrows B$ we can find some $h\colon S\to A$ with $S\in \mathscr{S}$ such that $fh\neq gh$.
-    As Mac Lane points out, the word \textit{separated} would have been a better choice (see \cite[Section V.7]{mac78}).} by compact\footnote{An object $M$ on a category $\C$ is called \textit{compact} if $\Hom_{\C}(M,-)$ commutes with filtered colimits.} projective objects.
+    Moreover, it is generated\footnote{A category $\scrC$ is said to be \textit{generated} by a set $\mathscr{S}\subseteq \Ob(\scrC)$ if for all pairs of distinct parallel arrows $f\neq g\colon A\rightrightarrows B$ we can find some $h\colon S\to A$ with $S\in \mathscr{S}$ such that $fh\neq gh$.
+    As Mac Lane points out, the word \textit{separated} would have been a better choice (see \cite[Section V.7]{mac78}).} by compact\footnote{An object $M$ on a category $\scrC$ is called \textit{compact} if $\Hom_{\scrC}(M,-)$ commutes with filtered colimits.} projective objects.
     \begin{proof}
-	In \cref{cor:sheaf} we have described $\Cond(\Ab)$ as the category of contravariant functors from extremally disconnected spaces to $\Ab$ sending finite disjoint unions to finite products.
-	The idea is to use this description to see that we can construct limits and colimits pointwise.
-	Once we have shown that pointwise limits and colimits are sheaves, checking the necessary universal properties and isomorphisms is reduced to checking the corresponding statements in $\Ab$ pointwise, so we will not mention these computations explicitly.
-	
-	Let us do the case of limits, for example.
-	Let $F\colon \mathscr{J}\to \Cond(\Ab)$ be a diagram in $\Cond(\Ab)$, i.e. a functor from some indexing category $\mathscr{J}$.
-	For an extremally disconnected set $S$, let $L(S)=\lim(\ev_{S}\circ F)$ in $\Ab$ and for all $\alpha \in \Ob(\mathscr{J})$ denote by $\varepsilon^{\alpha}_{S}\colon L(S)\to F_{\alpha}(S)$ the corresponding canonical map.
-	If $f\colon S\to S'$ is a continuous map of extremally disconnected sets, we have a cone to $\ev_{S}\circ F$ given by the compositions $L(S')\to F_{\alpha}(S')\xrightarrow{F_{\alpha}(f)} F_{\alpha}(S)$ for all $\alpha\in\Ob(\mathscr{J})$, so we get a canonical homomorphism to the terminal cone $L(f)\colon L(S')\to L(S)$ making the resulting diagram commute.
-	To show that $L$ is a sheaf we use \cref{cor:sheaf}.
-	Condition $a)$ is verified because $\ev_{\varnothing}$ is the constantly zero functor.
-	For condition $b)$ let $i_{1}\colon S_{1}\to S_{1}\sqcup S_{2}$ and $i_{2}\colon S_{2}\to S_{1}\sqcup S_{2}$ be the inclusion of two extremally disconnected sets in their disjoint union and consider the following diagram:
-	\begin{center}
-	    \begin{tikzcd}
-		&[-50pt] L(S_{1}\sqcup S_{2})\arrow{rrr}{L(i_{1})\times L(i_{2})}\arrow[swap]{dl}{\varepsilon^{\alpha}_{S_{1}\sqcup S_{2}}} &[-50pt] &[-25pt] &[-50pt] L(S_{1})\op L(S_{2})\arrow{dl}{\varepsilon^{\alpha}_{S_{1}}\op \varepsilon^{\alpha}_{S_{2}}}\arrow{ddr}{\varepsilon^{\beta}_{S_{1}}\op \varepsilon^{\beta}_{S_{2}}} &[-50pt] \\
-		T_{\alpha}(S_{1}\sqcup S_{2})\arrow[swap, pos=0.6]{rrr}{T_{\alpha}(i_{1})\times T_{\alpha}(i_{2})}\arrow[swap]{drr}{\eta_{S_{1}\sqcup S_{2}}} & & & T_{\alpha}(S_{1})\op T_{\alpha}(S_{2})\arrow[swap]{drr}{\eta_{S_{1}}\op \eta_{S_{2}}} & & \\
-		& & T_{\beta}(S_{1}\sqcup S_{2})\ar[from=uul, "\varepsilon^{\beta}_{S_{1}\sqcup S_{2}}", pos=0.3, crossing over]\arrow[swap]{rrr}{T_{\beta}(i_{1})\times T_{\beta}(i_{2})} & & & T_{\beta}(S_{1})\op T_{\beta}(S_{2})%\arrow{d}{p_{T_{\beta}(S_{1})}} %\\
-		% & & & & & T_{\beta}(S_{1})
-	    \end{tikzcd}
-	\end{center}
-	Since limits commute with finite direct sums, the right triangle is the cone corresponding to the limit of the direct sum of diagrams.
-	The left triangle is by definition the cone corresponding to the limit of the diagram at its base.
-	The bottom square commutes by \cref{rem:sumcomponent}, so the universal property of the limit $L(S_{1})\op L(S_{2})$ induces a unique group homomorphism $L(S_{1}\sqcup S_{2})\to L(S_{1})\op L(S_{2})$ making everything commute.
-	Since all arrows going right at the bottom are isomorphisms, this unique morphism is a group isomorphism, so it suffices to show that $L(i_{1})\times L(i_{2})$ makes the whole diagram commute.
-	Let us see for example that the $\beta$ square commutes.
-	By the universal property of the product, it suffices to show commutativity after composing with each projection.
-	Composing with the first projection $p_{T_{\beta}(S_{1})}$ we further reduce our problem to the commutativity of the following square:
-	\begin{center}
-	    \begin{tikzcd}
-		L(S_{1}\sqcup S_{2})\arrow{r}{L(i_{1})} \arrow[swap]{d}{\varepsilon^{\beta}_{S_{1}\sqcup S_{2}}} & L(S_{1})\arrow{d}{\varepsilon^{\beta}_{S_{1}}} \\
-		T_{\beta}(S_{1}\sqcup S_{2})\arrow{r}{T_{\beta}(i_{1})} & T_{\beta}(S_{1})
-	    \end{tikzcd}
-	\end{center}
-	But this square commutes by construction of $L(i_{1})$, so we are done proving that $L$ is a sheaf.
-
-	Let us see now that $\Cond(\Ab)$ is generated by compact projective objects.
+	All statements except for the last one follow at once from \cref{cor:limits} and the corresponding statements in $\Ab$, so let us see that $\Cond(\Ab)$ is generated by compact projective objects.
 	The forgetful functor $U\colon \Cond(\Ab)\to \Cond(\Set)$ preserves all limits.
 	This follows from the pointwise construction of limits in both cases and for the corresponding statement for the forgetful functor $\Ab\to \Set$.
 	Both $\Cond(\Ab)$ and $\Cond(\Set)$ satisfy the necessary conditions for the adjoint functor theorem, so we have a left adjoint functor $\Z[-]\colon\Cond(\Set)\to \Cond(\Ab)$.
@@ -346,9 +379,9 @@ Except for axioms (AB4*) and (AB6), this is a general fact which holds on any ca
 \end{thm}
 
 Categories nice enough to have some of the previous properties deserve a name of their own.
-We say that $\C$ is a \textit{Grothendieck category} if it is an (AB5) abelian category with a generator.
-By definition $G\in \Ob(\C)$ is a generator precisely when the functor $\Hom_{\C}(G,-)\colon \C\to \Set$ is faithful.
-Note that if $\{G_{i}\}_{i\in I}$ is a set of generators and arbitrary coproducts exist in $\C$, then $G=\coprod_{i\in I}G_{i}$ is a generator.
+We say that $\scrC$ is a \textit{Grothendieck category} if it is an (AB5) abelian category with a generator.
+By definition $G\in \Ob(\scrC)$ is a generator precisely when the functor $\Hom_{\scrC}(G,-)\colon \scrC\to \Set$ is faithful.
+Note that if $\{G_{i}\}_{i\in I}$ is a set of generators and arbitrary coproducts exist in $\scrC$, then $G=\coprod_{i\in I}G_{i}$ is a generator.
 
 \begin{cor}
     $\Cond(\Ab)$ is a Grothendieck category with generator $G=\coprod_{S}\Z[\u{S}]$, where $S$ ranges over all extremally disconnected sets.
@@ -356,8 +389,8 @@ Note that if $\{G_{i}\}_{i\in I}$ is a set of generators and arbitrary coproduct
 
 \section{Closed symmetric monoidal structure}
 
-Roughly speaking, a (\textit{symmetric}) \textit{monoidal structure} on a category $\C$ consists of a functor $(-)\ot(-)\colon \C\times \C\to \C$ which turns $\C$ into a (commutative up to natural isomorphism) monoid with associativity and unit up to natural isomorphism (see \cite{nlab:monoidal_category} for the precise definition).
-When $\C$ is considered endowed with this extra structure we call it a (\textit{symmetric}) \textit{monoidal category}.
+Roughly speaking, a (\textit{symmetric}) \textit{monoidal structure} on a category $\scrC$ consists of a functor $(-)\ot(-)\colon \scrC\times \scrC\to \scrC$ which turns $\scrC$ into a (commutative up to natural isomorphism) monoid with associativity and unit up to natural isomorphism (see \cite{nlab:monoidal_category} for the precise definition).
+When $\scrC$ is considered endowed with this extra structure we call it a (\textit{symmetric}) \textit{monoidal category}.
 
 \begin{exa}
     $\Ab$ is a symmetric monoidal category with respect to the usual tensor product and with unit object $\Z$.
@@ -425,7 +458,7 @@ This implies that we can construct left and right derived functors as usual on $
 But in fact, thanks to Spaltenstein's resolutions of unbounded complexes, we can usually define left and right derived functors on the whole unbounded derived category:
 
 \begin{lm}[{\cite[\href{https://stacks.math.columbia.edu/tag/0794}{Tag 0794}]{sta19}}]
-    Let $\C$ be an abelian category in which colimits (resp. limits) indexed over $\N$ exist and are exact, and let $F\colon \Cond(\Ab)\to \C$ be a right (resp. left) exact functor that commutes with colimits (resp. limits) indexed over $\N$.
+    Let $\scrC$ be an abelian category in which colimits (resp. limits) indexed over $\N$ exist and are exact, and let $F\colon \Cond(\Ab)\to \scrC$ be a right (resp. left) exact functor that commutes with colimits (resp. limits) indexed over $\N$.
     Then we can define $LF$ (resp. $RF$) in the whole derived category $\D$.
 \end{lm}
 
@@ -455,7 +488,7 @@ As Thomason said to Neeman (see \cite{nee01}), ``compact objects are as necessar
 
 Let $P\in \Cond(\Ab)$ be a compact projective object.
 We regard $P\in \D$ as a complex concentrated on degree $0$.
-Then $P$ is a compact\footnote{In the context of additive categories $\C$, an object $C$ is called \textit{compact} if $\Hom_{\C}(C,-)\colon \C\to \Ab$ preserves coproducts, i.e. for every set $\{A_{i}\}_{i\in I}\subseteq \Ob(\C)$ such that $\coprod_{i}A_{i}$ exists in $\C$, the canonical map $\coprod_{i}\Hom_{\C}(C,A_{i})\to \Hom_{\C}(C,\coprod_{i}A_{i})$ is a group isomorphism.} object in the derived category, because $\Hom_{\D}(P,A\grd)=H^{0}(\Hom_{\Cond(\Ab)}(P,A\grd))$ and cohomology commutes with direct sums in $\Ab$.
+Then $P$ is a compact\footnote{In the context of additive categories $\scrC$, an object $C$ is called \textit{compact} if $\Hom_{\scrC}(C,-)\colon \scrC\to \Ab$ preserves coproducts, i.e. for every set $\{A_{i}\}_{i\in I}\subseteq \Ob(\scrC)$ such that $\coprod_{i}A_{i}$ exists in $\scrC$, the canonical map $\coprod_{i}\Hom_{\scrC}(C,A_{i})\to \Hom_{\scrC}(C,\coprod_{i}A_{i})$ is a group isomorphism.} object in the derived category, because $\Hom_{\D}(P,A\grd)=H^{0}(\Hom_{\Cond(\Ab)}(P,A\grd))$ and cohomology commutes with direct sums in $\Ab$.
 To see that $\D$ is a compactly generated triangulated category (see \href{https://ncatlab.org/nlab/show/compactly+generated+triangulated+category}{nLab}), let $A\grd\in \D$ such that $\Hom_{\D}(P[n],A\grd)=0$ for all compact projective objects $P$ and all $n\in \Z$.
 A cochain complex is zero in $\D$ precisely when it is acyclic.
 Let us see for instance that $H^{0}(A\grd)=0$.
