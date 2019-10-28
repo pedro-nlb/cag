@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex main"] 1572255988 "main.aux" "main.bbl" "main" 1572256946
+["bibtex main"] 1572255988 "main.aux" "main.bbl" "main" 1572262276
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/alpha.bst" 1480098433 23907 a5f93555796fb564b924339521f10a7c ""
-  "main.aux" 1572256434 2625 f5411fb0223e9a52a2587545257e5437 ""
+  "main.aux" 1572261578 2625 f5411fb0223e9a52a2587545257e5437 ""
   "refs.bib" 1572218210 30144 9f79b395ee244ba645b026c72e6ee64b ""
   (generated)
   "main.blg"
   "main.bbl"
-["pdflatex"] 1572256433 "main.tex" "main.pdf" "main" 1572256946
+["pdflatex"] 1572261577 "main.tex" "main.pdf" "main" 1572262276
   "/etc/texmf/web2c/texmf.cnf" 1567423373 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/pedro/.texlive2018/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk" 1569223484 28952 bae6363876bde347b4275e82aa883b60 ""
   "/home/pedro/.texlive2018/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk" 1569223485 40112 be32227866794fb613877a922877dc70 ""
@@ -215,14 +215,14 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1551493644 34566 ab5be96bde1a5acfd4f881dbe566b5fb ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1567423795 2948181 845e3844416a72b2958b3c37a5c4593a ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1567510044 1974844 1f956701ff938d42ce4c6ecbf065cde3 ""
-  "main.aux" 1572256434 2625 f5411fb0223e9a52a2587545257e5437 ""
+  "main.aux" 1572261578 2625 f5411fb0223e9a52a2587545257e5437 ""
   "main.bbl" 1572255988 1594 3a254f4fcae8e47089d885ad168bc1cd "bibtex main"
-  "main.out" 1572256434 368 5eb8ad2658bb66ccdc8d36bd60a9efb2 ""
-  "main.tex" 1572256946 44941 427bbfd533a5f15d14c92f2b81cb17da ""
-  "main.toc" 1572256434 505 e9f3e923c50b2a366d3d5686ac945405 ""
+  "main.out" 1572261578 368 5eb8ad2658bb66ccdc8d36bd60a9efb2 ""
+  "main.tex" 1572262275 45072 abf7ecf5caee1b78488b5ec07cf8f04e ""
+  "main.toc" 1572261578 505 e9f3e923c50b2a366d3d5686ac945405 ""
   (generated)
+  "main.aux"
+  "main.toc"
   "main.out"
   "main.log"
   "main.pdf"
-  "main.aux"
-  "main.toc"

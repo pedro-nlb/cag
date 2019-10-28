@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.9.3)  28 OCT 2019 10:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.9.3)  28 OCT 2019 12:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -840,7 +840,7 @@ Here is how much of TeX's memory you used:
  24555 multiletter control sequences out of 15000+600000
  21634 words of font info for 64 fonts, out of 8000000 for 9000
  107 hyphenation exceptions out of 8191
- 61i,15n,82p,617b,1141s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 61i,15n,82p,625b,1141s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/pedro/.texlive2018/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600
 pk> </home/pedro/.texlive2018/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti0900.60
 0pk> </home/pedro/.texlive2018/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.6
@@ -870,10 +870,10 @@ sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eusm10.pfb></usr/
 share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eusm7.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (17 pages, 349569 bytes).
+Output written on main.pdf (17 pages, 349797 bytes).
 PDF statistics:
- 752 PDF objects out of 1000 (max. 8388607)
- 326 compressed objects within 4 object streams
+ 753 PDF objects out of 1000 (max. 8388607)
+ 327 compressed objects within 4 object streams
  82 named destinations out of 1000 (max. 500000)
  149 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -518,13 +518,13 @@ Let us close this section with a few words on compact generation.
 This is particularly relevant in the context of triangulated categories.
 As Thomason said to Neeman (see \cite{nee01}), ``compact objects are as necessary to this theory as air to breathe''.
 
-Let $\calP\in \Cond(\Ab)$ be a compact projective object.
+Let $\calP\in \Cond(\Ab)$ be a compact projective object as in the proof of \cref{thm:abelian}, i.e. $\calP=\Z[\u{S}]$ for some extremally disconnected set $S$.
 We regard $\calP\in \D$ as a complex concentrated on degree $0$.
-Then $P$ is a compact\footnote{In the context of additive categories $\scrC$, an object $C$ is called \textit{compact} if $\Hom_{\scrC}(C,-)\colon \scrC\to \Ab$ preserves coproducts, i.e. for every set $\{A_{i}\}_{i\in I}\subseteq \Ob(\scrC)$ such that $\coprod_{i}A_{i}$ exists in $\scrC$, the canonical map $\coprod_{i}\Hom_{\scrC}(C,A_{i})\to \Hom_{\scrC}(C,\coprod_{i}A_{i})$ is a group isomorphism.} object in the derived category, because $\Hom_{\D}(\calP,\F\grd)=H^{0}(\Hom\grd(\calP,\F\grd))$ (see \cite[Proposition 1.4]{spa88}) and cohomology commutes with direct sums in $\Ab$.
+Then $P$ is a compact\footnote{In the context of additive categories $\scrC$, an object $C$ is called \textit{compact} if $\Hom_{\scrC}(C,-)\colon \scrC\to \Ab$ preserves coproducts, i.e. for every set $\{A_{i}\}_{i\in I}\subseteq \Ob(\scrC)$ such that $\coprod_{i}A_{i}$ exists in $\scrC$, the canonical map $\coprod_{i}\Hom_{\scrC}(C,A_{i})\to \Hom_{\scrC}(C,\coprod_{i}A_{i})$ is a group isomorphism.} object in the derived category, because $\Hom_{\D}(\calP,\F\grd)=H^{0}(\Hom\grd(\calP,\F\grd))$ (see \cite[Proposition 1.4]{spa88}) and cohomology commutes with coproducts in $\Ab$ by (AB4).
 To see that $\D$ is a compactly generated triangulated category (see \href{https://ncatlab.org/nlab/show/compactly+generated+triangulated+category}{nLab}), let $\F\grd\in \D$ such that $\Hom_{\D}(\calP[n],\F\grd)=0$ for all compact projective objects $\calP$ and all $n\in \Z$.
 A cochain complex is zero in $\D$ precisely when it is acyclic.
 Let us see for instance that $H^{0}(\F\grd)=0$.
-Pick a surjection $f\colon \calP=\coprod_{i\in I}\calP_{i}\twoheadrightarrow \ker{d_{\F}^{0}}\subseteq \F\grd$, where all $\calP_{i}$ are compact projective objects.
+Pick a surjection $f\colon \calP=\coprod_{i\in I}\calP_{i}\twoheadrightarrow \ker{d_{\F}^{0}}\subseteq \F\grd$, where all $\calP_{i}$ are compact projective objects with the form above.
 Since $\Hom_{\D}(-,\F\grd)$ commutes with colimits and all $\Hom_{\D}(\calP_{i},\F\grd)$ are zero, we deduce that $\Hom_{\D}(\calP,\F\grd)=0$.
 But $\calP$ is still projective in $\Cond(\Ab)$, hence $\Hom_{\D}(\calP,\F\grd)=H^{0}(\Hom\grd(\calP,\F\grd))=\Hom_{\K}(\calP,\F\grd)$, so we deduce that $f$ is null-homotopic.
 This means that we can find a commutative diagram:
