@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.9.3)  28 OCT 2019 00:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.9.3)  28 OCT 2019 10:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -811,43 +811,36 @@ Overfull \hbox (1.08669pt too wide) in paragraph at lines 450--450
 []\T1/cmr/bx/n/14.4 The de-rived cat-egory of con-densed abelian groups 
  []
 
-[13]
-Overfull \hbox (10.7567pt too wide) in paragraph at lines 487--491
-\T1/cmr/m/n/10.95 trav-ari-ant left ex-act func-tor. We need to use in-ject-ive
- res-ol-u-tions in $[]\OT1/cmr/m/n/10.95 (\U/eus/m/n/10.95 A\OML/cmm/m/it/10.95
- b\OT1/cmr/m/n/10.95 )[]$
- []
-
-[14]
-Underfull \hbox (badness 1931) in paragraph at lines 519--519
+[13] [14] [15]
+Underfull \hbox (badness 1931) in paragraph at lines 523--523
 [][][]\T1/cmr/m/n/9 In the con-text of ad-dit-ive cat-egor-ies $\U/eus/m/n/9 C$
 \T1/cmr/m/n/9 , an ob-ject $\OML/cmm/m/it/9 C$ \T1/cmr/m/n/9 is called \T1/cmr/
 m/it/9 com-pact \T1/cmr/m/n/9 if
  []
 
-[15] (./main.bbl
+(./main.bbl [16]
 LaTeX Font Info:    Try loading font information for T1+cmtt on input line 37.
  (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-[16]) [17]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 544.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 544.
+))
+[17]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 549.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 549.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 544.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 544.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 549.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 549.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 5EB8AD2658BB66CCDC8D36BD60A9EFB2;368.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 544.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 549.
  ) 
 Here is how much of TeX's memory you used:
  21329 strings out of 494315
  416310 string characters out of 6169684
- 493547 words of memory out of 5000000
+ 493549 words of memory out of 5000000
  24555 multiletter control sequences out of 15000+600000
  21634 words of font info for 64 fonts, out of 8000000 for 9000
  107 hyphenation exceptions out of 8191
- 61i,15n,82p,581b,1141s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 61i,15n,82p,617b,1141s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/pedro/.texlive2018/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600
 pk> </home/pedro/.texlive2018/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti0900.60
 0pk> </home/pedro/.texlive2018/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.6
@@ -877,10 +870,10 @@ sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eusm10.pfb></usr/
 share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eusm7.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (17 pages, 347798 bytes).
+Output written on main.pdf (17 pages, 349569 bytes).
 PDF statistics:
- 751 PDF objects out of 1000 (max. 8388607)
- 325 compressed objects within 4 object streams
+ 752 PDF objects out of 1000 (max. 8388607)
+ 326 compressed objects within 4 object streams
  82 named destinations out of 1000 (max. 500000)
  149 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -462,7 +462,8 @@ The category $\D$ is not abelian anymore\footnote{$\D(\mathscr{A})$ is abelian i
 A \textit{triangulated structure} on an additive category consists of an additive automorphism $\Sigma$, called the \textit{suspension} functor, and a collection of \textit{distinguished triangles}, which are diagrams of the form
 \[ A\to B\to C\to\Sigma(A) \]
 satisfying some axioms (TR1) to (TR4) (see e.g. \cite{gm03}).
-In our case every such distinguished triangle comes from a short exact sequence of complexes, and conversely, every short exact sequence of complexes gives rise to a distinguished triangle in $\D$.
+In our case the suspension functor is the shift $\F\grd\mapsto \F\grd[1]$, defined on degree $n$ as $\F^{n+1}$ and with differential equal to $-d_{\F\grd}$.
+Moreover, in our case every such distinguished triangle comes from a short exact sequence of complexes, and conversely, every short exact sequence of complexes gives rise to a distinguished triangle in $\D$.
 
 \begin{rem}
     Triangulated categories are not a very good notion, and this will be our main reason to introduce $\infty$-categories later on.
@@ -486,7 +487,7 @@ So in practice we just replace a bounded below complex $\F\grd$ by an injective 
 \begin{exa}
     Let $\F\in\Ob(\Cond(\Ab))$.
     The functor $\Hom(-,\F)$ is a contravariant left exact functor.
-    We need to use injective resolutions in $\Cond(\Ab)^{op}$ to compute its right derived functor, i.e. we need to use projective resolutions in $\Cond(\Ab)$ to compute its right derived functor.
+    We need to use injective resolutions in the opposite category $\Cond(\Ab)^{op}$ to compute its right derived functor, i.e. we need to use projective resolutions in $\Cond(\Ab)$ to compute its right derived functor.
     In particular, if $\calP$ is a projective condensed abelian group, the $R\Hom(\calP,\F)=\Hom(\calP,\F)$.
 \end{exa}
 
@@ -497,18 +498,21 @@ Hence we can generalize the previous example a bit:
     Let $\F\grd$ and $\G\grd$ be two complexes of condensed abelian groups.
     Define a new complex $\Hom\grd(\F\grd,\G\grd)$ by setting the degree $n$ part to be $\prod_{i\in \Z}\Hom(\F^{i},\G^{i+n})$ and by setting the differential\footnote{With this differential we get $H^{i}(\Hom\grd(\F\grd,\G\grd))=\Hom_{\K}(\F\grd,\G\grd[i])$.} on degree $n$ to be
     \[ (d^{n}(f_{i})_{i\in \Z})_{j}=d^{j+n}_{\G\grd}\circ f_{j}-(-1)^{n}f_{j+1}\circ d_{\F\grd}^{j} \]
-    This induces a functor $\Hom\grd(-,\F\grd)$ on the homotopy category which we can again derive, and if $\calP$ is a projective condensed abelian group then $R\Hom\grd(\calP,\F\grd)=\Hom\grd(\calP,\F\grd)$, which is the complex that on degree $n$ is given by $\Hom(\calP,\F^{n})$ and whose differential on degree $n$ is given by $(d_{\F\grd}^{n})_{*}$.
+    This induces a functor $\Hom\grd(-,\F\grd)$ on the homotopy category which we can derive on $\D^{-}$, and if $\calP$ is a projective condensed abelian group then $R\Hom\grd(\calP,\F\grd)=\Hom\grd(\calP,\F\grd)$, which is the complex that on degree $n$ is given by $\Hom(\calP,\F^{n})$ and whose differential on degree $n$ is given by $(d_{\F\grd}^{n})_{*}$.
 \end{exa}
 
 But in fact, thanks to Spaltenstein's resolutions of unbounded complexes, we can define the previous right derived functors in the whole $\D$ and not just on $\D^{-}$.
 A complex $\F\grd$ is called \textit{$K$-projective} (resp. \textit{$K$-injective}) if for all acyclic complexes $\G\grd$ the hom-complex $\Hom\grd(\F\grd,\G\grd)$ is acyclic (resp. $\Hom\grd(\G\grd,\F\grd)$ is acyclic).
 By \cite[Corollary 3.5]{spa88}, every complex of condensed abelian groups has a $K$-projective resolution.
 Hence by \cite[\href{https://stacks.math.columbia.edu/tag/06XN}{Tag 06XN}]{sta19} we can extend $R\Hom\grd(-,\F\grd)$ to the whole derived category $\D$.
+We denote $\Ext^{i}(\F\grd,\G\grd)=H^{i}(R\Hom\grd(\F\grd,\G\grd))$, called the \textit{classical derived functor} of the internal hom, and by \cite[Proposition 1.4]{spa88} we have the useful formula
+\[ \Hom_{\D}(\F\grd,\G\grd[i])=\Ext^{i}(\F\grd,\G\grd).\]
 
 In the previous section we have seen that the tensor-hom adjunction $\F\ot (-)\dashv [\F,-]$, which turns $\Cond(\Ab)$ into a closed symmetric monoidal category.
 From this adjunction we deduce that $\F\ot (-)$ commutes with all colimits and that $[\F,-]$ commutes with all limits.
 Hence we can form the derived functors $\F\ot^{L}(-)\colon \D\to \D$ and $R[\F,-]\colon \D\to \D$.
 These still form an adjoint pair $\F\ot^{L}(-)\dashv R[\F,-]$ (see \cite[\href{https://stacks.math.columbia.edu/tag/09T5}{Tag 09T5}]{sta19}).
+We can again extend these functors to an adjunction $\F\grd\ot^{L}(-)\dashv R[\F\grd,-]$, turning $\D$ into a closed symmetric monoidal category as before.
 
 Let us close this section with a few words on compact generation.
 This is particularly relevant in the context of triangulated categories.
@@ -516,12 +520,13 @@ As Thomason said to Neeman (see \cite{nee01}), ``compact objects are as necessar
 
 Let $\calP\in \Cond(\Ab)$ be a compact projective object.
 We regard $\calP\in \D$ as a complex concentrated on degree $0$.
-Then $P$ is a compact\footnote{In the context of additive categories $\scrC$, an object $C$ is called \textit{compact} if $\Hom_{\scrC}(C,-)\colon \scrC\to \Ab$ preserves coproducts, i.e. for every set $\{A_{i}\}_{i\in I}\subseteq \Ob(\scrC)$ such that $\coprod_{i}A_{i}$ exists in $\scrC$, the canonical map $\coprod_{i}\Hom_{\scrC}(C,A_{i})\to \Hom_{\scrC}(C,\coprod_{i}A_{i})$ is a group isomorphism.} object in the derived category, because $\Hom_{\D}(\calP,\F\grd)=H^{0}(\Hom\grd(\calP,\F\grd))$ and cohomology commutes with direct sums in $\Ab$.
+Then $P$ is a compact\footnote{In the context of additive categories $\scrC$, an object $C$ is called \textit{compact} if $\Hom_{\scrC}(C,-)\colon \scrC\to \Ab$ preserves coproducts, i.e. for every set $\{A_{i}\}_{i\in I}\subseteq \Ob(\scrC)$ such that $\coprod_{i}A_{i}$ exists in $\scrC$, the canonical map $\coprod_{i}\Hom_{\scrC}(C,A_{i})\to \Hom_{\scrC}(C,\coprod_{i}A_{i})$ is a group isomorphism.} object in the derived category, because $\Hom_{\D}(\calP,\F\grd)=H^{0}(\Hom\grd(\calP,\F\grd))$ (see \cite[Proposition 1.4]{spa88}) and cohomology commutes with direct sums in $\Ab$.
 To see that $\D$ is a compactly generated triangulated category (see \href{https://ncatlab.org/nlab/show/compactly+generated+triangulated+category}{nLab}), let $\F\grd\in \D$ such that $\Hom_{\D}(\calP[n],\F\grd)=0$ for all compact projective objects $\calP$ and all $n\in \Z$.
 A cochain complex is zero in $\D$ precisely when it is acyclic.
 Let us see for instance that $H^{0}(\F\grd)=0$.
 Pick a surjection $f\colon \calP=\coprod_{i\in I}\calP_{i}\twoheadrightarrow \ker{d_{\F}^{0}}\subseteq \F\grd$, where all $\calP_{i}$ are compact projective objects.
-Since $\Hom_{\D}(-,\F\grd)$ commutes with colimits and $\calP$ is still projective in $\Cond(\Ab)$, we deduce that $f$ is null-homotopic.
+Since $\Hom_{\D}(-,\F\grd)$ commutes with colimits and all $\Hom_{\D}(\calP_{i},\F\grd)$ are zero, we deduce that $\Hom_{\D}(\calP,\F\grd)=0$.
+But $\calP$ is still projective in $\Cond(\Ab)$, hence $\Hom_{\D}(\calP,\F\grd)=H^{0}(\Hom\grd(\calP,\F\grd))=\Hom_{\K}(\calP,\F\grd)$, so we deduce that $f$ is null-homotopic.
 This means that we can find a commutative diagram:
 \begin{center}
     \begin{tikzcd}
